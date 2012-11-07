@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     
     return a.exec();
 }
-
+//test fra Lars
 //Hei på deg Richard x2
 //Hei Anders og Richard
-//HEI ANDERS ENDA ENGANG3
+//HEI ANDERS ENDA ENG
