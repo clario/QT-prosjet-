@@ -1,6 +1,6 @@
 #include <QtGui/QApplication>
 #include "mainwindow.h"
-
+//lalal
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
