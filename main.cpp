@@ -10,11 +10,11 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 //test fra Lars
-//Hei på deg Richard x2
+//Hei pï¿½ deg Richard x2
 //Hei Anders og Richard
 //HEI ANDERS ENDA ENG
 
-
+//Lagt inn frÃ¥ iPad. OMG
 
 
 
