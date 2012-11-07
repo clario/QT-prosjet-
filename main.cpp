@@ -14,3 +14,31 @@ int main(int argc, char *argv[])
 //Hei Anders og Richard
 //HEI ANDERS ENDA ENG
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
