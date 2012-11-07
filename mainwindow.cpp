@@ -6,7 +6,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QLabel * label = new QLabel("Hei",this);
+  //  QLabel * label = new QLabel("Hei",this);
+    QLabel * idiot = new QLabel("label nr 2",this);
+
 
 
 
