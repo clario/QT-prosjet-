@@ -12,4 +12,4 @@ int main(int argc, char *argv[])
 
 //Hei på deg Richard x2
 //Hei Anders og Richard
-//HEI ANDERS ENDA ENGANG2
+//HEI ANDERS ENDA ENGANG3
