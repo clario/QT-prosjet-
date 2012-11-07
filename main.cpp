@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-    
+
     return a.exec();
 }
 //test fra Lars
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 
 
 
-//TEST Lineje 34
+//Skjera bagera
 
 
 
