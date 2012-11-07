@@ -1,6 +1,6 @@
 #include <QtGui/QApplication>
 #include "mainwindow.h"
-
+//lalal
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -12,4 +12,3 @@ int main(int argc, char *argv[])
 
 //Hei på deg Richard x2
 //Hei Anders og Richard
-//LALALA
