@@ -1,0 +1,7 @@
+GitApplikasjon.exe
+GitApplikasjon
+GitApplikasjon-build*
+moc_*
+ui_*.h
+*.o
+Makefile*
