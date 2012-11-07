@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui debug
 
 TARGET = GitApplikasjon
 TEMPLATE = app
