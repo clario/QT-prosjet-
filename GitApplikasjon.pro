@@ -14,10 +14,12 @@ SOURCES +=\
         mainwindow.cpp \
     main.cpp \
     contacts.cpp \
-    contact.cpp
+    contact.cpp \
+    event.cpp
 
 HEADERS  += mainwindow.h \
     contacts.h \
-    contact.h
+    contact.h \
+    event.h
 
 FORMS    += mainwindow.ui
