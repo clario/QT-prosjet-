@@ -15,12 +15,12 @@ int main(int argc, char *argv[])
 //HEI ANDERS ENDA ENG
 
 //Lagt inn frå iPad. OMG
+//Lagt inn frå OMG. iPad
 
 
 
 
 
-Hoppla
 
 
 
