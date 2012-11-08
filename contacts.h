@@ -13,6 +13,7 @@ class Contacts
 {
 public:
     Contacts();
+    ~Contacts();
 
     bool add(void);
     bool remove(void);
