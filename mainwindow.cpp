@@ -20,6 +20,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked() {
 
-    ui->infoLabel->setText("TADAAA!");
+    ui->infoLabel->setText("Hwi!");
 
 }
