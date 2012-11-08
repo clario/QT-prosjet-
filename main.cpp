@@ -16,6 +16,8 @@ int main(int argc, char *argv[])
 
 //Lagt inn frå iPad. OMG
 
+//Lagt inn på teleks fra Moldova (Martinius)
+
 
 
 
