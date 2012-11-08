@@ -23,7 +23,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked() {
 
     ui->infoLabel->setText("TADAAA!");
-    QMessageBox::about(this,"Hei","på deg");
+    QMessageBox::about(this,"HEHE","BASJ!");
 
 }
 
