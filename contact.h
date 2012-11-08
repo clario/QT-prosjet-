@@ -2,6 +2,10 @@
 #define CONTACT_H
 #include <string>
 
+/**
+  * Denne klassen skal bare inneholde innformasjon om en og bare en kontakt
+  */
+
 //Declaring calendar namespace
 namespace calendar{
     class Contact;
@@ -22,15 +26,16 @@ public:
     std::string getLname();
     int getPhoneNumber();
     std::string getEmail();
-    int getContId();
+    int getCId();
 
     //Setters
-    std::string setFname(std::string);
-    std::string setLname(std::string);
-    int setPhoneNumber(int);
-    std::setEmail(std::string);
+    void setFname(std::string);
+    void setLname(std::string);
+    void setPhoneNumber(int);
+    void setEmail(std::string);
+    void setCId();
 
-
+    //Methods to be continued...
 
 
 private:
@@ -38,7 +43,7 @@ private:
     std::string lname;
     int phoneNumber;
     std::string email;
-    int contId;
+    int cId;
 };
 
 #endif // CONTACT_H
