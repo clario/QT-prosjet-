@@ -27,7 +27,10 @@ int main(int argc, char *argv[])
 
 
 
-//Skjera bagera?
+//LArs Linje 30
+
+
+
 
 
 
