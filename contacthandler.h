@@ -1,5 +1,5 @@
-#ifndef CONTACTS_H
-#define CONTACTS_H
+#ifndef CONTACTHANDLER_H
+#define CONTACTHANDLER_H
 #include <contact.h>;
 #include <string>;
 
@@ -7,14 +7,14 @@
 //Tenkte det kunne være greit med eit førebels interface å jobbe etter ;)
 
 namespace calender {
-    class Contacts;
+    class ContactHandler;
 }
 
-class Contacts
+class ContactHandler
 {
 public:
-    Contacts();
-    ~Contacts();
+    ContactHandler();
+    ~ContactHandler();
 
     bool add(void);
     bool remove(void);
@@ -27,4 +27,4 @@ private:
     contact array[]; //Antar at vi endrer datastruktur her seinare.
     int size;
 };
-#endif // CONTACTS_H
+#endif // CONTACTHANDLER_H

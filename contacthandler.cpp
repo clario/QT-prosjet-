@@ -1,6 +1,6 @@
-#include "contacts.h"
+#include "contacthandler.h"
 
-Contacts::Contacts()
+ContactHandler::ContactHandler()
 {
 }
 
