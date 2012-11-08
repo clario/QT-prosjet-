@@ -13,9 +13,11 @@ TEMPLATE = app
 SOURCES +=\
         mainwindow.cpp \
     main.cpp \
-    contacts.cpp
+    contacts.cpp \
+    contact.cpp
 
 HEADERS  += mainwindow.h \
-    contacts.h
+    contacts.h \
+    contact.h
 
 FORMS    += mainwindow.ui
