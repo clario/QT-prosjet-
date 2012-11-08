@@ -27,4 +27,10 @@ void MainWindow::on_pushButton_clicked() {
 
 }
 
+void MainWindow::on_anotherPushButton_clicked() {
+
+    QMessageBox::question(this,"Question:", "Har du mista en tusj noengang da?", QMessageBox::Yes, QMessageBox::No);
+
+}
+
 
