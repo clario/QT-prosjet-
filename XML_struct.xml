@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<calender>
+    <contacts>
+        <contact id="1">
+            <fName>string</fName>
+            <lName>string</lName>
+            <phoneNumber>"94891764"</phoneNumber>
+        </contact>
+    </contacts>
+    <events>
+        <event>
+            <title>string</title>
+            <eventType>string</eventType>
+            <location>string</location>
+            <participant>1</participant>
+            <participant>2</participant>
+            <start>date <!-- Lagrast som tid sidan 1970 --></start>
+            <end>date <!-- Lagrast som tid sidan 1970 --></end>
+        </event>
+    </events>
+    <eventTypes> <!-- Alternativ løysing der eventType blir lagra for seg. NB: For å få ut ut dei ulike event typane må dei lagrast i ein datastruktur -->
+        <eventType title="Møte">
+        <eventType title="Undervisning">
+    </eventTypes>
+</calender>
