@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 
 //Lagt inn frå iPad. OMG
 //Lagt inn frå OMG. iPad
-
+//Behold the mother of nedless gadgets are here!!
 
 
 
