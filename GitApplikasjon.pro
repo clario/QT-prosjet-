@@ -13,15 +13,15 @@ TEMPLATE = app
 SOURCES +=\
         mainwindow.cpp \
     main.cpp \
-    contacts.cpp \
     contact.cpp \
     event.cpp \
-    eventhandler.cpp
+    eventhandler.cpp \
+    contacthandler.cpp
 
 HEADERS  += mainwindow.h \
-    contacts.h \
     contact.h \
     event.h \
-    eventhandler.h
+    eventhandler.h \
+    contacthandler.h
 
 FORMS    += mainwindow.ui
