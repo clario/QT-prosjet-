@@ -1,6 +1,7 @@
 #ifndef CONTACTS_H
 #define CONTACTS_H
 #include <contact.h>;
+#include <string>;
 
 //Bygger berre opp klassene med metoder. Venter med implementasjon til det er nødvendig
 //Tenkte det kunne være greit med eit førebels interface å jobbe etter ;)
