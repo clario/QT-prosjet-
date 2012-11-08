@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 //test fra Lars
-//Hei p� deg Richard x2
+//Hei på deg Richard x2
 //Hei Anders og Richard
 //HEI ANDERS ENDA ENG
 
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
 
 
-
+//LArs Linje 30
 
 
 
