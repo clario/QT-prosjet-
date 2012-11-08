@@ -5,3 +5,5 @@ moc_*
 ui_*.h
 *.o
 Makefile*
+*.swp
+*~
