@@ -1,6 +1,6 @@
 #ifndef CONTACTS_H
 #define CONTACTS_H
-#import <contact.h>;
+#include <contact.h>;
 
 class Contacts
 {
