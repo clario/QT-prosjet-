@@ -31,7 +31,7 @@ public:
 
 private:
     //Container type kan diskuteres
-    vector eventContainer;
+    vector<Event> eventContainer;
     vector<string> eventTypes; //<- Vist vi går for det her er eventType i praksis distinkt og case sensitive/insensitive (kan sjekkast i logikk laget)
 
 

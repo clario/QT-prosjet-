@@ -26,7 +26,7 @@ public:
     //Finn metodane eg har laga er muligens ikkje idelle. Er berre mockup
 
 private:
-    contact array[]; //Antar at vi endrer datastruktur her seinare.
+    Contact array[]; //Antar at vi endrer datastruktur her seinare.
     int size;
 };
 #endif // CONTACTHANDLER_H
