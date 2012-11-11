@@ -3,6 +3,8 @@
 #include <contact.h>;
 #include <string>;
 
+using namespace std;
+
 //Bygger berre opp klassene med metoder. Venter med implementasjon til det er nødvendig
 //Tenkte det kunne være greit med eit førebels interface å jobbe etter ;)
 

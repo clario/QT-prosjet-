@@ -5,6 +5,7 @@
 /**
   * Denne klassen skal bare inneholde innformasjon om en og bare en kontakt
   */
+using namespace std;
 
 //Declaring calendar namespace
 namespace calendar{
@@ -17,32 +18,32 @@ class Contact
 {
 public:
     Contact();
-    Contact(std::string,int,std::string);
-    Contact(std::string,std::string,int,std::string);
+    Contact(string,int,string);
+    Contact(string,string,int,string);
     ~Contact();
 
     //getters
-    std::string getFname();
-    std::string getLname();
+    string getFname();
+    string getLname();
     int getPhoneNumber();
-    std::string getEmail();
+    string getEmail();
     int getCId();
 
     //Setters
-    void setFname(std::string);
-    void setLname(std::string);
+    void setFname(string);
+    void setLname(string);
     void setPhoneNumber(int);
-    void setEmail(std::string);
+    void setEmail(string);
     void setCId();
 
     //Methods to be continued...
 
 
 private:
-    std::string fname;
-    std::string lname;
+    string fname;
+    string lname;
     int phoneNumber;
-    std::string email;
+    string email;
     int cId;
 };
 

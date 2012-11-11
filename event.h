@@ -3,14 +3,16 @@
 #include <string>
 #include <contact.h>
 
+using namespace std;
+
 class Event
 {
 public:
     Event();
 private:
-    std::string title;
-    std::string eventType;
-    std::string location;
+    string title;
+    string eventType;
+    string location;
     calendar::Contact* participants;
 };
 
