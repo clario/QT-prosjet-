@@ -11,17 +11,24 @@ TEMPLATE = app
 
 
 SOURCES +=\
-        mainwindow.cpp \
     main.cpp \
     contact.cpp \
     event.cpp \
     eventhandler.cpp \
-    contacthandler.cpp
+    contacthandler.cpp \
+    troller.cpp \
+    contactview.cpp \
+    eventview.cpp \
+    calenderview.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     contact.h \
     event.h \
     eventhandler.h \
-    contacthandler.h
+    contacthandler.h \
+    troller.h \
+    contactview.h \
+    eventview.h \
+    calenderview.h
 
 FORMS    += mainwindow.ui
