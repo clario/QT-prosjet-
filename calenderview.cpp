@@ -1,4 +1,5 @@
 #include "calenderview.h"
+#include <QTextEdit>
 
 
 CalenderView::CalenderView(QWidget *parent) :
@@ -12,13 +13,14 @@ CalenderView::CalenderView(QWidget *parent) :
 
     QWidget * mainWidget = new QWidget();
     setCentralWidget(mainWidget);
+    createSideBar();
 
 
 }
 
 void CalenderView::createSideBar(){
 
-    mainLayout->addWidget(widget,0,0,1,2);
+    mainLayout->addWidget(new QTextEdit,0,0,1,2);
 
 
 }

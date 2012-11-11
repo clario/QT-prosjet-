@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QGridLayout>
+#include <QTextLine>
 
 
 class CalenderView : public QMainWindow
