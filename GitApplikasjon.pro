@@ -28,7 +28,6 @@ HEADERS  += \
     contacthandler.h \
     troller.h \
     contactview.h \
-    eventview.h \
-    calenderview.h
+    eventview.h
 
 FORMS    += mainwindow.ui
