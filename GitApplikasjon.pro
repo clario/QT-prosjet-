@@ -4,7 +4,12 @@
 #
 #-------------------------------------------------
 
-QT       += core gui debug
+QT       += core gui
+CONFIG += debug
+
+# Setter flagg for c++ kompilator, setter standard til c++11,
+# streng feilsjekking
+QMAKE_CXXFLAGS= -std=c++0x -W -Wall -pedantic
 
 TARGET = GitApplikasjon
 TEMPLATE = app
