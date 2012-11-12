@@ -42,11 +42,15 @@ public:
     /*
      *@desc Setter ID telleren med utganspunkt i høyeste ID + 1
     */
-    void setCounter();
+    void setCounter(void);
+
+    /*
+     *@desc Returnerer størrelsen på QVectoren brukt for å lagre kontakter
+    */
+    int getSize(void);
 
 private:
-    QVector<contact> container;
-    int size;
+    QVector<*Contact> container;
     int idCounter;
 };
 #endif // CONTACTHANDLER_H
