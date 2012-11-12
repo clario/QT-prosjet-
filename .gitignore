@@ -3,6 +3,7 @@ GitApplikasjon
 GitApplikasjon-build*
 moc_*
 ui_*.h
+main.cpp
 *.o
 Makefile*
 *.swp
