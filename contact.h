@@ -5,7 +5,7 @@
 
 #ifndef CONTACT_H
 #define CONTACT_H
-#include <string>
+#include <Qstring>
 
 /**
   * Denne klassen skal bare inneholde innformasjon om en og bare en kontakt
@@ -39,6 +39,7 @@ public:
     void setLname(string);
     void setPhoneNumber(int);
     void setEmail(string);
+    //Fjernes når ferdig
     void setCId();
 
     //Methods to be continued...
