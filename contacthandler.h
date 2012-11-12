@@ -19,11 +19,33 @@ public:
     ContactHandler();
     ~ContactHandler();
 
-    bool add();
-    bool remove(void);
+    /*
+     *@param QString fName, QString lName, int phoneNumber, QString email
+     *@return Henhaldsvis true/false avhengig av om køyring var vellykka
+    */
+    bool add(string fName, string lName, int phoneNumber, string email);
+    /*
+     *@param QString fName, QString lName, int phoneNumber, QString email
+     *@return Henhaldsvis true/false avhengig av om køyring var vellykka
+    */
+    bool remove(string fName, string lName, int phoneNumber, string email);
+    /*
+     *@param int cID
+     *@return Henhaldsvis true/false achenig av om køyringa var velykka
+    */
+    bool remove(int cID);
+    /*
+     *@param int nextID
+     *@desc Setter ID telleren
+    */
+    void setCounter(int nextID);
+    /*
+     *@desc Setter ID telleren med utganspunkt i høyeste ID + 1
+    */
+    void setCounter();
 
 private:
-    QVector container; //Antar at vi endrer datastruktur her seinare.
+    QVector container;
     int size;
     int idCounter;
 };
