@@ -28,15 +28,15 @@ public:
     ~Contact();
 
     //getters
-    string getFname();
-    string getLname();
+    string getFName();
+    string getLName();
     int getPhoneNumber();
     string getEmail();
     int getCId();
 
     //Setters
-    void setFname(string);
-    void setLname(string);
+    void setFName(string);
+    void setLName(string);
     void setPhoneNumber(int);
     void setEmail(string);
     //Fjernes når ferdig
@@ -46,8 +46,8 @@ public:
 
 
 private:
-    string fname;
-    string lname;
+    string fName;
+    string lName;
     int phoneNumber;
     string email;
     int cId;
