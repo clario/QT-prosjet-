@@ -22,9 +22,9 @@ namespace calendar{
 class Contact
 {
 public:
-    Contact(int);
-    Contact(string,int,int,string);
-    Contact(string,string,int,int,string);
+    Contact(int contactId);
+    Contact(string firmName,int contactId, int phoneNum,string eml);
+    Contact(string firstName, string lastName, int contactId, int phoneNum, string eml);
     ~Contact();
 
     //getters
@@ -35,15 +35,15 @@ public:
     int getCId();
 
     //Setters
-    void setFName(string);
-    void setLName(string);
-    void setPhoneNumber(int);
+    void setFName(string firstName);
+    void setLName(string lastName);
+    void setPhoneNumber(int phone);
     void setEmail(string);
     //Fjernes når ferdig
-    void setCId();
+    void setCId(int contactId);
 
     //Methods to be continued...
-
+    bool operator==(const Contact &contact);
 
 private:
     string fName;
