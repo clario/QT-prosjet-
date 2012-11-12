@@ -1,6 +1,6 @@
-#include "centralwidget.h"
+#include "calendarview.h"
 
-CentralWidget::CentralWidget(QWidget *parent) :
+CalendarView::CalendarView(QWidget *parent) :
     QWidget(parent)
 {
 

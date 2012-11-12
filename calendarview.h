@@ -1,5 +1,5 @@
-#ifndef CENTRALWIDGET_H
-#define CENTRALWIDGET_H
+#ifndef CALENDARVIEW_H
+#define CALENDARVIEW_H
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -7,11 +7,11 @@
 #include <QLabel>
 #include "extendedqcalendar.h"
 
-class CentralWidget : public QWidget
+class CalendarView : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CentralWidget(QWidget *parent = 0);
+    explicit CalendarView(QWidget *parent = 0);
 
 private:
 
@@ -27,4 +27,4 @@ public slots:
 
 };
 
-#endif // CENTRALWIDGET_H
+#endif // CALENDARVIEW_H
