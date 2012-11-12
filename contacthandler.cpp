@@ -13,7 +13,7 @@ bool ContactHandler::add(string fName, string lName, int phoneNumber, string ema
     Contact *tmp = Contact(idCounter, fName, lName, phoneNumber, email);
     idCounter++;
     container.push_back(tmp);
-    if (tmp==container.end()) {
+    if (tmp==container.last()) {
         return true;
     } else {
         return false;
@@ -21,11 +21,11 @@ bool ContactHandler::add(string fName, string lName, int phoneNumber, string ema
 }
 
 bool ContactHandler::remove(string fName, string lName, int phoneNumber, string email) {
-    //Venter med denne til søkemetodene i contact er avklart
+    //Venter med denne til equals(eventuelt == operatorene) i contact er avklart
 }
 
 bool ContactHandler::remove(int cID) {
-    //Venter på ein metode for å fjekke ein kontakt mot ein anna kontakt sin cID
+    //Venter med denne til equals(eventuelt == operatorene) i contact er avklart
 }
 
 void ContactHandler::setCounter(int &nextID) {
