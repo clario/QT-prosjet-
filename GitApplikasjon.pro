@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += xml
 CONFIG += debug
 
 # Setter flagg for c++ kompilator, setter standard til c++11,
