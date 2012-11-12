@@ -10,7 +10,7 @@ CONFIG += debug
 
 # Setter flagg for c++ kompilator, setter standard til c++11,
 # streng feilsjekking
-QMAKE_CXXFLAGS= -std=c++0x -W -Wall -pedantic
+# QMAKE_CXXFLAGS= -std=c++0x -W -Wall -pedantic
 
 TARGET = GitApplikasjon
 TEMPLATE = app
@@ -25,7 +25,6 @@ SOURCES +=\
     troller.cpp \
     contactview.cpp \
     eventview.cpp \
-    calenderview.cpp \
     extendedqcalendar.cpp \
     calendarview.cpp
 
