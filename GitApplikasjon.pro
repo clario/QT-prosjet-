@@ -25,7 +25,9 @@ SOURCES +=\
     troller.cpp \
     contactview.cpp \
     eventview.cpp \
-    calenderview.cpp
+    calenderview.cpp \
+    extendedqcalendar.cpp \
+    calendarview.cpp
 
 HEADERS  += \
     contact.h \
@@ -34,6 +36,8 @@ HEADERS  += \
     contacthandler.h \
     troller.h \
     contactview.h \
-    eventview.h
+    eventview.h \
+    extendedqcalendar.h \
+    calendarview.h
 
 FORMS    += mainwindow.ui
