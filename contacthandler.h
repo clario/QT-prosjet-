@@ -49,6 +49,8 @@ public:
     */
     int getSize(void);
 
+    Contact* operator[](int index);
+
 private:
     QVector<Contact*> container;
     int idCounter;

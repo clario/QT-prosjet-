@@ -5,7 +5,9 @@
 
 #include "contacthandler.h"
 
-ContactHandler::ContactHandler(){}
+ContactHandler::ContactHandler(){
+    idCounter = 1;
+}
 ContactHandler::~ContactHandler(){}
 
 bool ContactHandler::add(string fName, string lName, int phoneNumber, string email) {
@@ -51,4 +53,8 @@ void ContactHandler::setCounter(void) {
 
 int ContactHandler::getSize(void) {
     return container.size();
+}
+
+Contact *ContactHandler::operator[](int index) {
+    return container[index];
 }
