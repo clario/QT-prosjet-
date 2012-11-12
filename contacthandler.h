@@ -3,17 +3,11 @@
   * Klasseansvarlig: Lars
   */
 
-
-
 #ifndef CONTACTHANDLER_H
 #define CONTACTHANDLER_H
 #include <contact.h>;
-#include <string>;
-
-using namespace std;
-
-//Bygger berre opp klassene med metoder. Venter med implementasjon til det er nødvendig
-//Tenkte det kunne være greit med eit førebels interface å jobbe etter ;)
+#include <QString>;
+#include <QVector>;
 
 namespace calender {
     class ContactHandler;
@@ -25,15 +19,40 @@ public:
     ContactHandler();
     ~ContactHandler();
 
-    bool add(void);
-    bool remove(void);
-    int find(string); //søker etter match i fornavn og etternavn, returnerer plassering i tabellen
-    int find(int); //søker etter telefonnummer, returnerer plassering i tabellen
+    /*
+     *@param QString fName, QString lName, int phoneNumber, QString email
+     *@return Henhaldsvis true/false avhengig av om køyring var vellykka
+    */
+    bool add(string fName, string lName, int phoneNumber, string email);
+    /*
+     *@param QString fName, QString lName, int phoneNumber, QString email
+     *@return Henhaldsvis true/false avhengig av om køyring var vellykka
+    */
+    bool remove(string fName, string lName, int phoneNumber, string email);
+    /*
+     *@param int cID
+     *@return Henhaldsvis true/false achenig av om køyringa var velykka
+    */
+    bool remove(int cID);
+    /*
+     *@param int nextID
+     *@desc Setter ID telleren
+    */
+    void setCounter(int &nextID);
+    /*
+     *@desc Setter ID telleren med utganspunkt i høyeste ID + 1
+    */
+    void setCounter(void);
 
-    //Finn metodane eg har laga er muligens ikkje idelle. Er berre mockup
+    /*
+     *@desc Returnerer størrelsen på QVectoren brukt for å lagre kontakter
+    */
+    int getSize(void);
+
+    Contact* operator[](int index);
 
 private:
-    Contact array[]; //Antar at vi endrer datastruktur her seinare.
-    int size;
+    QVector<Contact*> container;
+    int idCounter;
 };
 #endif // CONTACTHANDLER_H

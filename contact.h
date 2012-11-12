@@ -5,7 +5,7 @@
 
 #ifndef CONTACT_H
 #define CONTACT_H
-#include <string>
+#include <QString>
 
 /**
   * Denne klassen skal bare inneholde innformasjon om en og bare en kontakt
@@ -22,31 +22,32 @@ namespace calendar{
 class Contact
 {
 public:
-    Contact();
-    Contact(string,int,string);
-    Contact(string,string,int,string);
+    Contact(int contactId);
+    Contact(string firmName,int contactId, int phoneNum,string eml);
+    Contact(string firstName, string lastName, int contactId, int phoneNum, string eml);
     ~Contact();
 
     //getters
-    string getFname();
-    string getLname();
+    string getFName();
+    string getLName();
     int getPhoneNumber();
     string getEmail();
     int getCId();
 
     //Setters
-    void setFname(string);
-    void setLname(string);
-    void setPhoneNumber(int);
+    void setFName(string firstName);
+    void setLName(string lastName);
+    void setPhoneNumber(int phone);
     void setEmail(string);
-    void setCId();
+    //Fjernes når ferdig
+    void setCId(int contactId);
 
     //Methods to be continued...
-
+    bool operator==(const Contact &contact);
 
 private:
-    string fname;
-    string lname;
+    string fName;
+    string lName;
     int phoneNumber;
     string email;
     int cId;
