@@ -33,7 +33,18 @@ void ContactHandler::setCounter(int &nextID) {
 }
 
 void ContactHandler::setCounter(void) {
-    //Venter litt med denne
+    if (container.size()>0) {
+        int max = *(container[0])->getCId();
+        int now = 0;
+        for (int i = 1; i < container.size(); i++) {
+            now = *(container[i])->getCId();
+            if (now>max) {
+                max = now;
+            }
+        }
+        idCounter = max + 1;
+    }
+}
 }
 
 int ContactHandler::getSize(void) {
