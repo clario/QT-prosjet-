@@ -45,7 +45,7 @@ public:
     void setCounter();
 
 private:
-    QVector container;
+    QVector<contact> container;
     int size;
     int idCounter;
 };
