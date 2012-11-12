@@ -31,6 +31,10 @@ Contact::Contact(string firstName, string lastName, int contactId, int phoneNum,
     email(eml)
 {}
 
+Contact::~Contact()
+{
+}
+
 //Getters
 string Contact::getFName()
 {
@@ -83,6 +87,8 @@ bool Contact::operator ==(const Contact &contact)
 {
     return cId==contact.cId;
 }
+
+
 
 
 
