@@ -10,7 +10,7 @@ ContactHandler::ContactHandler()
 }
 
 bool ContactHandler::add(string fName, string lName, int phoneNumber, string email) {
-    Contact *tmp = Contact(idCounter, fName, lName, phoneNumber, email);
+    Contact *tmp = new Contact(fName, lName, idCounter, phoneNumber, email);
     idCounter++;
     container.push_back(tmp);
     if (tmp==container.last()) {
