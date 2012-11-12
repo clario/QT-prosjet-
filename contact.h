@@ -5,7 +5,7 @@
 
 #ifndef CONTACT_H
 #define CONTACT_H
-#include <Qstring>
+#include <QString>
 
 /**
   * Denne klassen skal bare inneholde innformasjon om en og bare en kontakt
@@ -22,9 +22,9 @@ namespace calendar{
 class Contact
 {
 public:
-    Contact();
-    Contact(string,int,string);
-    Contact(string,string,int,string);
+    Contact(int);
+    Contact(string,int,int,string);
+    Contact(string,string,int,int,string);
     ~Contact();
 
     //getters
