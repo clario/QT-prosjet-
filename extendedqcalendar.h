@@ -14,7 +14,7 @@ class ExtendedQCalendar : public QCalendarWidget
     Q_PROPERTY(QColor color READ getColor WRITE setColor)
 
 public:
-    explicit ExtendedQCalendar(QWidget *parent = 0);
+    ExtendedQCalendar(QWidget *parent = 0);
 
     void setColor(QColor &color);
     QColor getColor();

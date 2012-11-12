@@ -6,12 +6,14 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include "extendedqcalendar.h"
+#include "troller.h"
 
 class CalendarView : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CalendarView(QWidget *parent = 0);
+    CalendarView(QWidget *parent = 0);
+    CalendarView(QWidget *parent = 0, Troller *troll = 0);
 
 private:
 
@@ -20,10 +22,13 @@ private:
     QHBoxLayout *mainLayout;
     QVBoxLayout *eventFeed;
     ExtendedQCalendar *calendar;
+    Troller *troller;
 
 signals:
 
 public slots:
+
+    void dateClicked(const QDate&) const;
 
 };
 
