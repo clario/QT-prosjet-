@@ -38,7 +38,7 @@ public:
      *@param int nextID
      *@desc Setter ID telleren
     */
-    void setCounter(int nextID);
+    void setCounter(int &nextID);
     /*
      *@desc Setter ID telleren med utganspunkt i høyeste ID + 1
     */
@@ -50,7 +50,7 @@ public:
     int getSize(void);
 
 private:
-    QVector<*Contact> container;
+    QVector<Contact*> container;
     int idCounter;
 };
 #endif // CONTACTHANDLER_H
