@@ -1,3 +1,8 @@
+/*
+  * Obligatorisk innlevering i Qt
+  * Klasseansvarlig: Endre
+  */
+
 #ifndef EVENTHANDLER_H
 #define EVENTHANDLER_H
 #include <vector>

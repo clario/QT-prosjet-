@@ -1,3 +1,8 @@
+/*
+  * Obligatorisk innlevering i Qt
+  * Klasseansvarlig: Lars
+  */
+
 #ifndef CONTACT_H
 #define CONTACT_H
 #include <string>
