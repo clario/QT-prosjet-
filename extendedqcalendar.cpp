@@ -1,13 +1,14 @@
 #include "extendedqcalendar.h"
 #include <QPainter>
+#include <QDebug>
 
 ExtendedQCalendar::ExtendedQCalendar(QWidget *parent) :
     QCalendarWidget(parent)
 {
 
-    m_currentDate = QDate::currentDate();
-    m_outlinePen.setColor(Qt::green);
-    m_transparentBrush.setColor(Qt::transparent);
+    m_currentDate = QDate(2012,11,21);
+    m_outlinePen.setColor(Qt::red);
+    m_transparentBrush.setColor(Qt::black);
 
 }
 
@@ -25,12 +26,15 @@ QColor ExtendedQCalendar::getColor() {
 
 void ExtendedQCalendar::paintCell(QPainter *painter, const QRect &rect, const QDate &date) const
 {
-   QCalendarWidget::paintCell(painter, rect, date);
+     QCalendarWidget::paintCell(painter, rect, date);
 
-   if (date == m_currentDate)
+    if (date == m_currentDate)
+
    {
        painter->setPen(m_outlinePen);
        painter->setBrush(m_transparentBrush);
        painter->drawRect(rect.adjusted(0, 0, -1, -1));
+
    }
+
 }

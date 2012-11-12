@@ -5,9 +5,10 @@
 
 #include "contacthandler.h"
 
-ContactHandler::ContactHandler()
-{
+ContactHandler::ContactHandler(){
+    idCounter = 1;
 }
+ContactHandler::~ContactHandler(){}
 
 bool ContactHandler::add(string fName, string lName, int phoneNumber, string email) {
     Contact *tmp = new Contact(fName, lName, idCounter, phoneNumber, email);
@@ -25,7 +26,11 @@ bool ContactHandler::remove(string fName, string lName, int phoneNumber, string 
 }
 
 bool ContactHandler::remove(int cID) {
-    //Venter med denne til equals(eventuelt == operatorene) i contact er avklart
+    for (int i = 0; i < container.size(); i++) {
+        if (*(container[i]) == cID) {
+            container.remove(i);
+        }
+    }
 }
 
 void ContactHandler::setCounter(int &nextID) {
@@ -48,4 +53,8 @@ void ContactHandler::setCounter(void) {
 
 int ContactHandler::getSize(void) {
     return container.size();
+}
+
+Contact *ContactHandler::operator[](int index) {
+    return container[index];
 }
