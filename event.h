@@ -81,7 +81,10 @@ public:
     unsigned int getRepeats() const;
     void setRepeats(unsigned int repeats);
 
+    // Med disse to kan vi gjøre bruk av hele spekteret av < <= == != >= >
+    // hvis man inkluderer rel_ops
     bool operator== (const Event& other) const;
+    bool operator< (const Event& other) const;
 
     static const QString dateTimeFormat;
 

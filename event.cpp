@@ -142,6 +142,16 @@ bool Event::operator==(const Event& other) const {
     return equal;
 }
 
+bool Event::operator<(const Event& other) const {
+    bool lessThan = (start < other.getStartDateTime());
+
+    if (!lessThan && (start == other.getStartDateTime())) {
+        lessThan = (end < other.getEndDateTime());
+    }
+
+    return lessThan;
+}
+
 unsigned int Event::getRepeats() const {
     return repeats;
 }
