@@ -7,6 +7,8 @@
 
 using namespace calendar;
 
+const QString Event::dateTimeFormat = "yyyy-MM-ddThh:mm:ss";
+
 Event::Event()
 {
 }
@@ -33,7 +35,7 @@ bool Event::setStartDateTime(const QDateTime& startDateTime) {
   * Returnerer en tidsstreng på formatet 2012-02-01T22:33:00
   */
 QString Event::getStartAsString() const {
-    return "";
+    return start.toString(dateTimeFormat);
 }
 
 /**
@@ -41,7 +43,8 @@ QString Event::getStartAsString() const {
   * nn dato fra et serialisert objkt
   * Krever formatet 2012-02-01T22:33:00
   */
-bool Event::setStartAsString(const QString& start) {
+bool Event::setStartAsString(const QString& startDateTime) {
+    start = QDateTime::fromString(startDateTime, dateTimeFormat);
     return true;
 }
 
@@ -73,13 +76,14 @@ QDateTime Event::getEndDateTime() const {
 
 bool Event::setEndDateTime(const QDateTime& endDateTime) {
     end = endDateTime;
+    return true;
 }
 
 /**
   * Returnerer en tidsstreng på formatet 2012-02-01T22:33:00
   */
 QString Event::getEndAsString() const {
-    return "";
+    return end.toString(dateTimeFormat);
 }
 
 /**
@@ -87,7 +91,8 @@ QString Event::getEndAsString() const {
   * nn dato fra et serialisert objkt
   * Krever formatet 2012-02-01T22:33:00
   */
-bool Event::setEndAsString(const QString& start) {
+bool Event::setEndAsString(const QString& endDateTime) {
+    end = QDateTime::fromString(endDateTime, dateTimeFormat);
     return true;
 }
 

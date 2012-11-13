@@ -24,7 +24,9 @@ public:
     QString getTitle() const;
     void setTitle(const QString& title);
 
-    /** Metoder for startdato */
+    /**
+     * Metoder for startdato
+     */
 
     QDateTime getStartDateTime() const;
     bool setStartDateTime(const QDateTime& startDateTime);
@@ -77,6 +79,8 @@ public:
     void setParticipants(std::vector<QString> participants);
 
     bool operator== (const Event& other) const;
+
+    static const QString dateTimeFormat;
 
 private:
     QString title;
