@@ -11,6 +11,7 @@ const QString Event::dateTimeFormat = "yyyy-MM-ddThh:mm:ss";
 
 Event::Event()
 {
+    repeats = 0;
 }
 
 QString Event::getTitle() const {
@@ -139,4 +140,12 @@ bool Event::operator==(const Event& other) const {
     }
 
     return equal;
+}
+
+unsigned int Event::getRepeats() const {
+    return repeats;
+}
+
+void Event::setRepeats(unsigned int _repeats) {
+    repeats = repeats;
 }

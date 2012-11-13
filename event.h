@@ -78,6 +78,9 @@ public:
     std::vector<QString> getParticipants() const;
     void setParticipants(std::vector<QString> participants);
 
+    unsigned int getRepeats() const;
+    void setRepeats(unsigned int repeats);
+
     bool operator== (const Event& other) const;
 
     static const QString dateTimeFormat;
@@ -89,6 +92,9 @@ private:
 
     QDateTime start;
     QDateTime end;
+
+    // Antall uker fremover eventet skal repeteres
+    unsigned int repeats;
 
     std::vector<QString> participants;
 };
