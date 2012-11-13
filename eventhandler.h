@@ -31,6 +31,7 @@ public:
     void addEvent(const Event& event);
     Event removeEvent(const Event& event);
 
+    unsigned int count() const;
 
 private:
     //Container type kan diskuteres

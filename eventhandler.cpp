@@ -59,3 +59,7 @@ Event EventHandler::removeEvent(const Event& event) {
 
 	return Event();
 }
+
+unsigned int EventHandler::count() const {
+	return eventContainer.size();
+}
