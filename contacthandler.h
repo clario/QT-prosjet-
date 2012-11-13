@@ -5,9 +5,9 @@
 
 #ifndef CONTACTHANDLER_H
 #define CONTACTHANDLER_H
-#include <contact.h>;
-#include <QString>;
-#include <QVector>;
+#include <contact.h>
+#include <QString>
+#include <QVector>
 
 namespace calender {
     class ContactHandler;

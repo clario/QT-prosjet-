@@ -23,14 +23,17 @@ bool ContactHandler::add(string fName, string lName, int phoneNumber, string ema
 
 bool ContactHandler::remove(string fName, string lName, int phoneNumber, string email) {
     //Venter med denne til equals(eventuelt == operatorene) i contact er avklart
+    return false;
 }
 
 bool ContactHandler::remove(int cID) {
     for (int i = 0; i < container.size(); i++) {
         if (*(container[i]) == cID) {
             container.remove(i);
+            return true;
         }
     }
+    return false;
 }
 
 void ContactHandler::setCounter(int &nextID) {
