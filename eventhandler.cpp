@@ -15,22 +15,22 @@ EventHandler::~EventHandler() {
 
 }
 
-std::vector<Event> EventHandler::findEvents(const QDate& from, const QDate& to) const {
-	// Denne metoden finner alle events mellom to datoer. søket er som inklusivt.
-	// Det finner ALLE event som start, slutter eller pågpr innenfor et tisrom.
+std::vector<Event> EventHandler::findEvents(const QDateTime& from, const QDateTime& to) const {
+	// Denne metoden finner alle events mellom to datoer. søket er inklusivt.
+	// Det finner ALLE events som starter, slutter eller pågår innenfor et tidsrom.
 	std::vector<Event> results;
 	EventHandler::const_iterator it, it_end;
 
 	Event toEvent;
-	toEvent.setStartDateTime(QDateTime(to));
+	toEvent.setStartDateTime(to);
 	it_end = eventContainer.upper_bound(toEvent);
 	// it_end = eventContainer.end();
 
 	for (it = eventContainer.begin(); it != it_end; it++) {
 		Event e = *it;
-		if ((e.getStartDate() >= from && e.getStartDate() <= to) ||
-		    (e.getEndDate() >= from && e.getEndDate() <= to) ||
-		    (e.getStartDate() <= from && e.getEndDate() >= to)) {
+		if ((e.getStartDateTime() >= from && e.getStartDateTime() <= to) ||
+		    (e.getEndDateTime() >= from && e.getEndDateTime() <= to) ||
+		    (e.getStartDateTime() <= from && e.getEndDateTime() >= to)) {
 			results.push_back(e);
 		}
 	}

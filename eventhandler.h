@@ -21,9 +21,9 @@ public:
     typedef std::set<Event>::const_iterator const_iterator;
 
     /**
-      * Finner event
+      * Finner events
       */
-    std::vector<Event> findEvents(const QDate& from, const QDate& to) const;
+    std::vector<Event> findEvents(const QDateTime& from, const QDateTime& to) const;
 
     /**
      * Returnerer alle events
