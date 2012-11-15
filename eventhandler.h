@@ -26,7 +26,13 @@ public:
     std::vector<Event> findEvents(const QDateTime& from, const QDateTime& to) const;
 
     /**
-     * Returnerer alle events
+     * Vil finne elementet som er _nøyaktig_ lik oldEvent (via operator==) og erstatte det med newEvent.
+     * Kjekk å bruke via andre grensesnitt som et GUI.
+     */
+    bool replace(const Event& oldEvent, const Event& newEvent);
+
+    /**
+     * Returnerer alle events, ikke anbefalt å bruke
      */
     std::vector<Event> getAll() const;
 

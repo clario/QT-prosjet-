@@ -38,6 +38,17 @@ std::vector<Event> EventHandler::findEvents(const QDateTime& from, const QDateTi
 	return results;
 }
 
+bool EventHandler::replace(const Event& oldEvent, const Event& newEvent) {
+	bool success = false;
+
+	success = removeEvent(oldEvent);
+	if (success) {
+		addEvent(newEvent);
+	}
+
+	return success;
+}
+
 std::vector<Event> EventHandler::getAll() const {
 	return std::vector<Event>(eventContainer.begin(), eventContainer.end());
 };
