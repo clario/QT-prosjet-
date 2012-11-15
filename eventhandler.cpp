@@ -19,9 +19,14 @@ std::vector<Event> EventHandler::findEvents(const QDate& from, const QDate& to) 
 	// Denne metoden finner alle events mellom to datoer. søket er som inklusivt.
 	// Det finner ALLE event som start, slutter eller pågpr innenfor et tisrom.
 	std::vector<Event> results;
-	std::vector<Event>::const_iterator it;
+	EventHandler::const_iterator it, it_end;
 
-	for (it = eventContainer.begin(); it != eventContainer.end(); it++) {
+	Event toEvent;
+	toEvent.setStartDateTime(QDateTime(to));
+	it_end = eventContainer.upper_bound(toEvent);
+	// it_end = eventContainer.end();
+
+	for (it = eventContainer.begin(); it != it_end; it++) {
 		Event e = *it;
 		if ((e.getStartDate() >= from && e.getStartDate() <= to) ||
 		    (e.getEndDate() >= from && e.getEndDate() <= to) ||
@@ -34,32 +39,33 @@ std::vector<Event> EventHandler::findEvents(const QDate& from, const QDate& to) 
 }
 
 std::vector<Event> EventHandler::getAll() const {
-	return eventContainer;
+	return std::vector<Event>(eventContainer.begin(), eventContainer.end());
 };
 
 void EventHandler::addEvent(const Event& event) {
-	eventContainer.push_back(event);
+	eventContainer.insert(event);
 }
 
-Event EventHandler::removeEvent(const Event& event) {
-	std::vector<Event>::const_iterator it;
+bool EventHandler::removeEvent(const Event& event) {
+	std::set<Event>::iterator it = eventContainer.find(event);
 
-	bool found = false;
-
-	for (it = eventContainer.begin(); it != eventContainer.end(); it++) {
-		Event e = *it;
-		if (event == e) {
-			found = true;
-		}
-	}
+	bool found = (it != eventContainer.end());
 
 	if (found) {
-		return event;
+		eventContainer.erase(it);
 	}
 
-	return Event();
+	return found;
 }
 
 unsigned int EventHandler::count() const {
 	return eventContainer.size();
+}
+
+EventHandler::const_iterator EventHandler::begin() const {
+	return eventContainer.begin();
+}
+
+EventHandler::const_iterator EventHandler::end() const {
+	return eventContainer.end();
 }
