@@ -29,6 +29,9 @@ QDateTime Event::getStartDateTime() const {
 
 bool Event::setStartDateTime(const QDateTime& startDateTime) {
     start = startDateTime;
+    if (!end.isValid()) { // Hvis sluttdato ikke er satt
+        end = startDateTime;
+    }
     return true;
 }
 
@@ -77,6 +80,9 @@ QDateTime Event::getEndDateTime() const {
 
 bool Event::setEndDateTime(const QDateTime& endDateTime) {
     end = endDateTime;
+    if (!start.isValid()) { // Hvis startdato ikke er satt
+        start = endDateTime;
+    }
     return true;
 }
 
