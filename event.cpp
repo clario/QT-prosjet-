@@ -11,8 +11,11 @@ const QString Event::dateTimeFormat = "yyyy-MM-ddThh:mm:ss";
 
 Event::Event()
 {
+    title = "";
     location = "";
+    eventType = "";
     repeats = 0;
+    setStartDateTime(QDateTime::currentDateTime());
 }
 
 QString Event::getTitle() const {
@@ -37,8 +40,8 @@ QDateTime Event::getStartDateTime() const {
 
 bool Event::setStartDateTime(const QDateTime& startDateTime) {
     start = startDateTime;
-    if (!end.isValid()) { // Hvis sluttdato ikke er satt
-        end = startDateTime;
+    if (!end.isValid() || end < start) { // Sett sluttdato hvis sluttdato er før startdato
+        end = startDateTime.addSecs(60*60);
     }
     return true;
 }
@@ -56,7 +59,7 @@ QString Event::getStartAsString() const {
   * Krever formatet 2012-02-01T22:33:00
   */
 bool Event::setStartAsString(const QString& startDateTime) {
-    start = QDateTime::fromString(startDateTime, dateTimeFormat);
+    setStartDateTime(QDateTime::fromString(startDateTime, dateTimeFormat));
     return true;
 }
 
@@ -65,7 +68,7 @@ QDate Event::getStartDate() const {
 }
 
 bool Event::setStartDate(const QDate& startDate) {
-    start.setDate(startDate);
+    setStartDateTime(QDateTime(startDate, start.time()));
     return true;
 }
 
@@ -74,7 +77,7 @@ QTime Event::getStartTime() const {
 }
 
 bool Event::setStartTime(const QTime& startTime) {
-    start.setTime(startTime);
+    setStartDateTime(QDateTime(start.date(), startTime));
     return true;
 }
 
@@ -88,8 +91,8 @@ QDateTime Event::getEndDateTime() const {
 
 bool Event::setEndDateTime(const QDateTime& endDateTime) {
     end = endDateTime;
-    if (!start.isValid()) { // Hvis startdato ikke er satt
-        start = endDateTime;
+    if (end < start) { // Sett startdato hvis startdato blir etter slutt
+        start = endDateTime.addSecs(60*60);
     }
     return true;
 }
@@ -107,7 +110,7 @@ QString Event::getEndAsString() const {
   * Krever formatet 2012-02-01T22:33:00
   */
 bool Event::setEndAsString(const QString& endDateTime) {
-    end = QDateTime::fromString(endDateTime, dateTimeFormat);
+    setEndDateTime(QDateTime::fromString(endDateTime, dateTimeFormat));
     return true;
 }
 
@@ -117,7 +120,7 @@ QDate Event::getEndDate() const {
 }
 
 bool Event::setEndDate(const QDate& endDate) {
-    end.setDate(endDate);
+    setEndDateTime(QDateTime(endDate, end.time()));
     return true;
 }
 
@@ -126,7 +129,7 @@ QTime Event::getEndTime() const {
 }
 
 bool Event::setEndTime(const QTime& endTime) {
-    end.setTime(endTime);
+    setEndDateTime(QDateTime(end.date(), endTime));
     return true;
 }
 
