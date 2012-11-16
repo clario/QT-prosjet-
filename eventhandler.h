@@ -20,10 +20,29 @@ public:
 
     typedef std::set<Event>::const_iterator const_iterator;
 
+    class QueryArgs {
+        public:
+        QDateTime from;
+        QDateTime to;
+        QString title;
+        QString participant;
+        QString eventType;
+        QString location;
+    };
+
     /**
       * Finner events
       */
     std::vector<Event> findEvents(const QDateTime& from, const QDateTime& to) const;
+
+    /**
+     * Eksempelspørring:
+     * EventHandler::QueryArgs q;
+     * q.from = QDateTime()::currentDateTime();
+     * q.to = QDateTime()::currentDateTime().addDays(3);
+     * q.title = "a";
+     */
+    std::vector<Event> findEvents(const EventHandler::QueryArgs& queryArgs) const;
 
     /**
      * Vil finne elementet som er _nøyaktig_ lik oldEvent (via operator==) og erstatte det med newEvent.
