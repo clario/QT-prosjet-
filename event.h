@@ -24,6 +24,9 @@ public:
     QString getTitle() const;
     void setTitle(const QString& title);
 
+    QString getLocation() const;
+    void setLocation(const QString& location);
+
     /**
      * Metoder for startdato
      */

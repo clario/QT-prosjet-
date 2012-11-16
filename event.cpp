@@ -11,6 +11,7 @@ const QString Event::dateTimeFormat = "yyyy-MM-ddThh:mm:ss";
 
 Event::Event()
 {
+    location = "";
     repeats = 0;
 }
 
@@ -22,6 +23,13 @@ void Event::setTitle(const QString& _title) {
     title = _title;
 }
 
+QString Event::getLocation() const {
+    return location;
+}
+
+void Event::setLocation(const QString& _location) {
+    location = _location;
+}
 
 QDateTime Event::getStartDateTime() const {
     return start;
