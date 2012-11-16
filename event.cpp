@@ -166,6 +166,10 @@ bool Event::operator<(const Event& other) const {
         lessThan = (end < other.getEndDateTime());
     }
 
+    if (!lessThan && (end == other.getEndDateTime())) {
+        lessThan = (title.compare(other.getTitle()) < 0);
+    }
+
     return lessThan;
 }
 
