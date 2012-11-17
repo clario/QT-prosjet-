@@ -24,8 +24,7 @@ bool FileWriter::save(QVector<Contact*> &source)
             contact->setAttribute("cid", e->getCId());
             root.appendChild(*(contact));
         }
-        QByteArray ar = doc.toByteArray();
-        target.write(ar);
+        target.write(doc.toByteArray());
         target.close();
         return true;
     }
