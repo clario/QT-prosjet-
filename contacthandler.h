@@ -53,7 +53,9 @@ public:
 
 
 
-
+    /*
+     * Overloaded operator lets user list
+     */
     Contact* operator[](int index);
 
 private:
