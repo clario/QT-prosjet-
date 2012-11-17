@@ -23,12 +23,12 @@ public:
      *@param QString fName, QString lName, int phoneNumber, QString email
      *@return Henhaldsvis true/false avhengig av om køyring var vellykka
     */
-    bool add(string fName, string lName, int phoneNumber, string email);
+    bool add(QString fName, QString lName, int phoneNumber, QString email);
     /*
      *@param QString fName, QString lName, int phoneNumber, QString email
      *@return Henhaldsvis true/false avhengig av om køyring var vellykka
     */
-    bool remove(string fName, string lName, int phoneNumber, string email);
+    bool remove(QString fName, QString lName, int phoneNumber, QString email);
     /*
      *@param int cID
      *@return Henhaldsvis true/false achenig av om køyringa var velykka

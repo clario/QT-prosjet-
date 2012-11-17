@@ -10,7 +10,7 @@ ContactHandler::ContactHandler(){
 }
 ContactHandler::~ContactHandler(){}
 
-bool ContactHandler::add(string fName, string lName, int phoneNumber, string email) {
+bool ContactHandler::add(QString fName, QString lName, int phoneNumber, QString email) {
     Contact *tmp = new Contact(fName, lName, idCounter, phoneNumber, email);
     idCounter++;
     container.push_back(tmp);
@@ -21,7 +21,7 @@ bool ContactHandler::add(string fName, string lName, int phoneNumber, string ema
     }
 }
 
-bool ContactHandler::remove(string fName, string lName, int phoneNumber, string email) {
+bool ContactHandler::remove(QString fName, QString lName, int phoneNumber, QString email) {
     //Venter med denne til equals(eventuelt == operatorene) i contact er avklart
     return false;
 }
