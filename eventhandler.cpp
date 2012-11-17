@@ -144,13 +144,21 @@ EventHandler::const_iterator EventHandler::end() const {
 }
 
 void EventHandler::save() {
-	QString filePath = QDir::homePath();
+	QString filePath = QDir::currentPath();
 	filePath += QString("/events.xml");
 
 	qDebug() << filePath;
 
 	FileWriter fw(filePath);
-
-	//fw.setPath( (QDir::currentPath()) << "/events.xml" );
 	fw.save(eventContainer);
+}
+
+void EventHandler::load() {
+	QString filePath = QDir::currentPath();
+	filePath += QString("/events.xml");
+
+	qDebug() << filePath;
+
+	//FileLoader fl(filePath);
+	//fl.save(eventContainer);
 }
