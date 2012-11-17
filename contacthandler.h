@@ -66,12 +66,13 @@ public:
     /*
      *  Sends a f
      */
-   // bool save();
+    bool save();
 
 
 
 private:
     QVector<Contact*> container;
     int idCounter;
+    QString savePath;
 };
 #endif // CONTACTHANDLER_H
