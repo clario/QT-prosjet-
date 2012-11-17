@@ -15,27 +15,36 @@ FileWriter::~FileWriter()
 
 bool FileWriter::save(QVector<Contact*> &source)
 {
-    bool isWritable = target.open(QIODevice::WriteOnly);
+    bool isWritable = target.open(QFile::WriteOnly);
     if (isWritable) {
-        qDebug() << "isWritable = true";
+        //qDebug() << "isWritable = true";
         //Bygger dokument strukturen
         QDomDocument doc;
         QDomElement root = doc.createElement("contacts");
         doc.appendChild(root);
-        QDomElement *contact = new QDomElement();
-        QDomElement *variable= new QDomElement();
         foreach (Contact* e, source) {
-            contact->setTagName("contact");
-            contact->setAttribute("cid", e->getCId());
-            root.appendChild(*(contact));
+            QDomElement contact = doc.createElement("contact");
+            contact.setAttribute("cid", QString::number(e->getCId()));
+            QDomElement fName = doc.createElement("fName");
+            fName.appendChild(doc.createTextNode(e->getFName()));
+            contact.appendChild(fName);
+            QDomElement lName = doc.createElement("lName");
+            lName.appendChild(doc.createTextNode(e->getLName()));
+            contact.appendChild(lName);
+            QDomElement phoneNumber = doc.createElement("phoneNumber");
+            phoneNumber.appendChild(doc.createTextNode(QString::number(e->getPhoneNumber())));
+            contact.appendChild(phoneNumber);
+            QDomElement email = doc.createElement("email");
+            email.appendChild(doc.createTextNode(e->getEmail()));
+            contact.appendChild(email);
+            root.appendChild(contact);
         }
-        qint64 wr = target.write(doc.toByteArray());
-        qDebug() << wr;
+        qint64 wr = target.write(doc.toByteArray(4));
         target.close();
         return true;
     }
     else {
-        qDebug() << "isWritable = true";
+        //qDebug() << "isWritable = true";
         target.close();
         return false;
     }
