@@ -1,6 +1,7 @@
 #ifndef FILEWRITER_H
 #define FILEWRITER_H
 #include <QtCore/QIODevice>
+#include <QtCore/QFile>
 #include <QtXml/QDomDocument>
 #include <set>
 #include <QVector>
@@ -12,7 +13,7 @@ class FileWriter
 public:
     /*@input QFile(targetFile), std::iterator from container, const static inputFlag to identify content.
     */
-    FileWriter(QIODevice *targetFile);
+    FileWriter(QString &source);
     ~FileWriter();
 
     const static char typeIsContact='c';
@@ -22,7 +23,7 @@ public:
     bool save(std::set<Event> &source);
 
 private:
-    QIODevice *target;
+    QFile target;
 };
 
 #endif // FILEWRITER_H

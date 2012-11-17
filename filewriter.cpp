@@ -1,8 +1,8 @@
 #include "filewriter.h"
 
-FileWriter::FileWriter(QIODevice *targetFile)
+FileWriter::FileWriter(QString &source)
 {
-    target=targetFile;
+    target.setFileName(source);
 }
 
 FileWriter::~FileWriter()
@@ -11,7 +11,7 @@ FileWriter::~FileWriter()
 
 bool FileWriter::save(QVector<Contact*> &source)
 {
-    bool isWritable = target->open(QIODevice::WriteOnly);
+    bool isWritable = target.open(QIODevice::WriteOnly);
     if (isWritable) {
         //Bygger dokument strukturen
         QDomDocument doc;
@@ -24,7 +24,7 @@ bool FileWriter::save(QVector<Contact*> &source)
             contact->setAttribute("cid", e->getCId());
             root.appendChild(*(contact));
         }
-        target->close();
+        target.close();
         return true;
     }
     else {
