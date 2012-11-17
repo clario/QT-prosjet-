@@ -4,6 +4,8 @@
   */
 
 #include "contacthandler.h"
+#include "filewriter.h"
+#include <QFile>
 
 #include <QDebug>
 
@@ -74,3 +76,14 @@ QString ContactHandler::toString()
     }
     return temp;
 }
+
+
+/*
+//Save
+bool ContactHandler::save()
+{
+    FileWriter fw(QFile(""));
+    bool result = fw.save(&container);
+    return result;
+}
+*/

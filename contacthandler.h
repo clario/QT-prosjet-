@@ -63,7 +63,12 @@ public:
      */
     QString toString();
 
-    void contactSave();
+    /*
+     *  Sends a f
+     */
+   // bool save();
+
+
 
 private:
     QVector<Contact*> container;
