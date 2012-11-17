@@ -45,6 +45,8 @@ public:
     //Methods to be continued...
     bool operator==(const Contact &contact);
 
+    QString toString();
+
 private:
     QString fName;
     QString lName;

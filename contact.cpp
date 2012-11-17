@@ -88,6 +88,20 @@ bool Contact::operator ==(const Contact &contact)
     return cId==contact.cId;
 }
 
+//QString representation of contact
+QString Contact::toString()
+{
+    QString temp = "";
+
+    temp += lName + ", ";
+    temp += fName + ", ";
+    temp += QString::number(phoneNumber) + ", ";
+    temp += email + ",";
+    temp += QString::number(cId);
+
+    return temp;
+}
+
 
 
 
