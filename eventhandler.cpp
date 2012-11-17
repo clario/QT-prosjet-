@@ -7,8 +7,6 @@
 
 #include "eventhandler.h"
 
-using namespace calendar;
-
 EventHandler::EventHandler()
 {
 }
