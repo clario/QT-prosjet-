@@ -23,22 +23,22 @@ class Contact
 {
 public:
     Contact(int contactId);
-    Contact(string firmName,int contactId, int phoneNum,string eml);
-    Contact(string firstName, string lastName, int contactId, int phoneNum, string eml);
+    Contact(QString firmName,int contactId, int phoneNum,QString eml);
+    Contact(QString firstName, QString lastName, int contactId, int phoneNum, QString eml);
     ~Contact();
 
     //getters
-    string getFName();
-    string getLName();
+    QString getFName();
+    QString getLName();
     int getPhoneNumber();
-    string getEmail();
+    QString getEmail();
     int getCId();
 
     //Setters
-    void setFName(string firstName);
-    void setLName(string lastName);
+    void setFName(QString firstName);
+    void setLName(QString lastName);
     void setPhoneNumber(int phone);
-    void setEmail(string);
+    void setEmail(QString);
     //Fjernes når ferdig
     void setCId(int contactId);
 
@@ -46,10 +46,10 @@ public:
     bool operator==(const Contact &contact);
 
 private:
-    string fName;
-    string lName;
+    QString fName;
+    QString lName;
     int phoneNumber;
-    string email;
+    QString email;
     int cId;
 };
 

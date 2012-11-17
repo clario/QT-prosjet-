@@ -15,7 +15,7 @@ Contact::Contact(int contactId):
     cId(contactId)
 {}
 //If Contact is a firm
-Contact::Contact(string firmName,int contactId, int phoneNum,string eml) :
+Contact::Contact(QString firmName,int contactId, int phoneNum,QString eml) :
     fName(firmName),
     lName(firmName),
     cId(contactId),
@@ -23,7 +23,7 @@ Contact::Contact(string firmName,int contactId, int phoneNum,string eml) :
     email(eml)
 {}
 //For Normal contacts with all informastion
-Contact::Contact(string firstName, string lastName, int contactId, int phoneNum, string eml):
+Contact::Contact(QString firstName, QString lastName, int contactId, int phoneNum, QString eml):
     fName(firstName),
     lName(lastName),
     cId(contactId),
@@ -36,12 +36,12 @@ Contact::~Contact()
 }
 
 //Getters
-string Contact::getFName()
+QString Contact::getFName()
 {
     return fName;
 }
 
-string Contact::getLName()
+QString Contact::getLName()
 {
     return lName;
 }
@@ -51,7 +51,7 @@ int Contact::getPhoneNumber()
     return phoneNumber;
 }
 
-string Contact::getEmail()
+QString Contact::getEmail()
 {
     return email;
 }
@@ -62,12 +62,12 @@ int Contact::getCId()
 }
 
 //Setters
-void Contact::setFName(string firstName)
+void Contact::setFName(QString firstName)
 {
     fName=firstName;
 }
 
-void Contact::setLName(string lastName)
+void Contact::setLName(QString lastName)
 {
     lName=lastName;
 }
