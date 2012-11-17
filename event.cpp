@@ -18,12 +18,29 @@ Event::Event()
     setStartDateTime(QDateTime::currentDateTime());
 }
 
+Event::Event(const Event& original) {
+    title = original.getTitle();
+    location = original.getLocation();
+    eventType = original.getEventType();
+    repeats = original.getRepeats();
+    start = original.getStartDateTime();
+    end = original.getEndDateTime();
+}
+
 QString Event::getTitle() const {
     return title;
 }
 
 void Event::setTitle(const QString& _title) {
     title = _title;
+}
+
+QString Event::getEventType() const {
+    return eventType;
+}
+
+void Event::setEventType(const QString& _eventType) {
+    eventType = _eventType;
 }
 
 QString Event::getLocation() const {

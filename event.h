@@ -20,12 +20,16 @@ class Event
 {
 public:
     Event();
+    Event(const Event& original);
 
     QString getTitle() const;
     void setTitle(const QString& title);
 
     QString getLocation() const;
     void setLocation(const QString& location);
+
+    QString getEventType() const;
+    void setEventType(const QString& eventType);
 
     /**
      * Metoder for startdato
