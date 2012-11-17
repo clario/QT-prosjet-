@@ -1,5 +1,6 @@
 #ifndef FILEWRITER_H
 #define FILEWRITER_H
+#include <QtCore/QDebug>
 #include <QtCore/QIODevice>
 #include <QtCore/QFile>
 #include <QtXml/QDomDocument>
