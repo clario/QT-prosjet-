@@ -1,28 +1,20 @@
 #include "filewriter.h"
-#include "contact.h"
-#include "event.h"
 
-FileWriter::FileWriter(QFile targetFile, auto endOfIterator, std::iterator itr, char inputTypeFlag)
+FileWriter::FileWriter(QIODevice *targetFile)
 {
     target=targetFile;
-    source=itr;
-    targetType=inputTypeFlag;
 }
 
 FileWriter::~FileWriter()
 {
 }
 
-bool FileWriter::save()
+bool FileWriter::save(QVector<Contact*> &source)
 {
-    if (targetType='c') {
-        while (c!=end) {
-            Contact c = (*source);
+    return true;
+}
 
-        }
-    } else if(targetType='e') {
-
-    } else {
-        return false;
-    }
+bool FileWriter::save(std::set<Event> &source)
+{
+    return true;
 }
