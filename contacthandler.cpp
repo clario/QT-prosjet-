@@ -11,7 +11,7 @@
 
 ContactHandler::ContactHandler(){
     idCounter = 1;
-    savePath = QDir::currentPath();
+    savePath = QDir::currentPath() + "/contacts.xml";
 }
 ContactHandler::~ContactHandler(){}
 
@@ -84,6 +84,7 @@ QString ContactHandler::toString()
 bool ContactHandler::save()
 {
     FileWriter fw(savePath);
+   // qDebug() << savePath;
     bool result = fw.save(container);
     return result;
 }
