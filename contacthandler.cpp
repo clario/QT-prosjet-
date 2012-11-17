@@ -33,7 +33,7 @@ bool ContactHandler::remove(QString fName, QString lName, int phoneNumber, QStri
 
 bool ContactHandler::remove(int cID) {
     for (int i = 0; i < container.size(); i++) {
-        if (*(container[i]) == cID) {
+        if (container[i]!=NULL && container[i]->getCId() == cID) {
             container.remove(i);
             return true;
         }
@@ -80,11 +80,10 @@ QString ContactHandler::toString()
 
 
 
-//SAVE FOR HELLVETEIFAEN
+//SAVE
 bool ContactHandler::save()
 {
     FileWriter fw(savePath);
-   // qDebug() << savePath;
     bool result = fw.save(container);
     return result;
 }

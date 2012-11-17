@@ -64,7 +64,9 @@ public:
     QString toString();
 
     /*
-     *  Sends a f
+     * Contact save function.
+     * Creates a FilWriter object that takes QString savePath as parameter.
+     * The FileWriter obj then invoke the save() function and takes the QVector container as param.
      */
     bool save();
 
