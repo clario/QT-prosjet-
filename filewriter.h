@@ -3,6 +3,7 @@
 #include <QtCore/QIODevice>
 #include <QtCore/QFile>
 #include <QtXml/QDomDocument>
+#include <QtXml/QXmlStreamWriter>
 #include <set>
 #include <QVector>
 #include "contact.h"
