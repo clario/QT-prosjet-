@@ -6,11 +6,12 @@
 #include "contacthandler.h"
 #include "filewriter.h"
 #include <QFile>
-
+#include <QDir>
 #include <QDebug>
 
 ContactHandler::ContactHandler(){
     idCounter = 1;
+    savePath = QDir::currentPath();
 }
 ContactHandler::~ContactHandler(){}
 
@@ -82,8 +83,11 @@ QString ContactHandler::toString()
 //Save
 bool ContactHandler::save()
 {
-    FileWriter fw(QFile(""));
-    bool result = fw.save(&container);
-    return result;
+    bool result = false;
+    if (false){
+        FileWriter(&file)
+    }
+
+   return result;
 }
 */
