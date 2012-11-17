@@ -14,18 +14,20 @@
 
 #include "contact.h"
 
-namespace calendar {
-
 class Event
 {
 public:
     Event();
+    Event(const Event& original);
 
     QString getTitle() const;
     void setTitle(const QString& title);
 
     QString getLocation() const;
     void setLocation(const QString& location);
+
+    QString getEventType() const;
+    void setEventType(const QString& eventType);
 
     /**
      * Metoder for startdato
@@ -105,5 +107,4 @@ private:
     std::vector<QString> participants;
 };
 
-}; // End namespace calendar
 #endif // EVENT_H

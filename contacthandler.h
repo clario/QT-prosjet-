@@ -9,7 +9,7 @@
 #include <QString>
 #include <QVector>
 
-namespace calender {
+namespace cal {
     class ContactHandler;
 }
 
@@ -49,6 +49,13 @@ public:
     */
     int getSize(void);
 
+
+
+
+
+    /*
+     * Overloaded operator lets user list
+     */
     Contact* operator[](int index);
 
 private:
