@@ -5,8 +5,6 @@
 
 #include "event.h"
 
-using namespace calendar;
-
 const QString Event::dateTimeFormat = "yyyy-MM-ddThh:mm:ss";
 
 Event::Event()

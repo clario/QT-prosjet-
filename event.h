@@ -14,8 +14,6 @@
 
 #include "contact.h"
 
-namespace calendar {
-
 class Event
 {
 public:
@@ -109,5 +107,4 @@ private:
     std::vector<QString> participants;
 };
 
-}; // End namespace calendar
 #endif // EVENT_H

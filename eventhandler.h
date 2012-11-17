@@ -10,7 +10,6 @@
 
 #include "event.h"
 
-namespace calendar{
 
 class EventHandler
 {
@@ -71,7 +70,5 @@ private:
 
 
 };
-
-}; // End namespace calendar
 
 #endif // EVENTHANDLER_H
