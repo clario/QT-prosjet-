@@ -35,8 +35,9 @@ private:
 *****************************************************************************************************
 
 bool save() {
-    QFile("") source;
-    FileWriter fw(source);               //Opretta filewriter
+    QString source = QDir::currentPath();
+    source << "contacts.xml";
+    FileWriter fw(source);                  //Opretta filewriter med stien til current path + navnet på kildefila
     bool result = fw.save(&container);      //Kaller FileWriter::save(xxx)
     return result;                          //Returnerer resultatet fra FileWriter sin save operasjon
 }
