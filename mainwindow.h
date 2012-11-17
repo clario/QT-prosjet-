@@ -18,7 +18,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = 0);
-    MainWindow(Troller *troll, ContactHandler *chandler, EventHander *ehandler);
+    MainWindow(Troller *troll, ContactHandler *chandler, EventHandler *ehandler);
 
 private:
 
@@ -33,6 +33,7 @@ private:
 
     void createDock();
     void createCalendar();
+
 
 signals:
     
