@@ -9,7 +9,7 @@
 #include <QString>
 #include <QVector>
 
-namespace calender {
+namespace cal {
     class ContactHandler;
 }
 
@@ -48,6 +48,11 @@ public:
      *@desc Returnerer størrelsen på QVectoren brukt for å lagre kontakter
     */
     int getSize(void);
+
+
+
+
+
 
     Contact* operator[](int index);
 

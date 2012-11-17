@@ -10,13 +10,6 @@
 /**
   * Denne klassen skal bare inneholde innformasjon om en og bare en kontakt
   */
-using namespace std;
-
-//Declaring calendar namespace
-namespace calendar{
-    class Contact;
-}
-
 
 
 class Contact
