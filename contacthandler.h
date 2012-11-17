@@ -58,6 +58,13 @@ public:
      */
     Contact* operator[](int index);
 
+    /*
+     * @retrun a QString representation of all the Contacts in container
+     */
+    QString toString();
+
+    void contactSave();
+
 private:
     QVector<Contact*> container;
     int idCounter;
