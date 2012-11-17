@@ -5,6 +5,8 @@
 
 #include "contacthandler.h"
 
+#include <QDebug>
+
 ContactHandler::ContactHandler(){
     idCounter = 1;
 }
@@ -60,4 +62,15 @@ int ContactHandler::getSize(void) {
 
 Contact *ContactHandler::operator[](int index) {
     return container[index];
+}
+
+
+
+QString ContactHandler::toString()
+{
+    QString temp = "";
+    foreach(Contact *c,container ){
+        temp += c->toString() + "\n";
+    }
+    return temp;
 }
