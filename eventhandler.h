@@ -63,6 +63,8 @@ public:
 
     unsigned int count() const;
 
+    void save();// Lagrer til /sti/til/appmappa/events.xml
+
 private:
     //Container type kan diskuteres
     std::set<Event> eventContainer; // Denne er ferdigsortert for datoer
