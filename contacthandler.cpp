@@ -79,15 +79,12 @@ QString ContactHandler::toString()
 }
 
 
-/*
-//Save
+
+//SAVE FOR HELLVETEIFAEN
 bool ContactHandler::save()
 {
-    bool result = false;
-    if (false){
-        FileWriter(&file)
-    }
-
-   return result;
+    FileWriter fw(savePath);
+    bool result = fw.save(container);
+    return result;
 }
-*/
+
