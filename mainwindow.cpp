@@ -1,9 +1,10 @@
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent, Troller *troll) :
+MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
-{
+{}
+MainWindow::MainWindow(Troller *troll, ContactHandler *chandler, EventHandler *ehandler)
+{}
 
 
 
-}

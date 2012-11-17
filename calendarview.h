@@ -13,7 +13,6 @@ class CalendarView : public QWidget
     Q_OBJECT
 public:
     CalendarView(QWidget *parent = 0);
-    CalendarView(QWidget *parent = 0, Troller *troll = 0);
 
 private:
 
