@@ -1,6 +1,7 @@
 #ifndef FILEWRITER_H
 #define FILEWRITER_H
 #include <QtCore/QIODevice>
+#include <QtXml/QDomDocument>
 #include <set>
 #include <QVector>
 #include "contact.h"
