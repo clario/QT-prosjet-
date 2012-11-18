@@ -1,5 +1,5 @@
-#ifndef FILEWRITER_H
-#define FILEWRITER_H
+#ifndef FILEHANDLER_H
+#define FILEHANDLER_H
 #include <QtCore/QIODevice>
 #include <QtCore/QFile>
 #include <QtXml/QDomDocument>
@@ -9,13 +9,13 @@
 #include "contact.h"
 #include "event.h"
 
-class FileWriter
+class FileHandler
 {
 public:
     /*@input QFile(targetFile), std::iterator from container, const static inputFlag to identify content.
     */
-    FileWriter(QString &source);
-    ~FileWriter();
+    FileHandler(QString &source);
+    ~FileHandler();
 
     const static char typeIsContact='c';
     const static char typeIsEvent='e';
@@ -23,11 +23,14 @@ public:
     bool save(QVector<Contact*> &source);
     bool save(std::set<Event> &source);
 
+    bool load(QVector<Contact*> &source);
+    bool load(std::set<Event> &source);
+
 private:
     QFile target;
 };
 
-#endif // FILEWRITER_H
+#endif // FILEHANDLER_H
 
 /*
 *****************************************************************************************************
