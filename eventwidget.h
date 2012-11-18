@@ -2,6 +2,7 @@
 #define EVENTWIDGET_H
 
 #include <QWidget>
+#include <QLabel>
 
 class EventWidget : public QWidget
 {
@@ -9,6 +10,10 @@ class EventWidget : public QWidget
 public:
     explicit EventWidget(QWidget *parent = 0);
     
+private:
+
+    QLabel *title;
+
 signals:
     
 public slots:

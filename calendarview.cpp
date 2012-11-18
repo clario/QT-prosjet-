@@ -1,15 +1,13 @@
 #include "calendarview.h"
 #include <QDebug>
+#include "eventwidget.h"
 
 CalendarView::CalendarView(QWidget *parent) :
     QWidget(parent)
 {
 
-    /*
-
-    setWindowTitle("CentralWidget");
-    resize(600,400);
     mainLayout = new QHBoxLayout(this);
+
     calendar = new ExtendedQCalendar();
     calendar->setGridVisible(true);
     mainLayout->addWidget(calendar);
@@ -17,17 +15,24 @@ CalendarView::CalendarView(QWidget *parent) :
     eventFeed = new QVBoxLayout();
     eventFeed->setAlignment(Qt::AlignTop);
 
+    //feed = new EventFeed();
+
+    mainLayout->addLayout(eventFeed);
+
     mainLayout->addLayout(eventFeed);
 
     event = new QLabel("Hallaien");
-    anotherEvent = new QLabel("Nei Heisann");
+
+    //anotherEvent = new QLabel("Nei Heisann");
 
     eventFeed->addWidget(event);
-    eventFeed->addWidget(anotherEvent);
+    eventFeed->addWidget(new EventWidget());
+
+    //eventFeed->addWidget(anotherEvent);
+
 
     connect(calendar, SIGNAL(clicked(QDate)), this, SLOT(dateClicked(QDate)));
 
-    */
 
 }
 

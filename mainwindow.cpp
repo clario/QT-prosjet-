@@ -2,9 +2,30 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
-{}
-MainWindow::MainWindow(Troller *troll, ContactHandler *chandler, EventHandler *ehandler)
-{}
+{
 
+    setWindowTitle("TurboCalendar 3000");
+    resize(800,600);
+    createCalendar();
+    setCentralWidget(calendar);
 
+}
 
+void MainWindow::createCalendar() {
+
+    calendar = new ExtendedQCalendar();
+
+}
+
+void MainWindow::setEventHandler(EventHandler *ehandler) {
+
+    eventHandler=ehandler;
+    calendar->setEventHandler(ehandler);
+
+}
+
+void MainWindow::setContactHandler(ContactHandler *chandler) {
+
+    contactHandler=chandler;
+
+}

@@ -7,6 +7,7 @@ ExtendedQCalendar::ExtendedQCalendar(QWidget *parent) :
 {
 
     m_currentDate = QDate(2012,11,21);
+    anotherDate = QDate(2012,11,10);
     m_outlinePen.setColor(Qt::red);
     m_transparentBrush.setColor(Qt::black);
 
@@ -28,6 +29,8 @@ void ExtendedQCalendar::paintCell(QPainter *painter, const QRect &rect, const QD
 {
      QCalendarWidget::paintCell(painter, rect, date);
 
+
+    /*
     if (date == m_currentDate)
 
    {
@@ -36,5 +39,21 @@ void ExtendedQCalendar::paintCell(QPainter *painter, const QRect &rect, const QD
        painter->drawRect(rect.adjusted(0, 0, -1, -1));
 
    }
+
+    if (date == anotherDate)
+
+   {
+       painter->setPen(m_outlinePen);
+       painter->setBrush(m_transparentBrush);
+       painter->drawRect(rect.adjusted(0, 0, -1, -1));
+
+   }
+   */
+
+}
+
+void ExtendedQCalendar::setEventHandler(EventHandler *ehandler) {
+
+    eventHandler=ehandler;
 
 }

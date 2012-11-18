@@ -3,4 +3,7 @@
 EventWidget::EventWidget(QWidget *parent) :
     QWidget(parent)
 {
+
+    title = new QLabel("Default");
+
 }
