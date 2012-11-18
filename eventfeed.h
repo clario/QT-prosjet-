@@ -1,26 +1,10 @@
 #ifndef EVENTFEED_H
 #define EVENTFEED_H
 
-#include <QWidget>
-#include <QVBoxLayout>
-#include <QScrollArea>
-#include "eventwidget.h"
-
-class EventFeed : public QWidget
+class EventFeed
 {
-
-    Q_OBJECT
-
 public:
-    explicit EventFeed(QWidget *parent = 0);
-
-private:
-
-    // Å heii
-    QVBoxLayout *feed;
-    EventWidget *demo;
-
-
+    EventFeed();
 };
 
 #endif // EVENTFEED_H
