@@ -16,20 +16,12 @@ ContactHandler::ContactHandler(){
 ContactHandler::~ContactHandler(){}
 
 bool ContactHandler::add(QString fName, QString lName, QString phoneNumber, QString email) {
-    Contact *tmp = new Contact(idCounter);
+    Contact *tmp = new Contact(fName, lName, idCounter, phoneNumber, email);
     idCounter++;
-    if(fName!=""){
-        tmp->setFName(fName);
-    }
-    if(lName!=""){
-        tmp->setLName(lName);
-    }
-    if(phoneNumber!=""){
-        tmp->setPhoneNumber(phoneNumber);
-    }
-    if(email!=""){
-        tmp->setEmail(email);
-    }
+    tmp->setFName(fName);
+    tmp->setLName(lName);
+    tmp->setPhoneNumber(phoneNumber);
+    tmp->setEmail(email);
     container.push_back(tmp);
     if (tmp==container.last()) {
         return true;

@@ -5,24 +5,7 @@
 
 #include "contact.h"
 
-//std Constructor
-Contact::Contact(int contactId):
-    //parameter list
-    fName(""),
-    lName(""),
-    phoneNumber(""),
-    email(""),
-    cId(contactId)
-{}
 
-//If Contact is a firm
-Contact::Contact(QString firmName,int contactId, QString phoneNum,QString eml) :
-    fName(firmName),
-    lName(firmName),
-    cId(contactId),
-    phoneNumber(phoneNum),
-    email(eml)
-{}
 //For Normal contacts with all informastion
 Contact::Contact(QString firstName, QString lastName, int contactId, QString phoneNum, QString eml):
     fName(firstName),
