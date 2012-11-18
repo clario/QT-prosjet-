@@ -65,6 +65,7 @@ bool FileHandler::save(std::set<Event> &source)
             QDomElement event = doc.createElement("event");
             //Begynder og legge inn tekstnoder for event
             std::vector<QString> participants = e.getParticipants();
+
             QDomElement endDate = doc.createElement("endDate");
             endDate.appendChild(doc.createTextNode(e.getStartAsString()));
             event.appendChild(endDate);
@@ -117,12 +118,18 @@ bool FileHandler::load(QVector<Contact *> &source) {
         int cID, phoneNumber;
         QDomElement current = nodes.at(i).toElement();
         qDebug() << current.attribute("cid").toInt();
-        if (current.firstChildElement("phoneNumber") != NUll) {
+        if (current.firstChildElement("phoneNumber").hasChildNodes()) {
             qDebug() << current.firstChildElement("phoneNumber").firstChild().nodeValue().toInt();
         }
-        qDebug() << current.firstChildElement("fName").firstChild().nodeValue();
-        qDebug() << current.firstChildElement("lName").firstChild().nodeValue();
-        qDebug() << current.firstChildElement("email").firstChild().nodeValue();
+        if (current.firstChildElement("fName").hasChildNodes()) {
+            qDebug() << current.firstChildElement("fName").firstChild().nodeValue();
+        }
+        if (current.firstChildElement("lName").hasChildNodes()) {
+            qDebug() << current.firstChildElement("lName").firstChild().nodeValue();
+        }
+        if (current.firstChildElement("email").hasChildNodes()) {
+            qDebug() << current.firstChildElement("email").firstChild().nodeValue();
+        }
     }
     return false;
 }
