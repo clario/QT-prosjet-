@@ -27,7 +27,7 @@ SOURCES +=\
     eventview.cpp \
     extendedqcalendar.cpp \
     calendarview.cpp \
-    filewriter.cpp \
+    filehandler.cpp \
     mainwindow.cpp
 
 HEADERS  += \
@@ -40,7 +40,7 @@ HEADERS  += \
     eventview.h \
     extendedqcalendar.h \
     calendarview.h \
-    filewriter.h \
+    filehandler.h \
     mainwindow.h
 
 FORMS    += mainwindow.ui

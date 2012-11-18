@@ -8,3 +8,4 @@ main.cpp
 Makefile*
 *.swp
 *~
+*.pro.user
