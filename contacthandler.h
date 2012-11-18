@@ -70,7 +70,7 @@ public:
      */
     bool save();
 
-    QVector<Contact*> sort();
+
 
 private:
     QVector<Contact*> container;

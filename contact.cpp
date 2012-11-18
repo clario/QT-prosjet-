@@ -85,17 +85,16 @@ void Contact::setCId(int contactId)
 //overloaded operators
 bool Contact::operator ==(const Contact &cont)
 {
-    return (lName==cont.lName && fName==cont.fName && cId==cont.cId);
+
+    return (lName.toLower()==cont.lName.toLower() && fName.toLower()==cont.fName.toLower());
 }
 
 bool Contact::operator <=(const Contact &cont)
 {
-    if(lName != cont.lName){
-        return (lName <= cont.lName);
-    }else if(lName == cont.lName && fName != cont.fName){
-        return (fName <= cont.fName);
+    if(lName.toLower() == cont.lName.toLower()){
+        return (fName.toLower() <= cont.fName.toLower());
     }else{
-        return (lName <= cont.lName && fName <= cont.fName);
+        return (lName.toLower() < cont.lName.toLower());
     }
 }
 

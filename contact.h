@@ -45,6 +45,8 @@ public:
 
     QString toString();
 
+
+
 private:
     QString fName;
     QString lName;
