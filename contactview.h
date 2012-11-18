@@ -11,13 +11,17 @@ class ContactView : public QWidget
     Q_OBJECT
 public:
     explicit ContactView(QWidget *parent = 0);
+    QString getString();
 
 private:
     QLineEdit *nameLine;
-    
+    QLineEdit *line;
+    QString test;
+
 signals:
     
 public slots:
+    void updateString();
     
 };
 
