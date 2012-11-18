@@ -5,25 +5,16 @@
 
 #include "contact.h"
 
-//std Constructor
 Contact::Contact(int contactId):
-    //parameter list
-    fName("not set"),
-    lName("not set"),
-    phoneNumber(000),
-    email("prefix@placeholder.ru"),
-    cId(contactId)
-{}
-//If Contact is a firm
-Contact::Contact(QString firmName,int contactId, int phoneNum,QString eml) :
-    fName(firmName),
-    lName(firmName),
     cId(contactId),
-    phoneNumber(phoneNum),
-    email(eml)
+    fName(""),
+    lName(""),
+    phoneNumber(""),
+    email("")
 {}
+
 //For Normal contacts with all informastion
-Contact::Contact(QString firstName, QString lastName, int contactId, int phoneNum, QString eml):
+Contact::Contact(QString firstName, QString lastName, int contactId, QString phoneNum, QString eml):
     fName(firstName),
     lName(lastName),
     cId(contactId),
@@ -46,7 +37,7 @@ QString Contact::getLName()
     return lName;
 }
 
-int Contact::getPhoneNumber()
+QString Contact::getPhoneNumber()
 {
     return phoneNumber;
 }
@@ -72,9 +63,14 @@ void Contact::setLName(QString lastName)
     lName=lastName;
 }
 
-void Contact::setPhoneNumber(int phone)
+void Contact::setPhoneNumber(QString phone)
 {
     phoneNumber=phone;
+}
+
+void Contact::setEmail(QString eMail)
+{
+    email=eMail;
 }
 
 void Contact::setCId(int contactId)
@@ -85,17 +81,16 @@ void Contact::setCId(int contactId)
 //overloaded operators
 bool Contact::operator ==(const Contact &cont)
 {
-    return (lName==cont.lName && fName==cont.fName && cId==cont.cId);
+
+    return (lName.toLower()==cont.lName.toLower() && fName.toLower()==cont.fName.toLower());
 }
 
-bool Contact::operator <=(const Contact &cont)
+bool Contact::operator <(const Contact &cont)
 {
-    if(lName != cont.lName){
-        return (lName <= cont.lName);
-    }else if(lName == cont.lName && fName != cont.fName){
-        return (fName <= cont.fName);
+    if(lName.toLower() == cont.lName.toLower()){
+        return (fName.toLower() < cont.fName.toLower());
     }else{
-        return (lName <= cont.lName && fName <= cont.fName);
+        return (lName.toLower() < cont.lName.toLower());
     }
 }
 
@@ -107,12 +102,55 @@ QString Contact::toString()
 
     temp += lName + ", ";
     temp += fName + ", ";
-    temp += QString::number(phoneNumber) + ", ";
+    temp += phoneNumber + ", ";
     temp += email + ",";
     temp += QString::number(cId);
 
     return temp;
 }
+
+
+int Contact::compare(Contact &cont)
+{
+    if(operator <(cont)){
+        return -1;
+    }else if (operator ==(cont)) {
+        return 0;
+    }else{
+        return 1;
+    }
+}
+
+// has functions
+bool Contact::hasFName()
+{
+    return !fName.isEmpty();
+}
+
+bool Contact::hasLName()
+{
+    return !lName.isEmpty();
+}
+
+bool Contact::hasPhoneNumber()
+{
+    return !phoneNumber.isEmpty();
+}
+
+bool Contact::hasEmail()
+{
+    return !email.isEmpty();
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

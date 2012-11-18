@@ -8,6 +8,7 @@
 #include <contact.h>
 #include <QString>
 #include <QVector>
+#include <QtAlgorithms>
 
 namespace cal {
     class ContactHandler;
@@ -23,12 +24,12 @@ public:
      *@param QString fName, QString lName, int phoneNumber, QString email
      *@return Henhaldsvis true/false avhengig av om køyring var vellykka
     */
-    bool add(QString fName, QString lName, int phoneNumber, QString email);
+    bool add(QString fName = "", QString lName = "", QString phoneNumber = "", QString email = "");
     /*
      *@param QString fName, QString lName, int phoneNumber, QString email
      *@return Henhaldsvis true/false avhengig av om køyring var vellykka
     */
-    bool remove(QString fName, QString lName, int phoneNumber, QString email);
+    bool remove(QString fName, QString lName, QString phoneNumber, QString email);
     /*
      *@param int cID
      *@return Henhaldsvis true/false achenig av om køyringa var velykka
@@ -70,7 +71,11 @@ public:
      */
     bool save();
 
-    QVector<Contact*> sort();
+    bool load();
+
+    void sort();
+
+
 
 private:
     QVector<Contact*> container;

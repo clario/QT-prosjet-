@@ -7,7 +7,7 @@
 #include "filehandler.h"
 #include <QFile>
 #include <QDir>
-#include <QStack>
+#include <QtAlgorithms>
 #include <QDebug>
 
 ContactHandler::ContactHandler(){
@@ -15,9 +15,13 @@ ContactHandler::ContactHandler(){
 }
 ContactHandler::~ContactHandler(){}
 
-bool ContactHandler::add(QString fName, QString lName, int phoneNumber, QString email) {
+bool ContactHandler::add(QString fName, QString lName, QString phoneNumber, QString email) {
     Contact *tmp = new Contact(fName, lName, idCounter, phoneNumber, email);
     idCounter++;
+    tmp->setFName(fName);
+    tmp->setLName(lName);
+    tmp->setPhoneNumber(phoneNumber);
+    tmp->setEmail(email);
     container.push_back(tmp);
     if (tmp==container.last()) {
         return true;
@@ -26,7 +30,7 @@ bool ContactHandler::add(QString fName, QString lName, int phoneNumber, QString 
     }
 }
 
-bool ContactHandler::remove(QString fName, QString lName, int phoneNumber, QString email) {
+bool ContactHandler::remove(QString fName, QString lName, QString phoneNumber, QString email) {
     //Venter med denne til equals(eventuelt == operatorene) i contact er avklart
     return false;
 }
@@ -94,13 +98,24 @@ bool ContactHandler::save()
     return result;
 }
 
-//IKKE FERDIG
-QVector<Contact *> ContactHandler::sort()
+bool ContactHandler::load()
 {
-
-
-
-
-    return container;
+    container.clear();
+    QString source = QDir::currentPath();
+    source += "/contacts.xml";
+    FileHandler fr(source);                  //Opretta filewriter med stien til current path + navnet på kildefila
+    bool result = fr.load(container);      //Kaller FileWriter::save(xxx)
+    setCounter();
+    return result;
 }
+
+
+///VIRKER IKKE
+void ContactHandler::sort()
+{
+    qSort(container.begin(),container.end());
+}
+
+
+
 

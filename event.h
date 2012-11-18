@@ -21,12 +21,15 @@ public:
     Event(const Event& original);
 
     QString getTitle() const;
+    bool hasTitle() const;
     void setTitle(const QString& title);
 
     QString getLocation() const;
+    bool hasLocation() const;
     void setLocation(const QString& location);
 
     QString getEventType() const;
+    bool hasEventType() const;
     void setEventType(const QString& eventType);
 
     /**
@@ -82,6 +85,8 @@ public:
 
     std::vector<QString> getParticipants() const;
     void setParticipants(const std::vector<QString>& participants);
+
+    void addParticipant(const QString& participant);
 
     unsigned int getRepeats() const;
     void setRepeats(unsigned int repeats);

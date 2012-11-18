@@ -29,6 +29,10 @@ QString Event::getTitle() const {
     return title;
 }
 
+bool Event::hasTitle() const {
+    return !title.isEmpty();
+}
+
 void Event::setTitle(const QString& _title) {
     title = _title;
 }
@@ -37,12 +41,20 @@ QString Event::getEventType() const {
     return eventType;
 }
 
+bool Event::hasEventType() const {
+    return !eventType.isEmpty();
+}
+
 void Event::setEventType(const QString& _eventType) {
     eventType = _eventType;
 }
 
 QString Event::getLocation() const {
     return location;
+}
+
+bool Event::hasLocation() const {
+    return !location.isEmpty();
 }
 
 void Event::setLocation(const QString& _location) {
@@ -154,6 +166,10 @@ std::vector<QString> Event::getParticipants() const {
 
 void Event::setParticipants(const std::vector<QString>& _participants) {
    participants = _participants;
+}
+
+void Event::addParticipant(const QString& participant) {
+    participants.push_back(participant);
 }
 
 bool Event::operator==(const Event& other) const {
