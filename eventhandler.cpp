@@ -104,6 +104,12 @@ bool EventHandler::eventsExists(const QDateTime& from, const QDateTime& to) cons
     return findEvents(from, to).size() > 0;
 }
 
+bool EventHandler::eventsExists(const QDate& fromDate) const {
+    QDateTime from = QDateTime(fromDate);
+    QDateTime to = from.addDays(1);
+    return eventsExists(from, to);
+}
+
 bool EventHandler::replace(const Event& oldEvent, const Event& newEvent) {
 	bool success = false;
 
