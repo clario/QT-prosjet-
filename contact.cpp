@@ -5,6 +5,13 @@
 
 #include "contact.h"
 
+Contact::Contact(int contactId):
+    cId(contactId),
+    fName(""),
+    lName(""),
+    phoneNumber(""),
+    email("")
+{}
 
 //For Normal contacts with all informastion
 Contact::Contact(QString firstName, QString lastName, int contactId, QString phoneNum, QString eml):
@@ -134,6 +141,8 @@ bool Contact::hasEmail()
 {
     return !email.isEmpty();
 }
+
+
 
 
 

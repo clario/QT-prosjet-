@@ -71,6 +71,8 @@ public:
      */
     bool save();
 
+    bool load();
+
     void sort();
 
 

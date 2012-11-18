@@ -16,6 +16,7 @@ class Contact
 {
 public:
     Contact();
+    Contact(int contactId);
     Contact(QString firstName, QString lastName, int contactId, QString phoneNum, QString eml);
     ~Contact();
 
