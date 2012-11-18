@@ -40,9 +40,15 @@ private:
 *****************************************************************************************************
 
 bool save() {
-    QString source = QDir::currentPath();
-    source << "contacts.xml";
-    FileWriter fw(source);                  //Opretta filewriter med stien til current path + navnet på kildefila
+    QString source = QDir::currentPath() << "contacts.xml";
+    FileHandler fw(source);                  //Opretta filewriter med stien til current path + navnet på kildefila
+    bool result = fw.save(&container);      //Kaller FileWriter::save(xxx)
+    return result;                          //Returnerer resultatet fra FileWriter sin save operasjon
+}
+
+bool load() {
+    QString source = QDir::currentPath() << "contacts.xml";
+    FileHandler fw(source);                  //Opretta filewriter med stien til current path + navnet på kildefila
     bool result = fw.save(&container);      //Kaller FileWriter::save(xxx)
     return result;                          //Returnerer resultatet fra FileWriter sin save operasjon
 }

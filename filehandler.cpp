@@ -133,7 +133,7 @@ bool FileHandler::load(QVector<Contact *> &source) {
         QDomElement current = nodes.at(i).toElement();
         qDebug() << current.attribute("cid").toInt();
         if (current.firstChildElement("phoneNumber").hasChildNodes()) {
-            qDebug() << current.firstChildElement("phoneNumber").firstChild().nodeValue().toInt();
+            qDebug() << current.firstChildElement("phoneNumber").firstChild().nodeValue();
         }
         if (current.firstChildElement("fName").hasChildNodes()) {
             qDebug() << current.firstChildElement("fName").firstChild().nodeValue();
