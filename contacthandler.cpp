@@ -98,9 +98,24 @@ bool ContactHandler::save()
     return result;
 }
 
+bool ContactHandler::load()
+{
+    container.clear();
+    QString source = QDir::currentPath();
+    source += "/contacts.xml";
+    FileHandler fr(source);                  //Opretta filewriter med stien til current path + navnet på kildefila
+    bool result = fr.load(container);      //Kaller FileWriter::save(xxx)
+    setCounter();
+    return result;
+}
+
+
+///VIRKER IKKE
 void ContactHandler::sort()
 {
     qSort(container.begin(),container.end());
 }
+
+
 
 
