@@ -9,6 +9,9 @@
 #include <QRadioButton>
 #include <QComboBox>
 #include <QTextEdit>
+#include <QListView>
+#include <QAbstractItemModel>
+#include <QStringList>
 #include <QButtonGroup>
 #include <QPushButton>
 #include <QWidget>
@@ -18,26 +21,45 @@
 #include <QVBoxLayout>
 #include <QString>
 
+#include "event.h"
+
 class EventView : public QWidget
 {
     Q_OBJECT
 public:
     explicit EventView(QWidget *parent = 0);
+
+    ~EventView();
+
     void setViewMode();
     void setEditMode();
+    void setNewMode();
 
+    // Returnerer om noe er endret
+    bool isChanged() const;
 
+    // Returnerer en kopi av det nye objektet;
+    Event getEvent() const;
+
+    void setEvent(const Event& event);
 
 signals:
 
 public slots:
+    void modeToggler();
+    void fieldsAreChanged();
 
 private:
+    bool inViewMode;
+    bool changed;
+
+    Event event;
 
     QString eventTitle;
 
-    QLabel *eventTitleLabel;
     QPushButton *editModeToggle;
+
+    QLabel *eventTitleLabel;
     QCheckBox *allDayEvent;
     QLabel *allDayEventLabel;
     QLabel *fromLabel;
@@ -54,29 +76,48 @@ private:
     QCheckBox *repeatCheckBox;
     QComboBox * repeatComboBox;
     QLabel * repeatLabel;
-    QLabel * miniEventTitleLable;
+
+    QLabel * miniEventTitleLabel;
     QLineEdit * eventTitleEdit;
+
     QLabel * eventTypeLabel;
     QGroupBox * eventTypeRadioBoxContainer;
+
     QRadioButton * eventRadioButton;
     QRadioButton * absenceRadioButton;
+
     QLabel * typeLabel;
     QComboBox *typeComboBox;
+
     QLabel * eventDescriptionLabel;
     QTextEdit * eventDescriptionTextBox;
-    QLabel * attendingLabel;
+
+    QLabel * participantsLabel;
     QTextEdit * textEditAttending;
+
+    QStringList participants;
+    QLabel * participantLabel;
+    QAbstractItemModel * participantModel;
+    QListView * participantView;
+    QPushButton * participantAdd;
+    QPushButton * participantRemove;
+
     QPushButton * addContact;
     QGridLayout * gridLayout;
     QPushButton * okPushButton;
+
     QPushButton * cancelPushButton;
     QPushButton * savePushButton;
+
     QGridLayout * firstGridLayout;
-    QHBoxLayout * firstHLayout;
-    QHBoxLayout * secondHLayout;
-    QHBoxLayout * thirdHLayout;
-    QHBoxLayout * fourthHLayout;
+    QHBoxLayout * repeatLayout;
+    QHBoxLayout * titleLayout;
+    QGridLayout * participantLayout;
+    QHBoxLayout * descriptionLayout;
+
     QVBoxLayout * mainLayout;
+
+    void populateFields();
 };
 
 
