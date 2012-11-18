@@ -4,6 +4,7 @@
 #include <QtCore/QFile>
 #include <QtXml/QDomDocument>
 #include <QtXml/QXmlStreamWriter>
+#include <QtXml/QXmlSimpleReader>
 #include <set>
 #include <QVector>
 #include "contact.h"

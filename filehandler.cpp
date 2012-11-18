@@ -108,7 +108,22 @@ bool FileHandler::save(std::set<Event> &source)
 }
 
 bool FileHandler::load(QVector<Contact *> &source) {
-
+    QDomDocument doc;
+    doc.setContent(&target);
+    QDomElement root = doc.firstChildElement();
+    QDomNodeList nodes = root.childNodes();
+    for (int i = 0; i < nodes.size(); i++) {
+        QString fName, lName, eMail;
+        int cID, phoneNumber;
+        QDomElement current = nodes.at(i).toElement();
+        qDebug() << current.attribute("cid").toInt();
+        if (current.firstChildElement("phoneNumber") != NUll) {
+            qDebug() << current.firstChildElement("phoneNumber").firstChild().nodeValue().toInt();
+        }
+        qDebug() << current.firstChildElement("fName").firstChild().nodeValue();
+        qDebug() << current.firstChildElement("lName").firstChild().nodeValue();
+        qDebug() << current.firstChildElement("email").firstChild().nodeValue();
+    }
     return false;
 }
 
