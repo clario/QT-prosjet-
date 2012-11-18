@@ -7,7 +7,7 @@
 #include "filehandler.h"
 #include <QFile>
 #include <QDir>
-#include <QStack>
+#include <algorithm>
 #include <QDebug>
 
 ContactHandler::ContactHandler(){
@@ -94,13 +94,4 @@ bool ContactHandler::save()
     return result;
 }
 
-//IKKE FERDIG
-QVector<Contact *> ContactHandler::sort()
-{
-
-
-
-
-    return container;
-}
 
