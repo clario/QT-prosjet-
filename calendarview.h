@@ -2,7 +2,9 @@
 #define CALENDARVIEW_H
 
 #include <QWidget>
+#include <QHBoxLayout>
 #include "extendedqcalendar.h"
+#include "eventfeed.h"
 
 class CalendarView : public QWidget
 {
@@ -13,6 +15,11 @@ public:
 private:
 
     ExtendedQCalendar *calendar;
+    QHBoxLayout *wrapper;
+    EventFeed *eventFeed;
+
+    // hullo
+
 
 signals:
 
