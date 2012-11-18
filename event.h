@@ -86,6 +86,8 @@ public:
     std::vector<QString> getParticipants() const;
     void setParticipants(const std::vector<QString>& participants);
 
+    void addParticipant(const QString& participant);
+
     unsigned int getRepeats() const;
     void setRepeats(unsigned int repeats);
 
