@@ -128,26 +128,56 @@ bool FileHandler::load(QVector<Contact *> &source) {
     QDomElement root = doc.firstChildElement();
     QDomNodeList nodes = root.childNodes();
     for (int i = 0; i < nodes.size(); i++) {
-        QString fName, lName, eMail;
-        int cID, phoneNumber;
         QDomElement current = nodes.at(i).toElement();
-        qDebug() << current.attribute("cid").toInt();
+        Contact *tmp = new Contact(current.attribute("cid").toInt());
         if (current.firstChildElement("phoneNumber").hasChildNodes()) {
-            qDebug() << current.firstChildElement("phoneNumber").firstChild().nodeValue();
+            tmp->setPhoneNumber(current.firstChildElement("phoneNumber").firstChild().nodeValue());
         }
         if (current.firstChildElement("fName").hasChildNodes()) {
-            qDebug() << current.firstChildElement("fName").firstChild().nodeValue();
+            tmp->setFName(current.firstChildElement("fName").firstChild().nodeValue());
         }
         if (current.firstChildElement("lName").hasChildNodes()) {
-            qDebug() << current.firstChildElement("lName").firstChild().nodeValue();
+            tmp->setLName(current.firstChildElement("lName").firstChild().nodeValue());
         }
         if (current.firstChildElement("email").hasChildNodes()) {
-            qDebug() << current.firstChildElement("email").firstChild().nodeValue();
+            tmp->setEmail(current.firstChildElement("email").firstChild().nodeValue());
         }
+        source.push_back(tmp);
     }
     return false;
 }
 
 bool FileHandler::load(std::set<Event> &source) {
+    QDomDocument doc;
+    doc.setContent(&target);
+    QDomElement root = doc.firstChildElement();
+    QDomNodeList nodes = root.childNodes();
+    for (int i = 0; i < nodes.size(); i++) {
+        Event tmp;
+        //QString endDate, toDate, type, title, location;
+        QDomElement current = nodes.at(i).toElement();
+        if (current.firstChildElement("endDate").hasChildNodes()) {
+            tmp.setEndAsString(current.firstChildElement("endDate").firstChild().nodeValue());
+        }
+        if (current.firstChildElement("startDate").hasChildNodes()) {
+            tmp.setStartAsString(current.firstChildElement("startDate").firstChild().nodeValue());
+        }
+        if (current.firstChildElement("type").hasChildNodes()) {
+            tmp.setEventType(current.firstChildElement("type").firstChild().nodeValue());
+        }
+        if (current.firstChildElement("title").hasChildNodes()) {
+            tmp.setTitle(current.firstChildElement("title").firstChild().nodeValue());
+        }
+        if (current.firstChildElement("location").hasChildNodes()) {
+            tmp.setLocation(current.firstChildElement("location").firstChild().nodeValue());
+        }
+        QDomElement firstParticipant = current.firstChildElement("participant");
+        if (firstParticipant.hasChildNodes()) {
+            while (firstParticipant.nextSibling().hasChildNodes()) {
+                tmp.addParticipant(firstParticipant.firstChild().nodeValue());
+            }
+        }
+        source.insert(tmp);
+    }
     return false;
 }

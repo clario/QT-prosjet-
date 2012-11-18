@@ -8,8 +8,22 @@ ContactView::ContactView(QWidget *parent) :
 
     QGridLayout *mainLayout = new QGridLayout;
     mainLayout->addWidget(nameLabel,0,0);
-    mainLayout->addWidget(nameLine,0,1);
-
+    line = new QLineEdit();
+    test= "Hei";
+    line->setText(test);
+    mainLayout->addWidget(line,0,1);
     setLayout(mainLayout);
     setWindowTitle(tr("Contacts"));
+    connect(line,SIGNAL(returnPressed()),this,SLOT(updateString()));
+}
+
+QString ContactView::getString()
+{
+    return test;
+}
+
+void ContactView::updateString()
+{
+    test = line->text();
+    qDebug() << test;
 }
