@@ -7,14 +7,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowTitle("TurboCalendar 3000");
     resize(800,600);
-    feed = new EventFeed();
 
     createCalendar();
     //setCentralWidget(calendar);
 
     //createDock();
 
-    setCentralWidget(feed);
+    setCentralWidget(calendar);
 
 }
 
@@ -34,20 +33,20 @@ void MainWindow::setContactHandler(ContactHandler *chandler)
 
 void MainWindow::createDock()
 {
-
+    /*
     dock = new QDockWidget("Dagens gjøremål", this);
     dock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     dock->setAllowedAreas(Qt::RightDockWidgetArea);
 
     //QPushButton *demo = new QPushButton("Blargh");
     dock->setWidget(feed);
+    */
 }
 
 void MainWindow::createCalendar()
 {
 
-    calendar = new ExtendedQCalendar();
-    calendar->setGridVisible(true);
+    calendar = new CalendarView();
 
 }
 

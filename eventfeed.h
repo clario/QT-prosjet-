@@ -16,8 +16,8 @@ public:
 
 private:
 
-    QVBoxLayout *wrapper;
-    QScrollArea *eventArea;
+    // Å heii
+    QVBoxLayout *feed;
     EventWidget *demo;
 
 

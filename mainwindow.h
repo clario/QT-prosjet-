@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QDockWidget>
-#include "extendedqcalendar.h"
+#include "calendarview.h"
 #include "contactview.h"
 #include "eventview.h"
 #include "troller.h"
@@ -26,15 +26,11 @@ public:
 
 private:
 
-    ExtendedQCalendar *calendar;
-
     // Disse gutta kan i grunn opprettes hver gang de trengs..
     //EventView *eventEdit;
     //ContactView *contactEdit;
 
-    QDockWidget *dock;
-    EventFeed *feed;
-
+    CalendarView *calendar;
     EventHandler *eventHandler;
     ContactHandler *contactHandler;
 
