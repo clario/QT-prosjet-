@@ -6,7 +6,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include "extendedqcalendar.h"
-#include "troller.h"
+#include "eventfeed.h"
 
 class CalendarView : public QWidget
 {
@@ -16,12 +16,11 @@ public:
 
 private:
 
-    QLabel *event;
-    QLabel *anotherEvent;
     QHBoxLayout *mainLayout;
     QVBoxLayout *eventFeed;
     ExtendedQCalendar *calendar;
-    Troller *troller;
+    //EventFeed *feed;
+    QLabel *event;
 
 signals:
 
