@@ -1,4 +1,6 @@
 #include "mainwindow.h"
+#include "eventview.h"
+#include <vector>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
@@ -16,6 +18,7 @@ void MainWindow::createCalendar() {
     calendar = new ExtendedQCalendar();
     calendar->setCurrentWindow(this);
 
+    connect(calendar, SIGNAL(clicked(QDate)), this, SLOT(dateClicked(QDate)));
 }
 
 void MainWindow::setEventHandler(EventHandler *ehandler) {
@@ -27,5 +30,24 @@ void MainWindow::setEventHandler(EventHandler *ehandler) {
 void MainWindow::setContactHandler(ContactHandler *chandler) {
 
     contactHandler=chandler;
+
+}
+
+void MainWindow::dateClicked(QDate date) {
+
+    if(eventHandler->eventsExists(date)) {
+
+        QDateTime from(date);
+        QDateTime to = from.addDays(1);
+
+        std::vector<Event> events = eventHandler->findEvents(from,to);
+
+        EventView *ev = new EventView;
+
+        ev->setEvent(events.at(0));
+        ev->setViewMode();
+        ev->show();
+
+    }
 
 }

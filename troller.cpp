@@ -14,6 +14,8 @@ Troller::Troller()
     test.setStartDate(QDate::currentDate());
     test.setEndDate(QDate(2012,11,21));
 
+    test.setTitle("Brazilian Waxing");
+
     eventHandler.addEvent(test);
 
     mainWindow.show();

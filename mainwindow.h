@@ -37,6 +37,8 @@ signals:
     
 public slots:
     
+    void dateClicked(QDate);
+
 };
 
 #endif // MAINWINDOW_H
