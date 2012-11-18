@@ -4,7 +4,7 @@
   */
 
 #include "contacthandler.h"
-#include "filewriter.h"
+#include "filehandler.h"
 #include <QFile>
 #include <QDir>
 #include <QStack>
@@ -89,8 +89,8 @@ bool ContactHandler::save()
 {
     QString savePath = QDir::currentPath();
     savePath += QString("/contacts.xml");
-    FileWriter fw(savePath);
-    bool result = fw.save(container);
+    FileHandler fh(savePath);
+    bool result = fh.save(container);
     return result;
 }
 
