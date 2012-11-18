@@ -159,6 +159,8 @@ void EventHandler::load() {
 
 	qDebug() << filePath;
 
+	eventContainer.clear();
+
 	FileHandler fh(filePath);
 	fh.load(eventContainer);
 }
