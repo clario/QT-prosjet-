@@ -24,21 +24,29 @@ bool FileHandler::save(QVector<Contact*> &source)
             QDomElement contact = doc.createElement("contact");
             contact.setAttribute("cid", QString::number(e->getCId()));
 
-            QDomElement fName = doc.createElement("fName");
-            fName.appendChild(doc.createTextNode(e->getFName()));
-            contact.appendChild(fName);
+            if (e->hasFName()) {
+                QDomElement fName = doc.createElement("fName");
+                fName.appendChild(doc.createTextNode(e->getFName()));
+                contact.appendChild(fName);
+            }
 
-            QDomElement lName = doc.createElement("lName");
-            lName.appendChild(doc.createTextNode(e->getLName()));
-            contact.appendChild(lName);
+            if (e->hasLName()) {
+                QDomElement lName = doc.createElement("lName");
+                lName.appendChild(doc.createTextNode(e->getLName()));
+                contact.appendChild(lName);
+            }
 
-            QDomElement phoneNumber = doc.createElement("phoneNumber");
-            phoneNumber.appendChild(doc.createTextNode(QString::number(e->getPhoneNumber())));
-            contact.appendChild(phoneNumber);
+            if (e->hasPhoneNumber()) {
+                QDomElement phoneNumber = doc.createElement("phoneNumber");
+                phoneNumber.appendChild(doc.createTextNode(e->getPhoneNumber()));
+                contact.appendChild(phoneNumber);
+            }
 
-            QDomElement email = doc.createElement("email");
-            email.appendChild(doc.createTextNode(e->getEmail()));
-            contact.appendChild(email);
+            if (e->hasEmail()) {
+                QDomElement email = doc.createElement("email");
+                email.appendChild(doc.createTextNode(e->getEmail()));
+                contact.appendChild(email);
+            }
 
             root.appendChild(contact);
         }
@@ -74,17 +82,23 @@ bool FileHandler::save(std::set<Event> &source)
             toDate.appendChild(doc.createTextNode(e.getStartAsString()));
             event.appendChild(toDate);
 
-            QDomElement type = doc.createElement("type");
-            type.appendChild(doc.createTextNode(e.getEventType()));
-            type.appendChild(type);
+            if (e.hasEventType()) {
+                QDomElement type = doc.createElement("type");
+                type.appendChild(doc.createTextNode(e.getEventType()));
+                type.appendChild(type);
+            }
 
-            QDomElement title = doc.createElement("title");
-            title.appendChild(doc.createTextNode(e.getTitle()));
-            event.appendChild(title);
+            if (e.hasTitle()) {
+                QDomElement title = doc.createElement("title");
+                title.appendChild(doc.createTextNode(e.getTitle()));
+                event.appendChild(title);
+            }
 
-            QDomElement location = doc.createElement("location");
-            location.appendChild(doc.createTextNode(e.getLocation()));
-            event.appendChild(location);
+            if (e.hasLocation()) {
+                QDomElement location = doc.createElement("location");
+                location.appendChild(doc.createTextNode(e.getLocation()));
+                event.appendChild(location);
+            }
 
             if (participants.size() > 0) {
                 for (std::vector<QString>::const_iterator it = participants.begin(); it != participants.end(); it++) {
