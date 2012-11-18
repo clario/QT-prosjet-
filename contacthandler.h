@@ -24,7 +24,7 @@ public:
      *@param QString fName, QString lName, int phoneNumber, QString email
      *@return Henhaldsvis true/false avhengig av om køyring var vellykka
     */
-    bool add(QString fName, QString lName, QString phoneNumber, QString email);
+    bool add(QString fName = "", QString lName = "", QString phoneNumber = "", QString email = "");
     /*
      *@param QString fName, QString lName, int phoneNumber, QString email
      *@return Henhaldsvis true/false avhengig av om køyring var vellykka
