@@ -152,7 +152,7 @@ std::vector<QString> Event::getParticipants() const {
     return std::vector<QString>();
 }
 
-void Event::setParticipants(std::vector<QString> _participants) {
+void Event::setParticipants(const std::vector<QString>& _participants) {
    participants = _participants;
 }
 

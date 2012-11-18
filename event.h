@@ -81,7 +81,7 @@ public:
     bool setEndTime(const QTime& endTime);
 
     std::vector<QString> getParticipants() const;
-    void setParticipants(std::vector<QString> participants);
+    void setParticipants(const std::vector<QString>& participants);
 
     unsigned int getRepeats() const;
     void setRepeats(unsigned int repeats);
