@@ -31,9 +31,11 @@ void ExtendedQCalendar::paintCell(QPainter *painter, const QRect &rect, const QD
 {
      QCalendarWidget::paintCell(painter, rect, date);
 
-     QDateTime eventDate(date);
+     //QDateTime eventDate(date);
 
-     if(currentWindow->eventHandler->eventsExists(eventDate)) {
+     qDebug("Jeppsi");
+
+     if(currentWindow->eventHandler->eventsExists(date)) {
 
          painter->setPen(m_outlinePen);
          painter->setBrush(m_transparentBrush);

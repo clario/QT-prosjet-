@@ -12,6 +12,7 @@ public:
 
 private:
 
+    MainWindow mainWindow;
     EventHandler eventHandler;
     ContactHandler contactHandler;
 
