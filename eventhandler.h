@@ -43,6 +43,8 @@ public:
      */
     std::vector<Event> findEvents(const EventHandler::QueryArgs& queryArgs) const;
 
+    bool eventsExists(const QDateTime& from, const QDateTime& to) const;
+
     /**
      * Vil finne elementet som er _nøyaktig_ lik oldEvent (via operator==) og erstatte det med newEvent.
      * Kjekk å bruke via andre grensesnitt som et GUI.

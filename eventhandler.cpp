@@ -100,6 +100,10 @@ std::vector<Event> EventHandler::findEvents(const EventHandler::QueryArgs& q) co
 	return results;
 }
 
+bool EventHandler::eventsExists(const QDateTime& from, const QDateTime& to) const {
+    return findEvents(from, to).size() > 0;
+}
+
 bool EventHandler::replace(const Event& oldEvent, const Event& newEvent) {
 	bool success = false;
 
