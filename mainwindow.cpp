@@ -1,10 +1,54 @@
 #include "mainwindow.h"
+#include <QPushButton>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
-{}
-MainWindow::MainWindow(Troller *troll, ContactHandler *chandler, EventHandler *ehandler)
-{}
+{
 
+    setWindowTitle("TurboCalendar 3000");
+    resize(800,600);
+    feed = new EventFeed();
+
+    createCalendar();
+    //setCentralWidget(calendar);
+
+    //createDock();
+
+    setCentralWidget(feed);
+
+}
+
+void MainWindow::setEventHandler(EventHandler *ehandler)
+{
+
+    eventHandler=ehandler;
+
+}
+
+void MainWindow::setContactHandler(ContactHandler *chandler)
+{
+
+    contactHandler=chandler;
+
+}
+
+void MainWindow::createDock()
+{
+
+    dock = new QDockWidget("Dagens gjøremål", this);
+    dock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
+    dock->setAllowedAreas(Qt::RightDockWidgetArea);
+
+    //QPushButton *demo = new QPushButton("Blargh");
+    dock->setWidget(feed);
+}
+
+void MainWindow::createCalendar()
+{
+
+    calendar = new ExtendedQCalendar();
+    calendar->setGridVisible(true);
+
+}
 
 

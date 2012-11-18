@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "calendarview.h"
+#include <QDockWidget>
+#include "extendedqcalendar.h"
 #include "contactview.h"
 #include "eventview.h"
 #include "troller.h"
@@ -10,30 +11,35 @@
 #include "eventhandler.h"
 #include "event.h"
 #include "contact.h"
-
+#include "eventfeed.h"
 
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
+
     explicit MainWindow(QWidget *parent = 0);
-    MainWindow(Troller *troll, ContactHandler *chandler, EventHandler *ehandler);
+
+    void setEventHandler(EventHandler*);
+    void setContactHandler(ContactHandler*);
 
 private:
 
-    CalendarView *calendar;
-    EventView *eventEdit;
-    ContactView *contactEdit;
-    Troller *troller;
-    ContactHandler *contactHandler;
-    EventHandler *eventHandler;
+    ExtendedQCalendar *calendar;
+
+    // Disse gutta kan i grunn opprettes hver gang de trengs..
+    //EventView *eventEdit;
+    //ContactView *contactEdit;
 
     QDockWidget *dock;
+    EventFeed *feed;
+
+    EventHandler *eventHandler;
+    ContactHandler *contactHandler;
 
     void createDock();
     void createCalendar();
-
 
 signals:
     
