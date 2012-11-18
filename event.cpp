@@ -168,6 +168,10 @@ void Event::setParticipants(const std::vector<QString>& _participants) {
    participants = _participants;
 }
 
+void Event::addParticipant(const QString& participant) {
+    participants.push_back(participant);
+}
+
 bool Event::operator==(const Event& other) const {
     bool equal = (title == other.getTitle());
 
