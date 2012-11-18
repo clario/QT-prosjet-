@@ -75,7 +75,7 @@ bool FileHandler::save(std::set<Event> &source)
 
             QDomElement type = doc.createElement("type");
             type.appendChild(doc.createTextNode(e.getEventType()));
-            type.appendChild(title);
+            type.appendChild(type);
 
             QDomElement title = doc.createElement("title");
             title.appendChild(doc.createTextNode(e.getTitle()));
@@ -108,9 +108,10 @@ bool FileHandler::save(std::set<Event> &source)
 }
 
 bool FileHandler::load(QVector<Contact *> &source) {
+
     return false;
 }
 
-bool FileHandler::load(std::set &source) {
+bool FileHandler::load(std::set<Event> &source) {
     return false;
 }
