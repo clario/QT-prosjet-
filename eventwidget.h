@@ -1,3 +1,5 @@
+// VOID!!
+
 #ifndef EVENTWIDGET_H
 #define EVENTWIDGET_H
 

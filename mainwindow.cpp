@@ -14,13 +14,13 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::createCalendar() {
 
     calendar = new ExtendedQCalendar();
+    calendar->setCurrentWindow(this);
 
 }
 
 void MainWindow::setEventHandler(EventHandler *ehandler) {
 
     eventHandler=ehandler;
-    calendar->setEventHandler(ehandler);
 
 }
 

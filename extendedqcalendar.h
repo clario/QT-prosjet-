@@ -6,7 +6,9 @@
 #include <QDate>
 #include <QPen>
 #include <QBrush>
-#include "eventhandler.h"
+#include "mainwindow.h"
+
+class MainWindow;
 
 class ExtendedQCalendar : public QCalendarWidget
 {
@@ -19,7 +21,7 @@ public:
 
     void setColor(QColor &color);
     QColor getColor();
-    void setEventHandler(EventHandler*);
+    void setCurrentWindow(MainWindow*);
 
 protected:
 
@@ -31,7 +33,7 @@ private:
    QPen m_outlinePen;
    QBrush m_transparentBrush;
 
-   EventHandler *eventHandler;
+   MainWindow *currentWindow;
 
 signals:
 

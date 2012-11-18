@@ -1,3 +1,5 @@
+// VOID!!
+
 #include "eventfeed.h"
 
 EventFeed::EventFeed(QWidget *parent) :

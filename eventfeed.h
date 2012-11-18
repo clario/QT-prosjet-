@@ -1,3 +1,5 @@
+// VOID!!
+
 #ifndef EVENTFEED_H
 #define EVENTFEED_H
 

@@ -8,6 +8,7 @@
 #include "eventhandler.h"
 #include "extendedqcalendar.h"
 
+class ExtendedQCalendar;
 
 class MainWindow : public QMainWindow
 {
@@ -15,18 +16,18 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
 
+    ContactHandler *contactHandler;
+    EventHandler *eventHandler;
+
     void setEventHandler(EventHandler*);
     void setContactHandler(ContactHandler*);
 
 private:
 
-
     ExtendedQCalendar *calendar;
     //EventView *eventEdit;
     //ContactView *contactEdit;
     //Troller *troller;
-    ContactHandler *contactHandler;
-    EventHandler *eventHandler;
 
     //QDockWidget *dock;
 

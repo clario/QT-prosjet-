@@ -1,6 +1,7 @@
 #include "extendedqcalendar.h"
 #include <QPainter>
 #include <QDebug>
+#include <QDateTime>
 
 ExtendedQCalendar::ExtendedQCalendar(QWidget *parent) :
     QCalendarWidget(parent)
@@ -12,6 +13,7 @@ ExtendedQCalendar::ExtendedQCalendar(QWidget *parent) :
     m_transparentBrush.setColor(Qt::black);
 
 }
+
 
 void ExtendedQCalendar::setColor(QColor &color) {
 
@@ -28,6 +30,16 @@ QColor ExtendedQCalendar::getColor() {
 void ExtendedQCalendar::paintCell(QPainter *painter, const QRect &rect, const QDate &date) const
 {
      QCalendarWidget::paintCell(painter, rect, date);
+
+     QDateTime eventDate(date);
+
+     if(currentWindow->eventHandler->eventsExists(eventDate)) {
+
+         painter->setPen(m_outlinePen);
+         painter->setBrush(m_transparentBrush);
+         painter->drawRect(rect.adjusted(0, 0, -1, -1));
+
+     }
 
 
     /*
@@ -52,8 +64,8 @@ void ExtendedQCalendar::paintCell(QPainter *painter, const QRect &rect, const QD
 
 }
 
-void ExtendedQCalendar::setEventHandler(EventHandler *ehandler) {
+void ExtendedQCalendar::setCurrentWindow(MainWindow *window) {
 
-    eventHandler=ehandler;
+    currentWindow=window;
 
 }
