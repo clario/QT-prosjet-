@@ -10,13 +10,13 @@ Contact::Contact(int contactId):
     //parameter list
     fName(""),
     lName(""),
-    phoneNumber(NULL),
+    phoneNumber(""),
     email(""),
     cId(contactId)
 {}
 
 //If Contact is a firm
-Contact::Contact(QString firmName,int contactId, int phoneNum,QString eml) :
+Contact::Contact(QString firmName,int contactId, QString phoneNum,QString eml) :
     fName(firmName),
     lName(firmName),
     cId(contactId),
@@ -24,7 +24,7 @@ Contact::Contact(QString firmName,int contactId, int phoneNum,QString eml) :
     email(eml)
 {}
 //For Normal contacts with all informastion
-Contact::Contact(QString firstName, QString lastName, int contactId, int phoneNum, QString eml):
+Contact::Contact(QString firstName, QString lastName, int contactId, QString phoneNum, QString eml):
     fName(firstName),
     lName(lastName),
     cId(contactId),
@@ -47,7 +47,7 @@ QString Contact::getLName()
     return lName;
 }
 
-int Contact::getPhoneNumber()
+QString Contact::getPhoneNumber()
 {
     return phoneNumber;
 }
@@ -73,7 +73,7 @@ void Contact::setLName(QString lastName)
     lName=lastName;
 }
 
-void Contact::setPhoneNumber(int phone)
+void Contact::setPhoneNumber(QString phone)
 {
     phoneNumber=phone;
 }
@@ -112,7 +112,7 @@ QString Contact::toString()
 
     temp += lName + ", ";
     temp += fName + ", ";
-    temp += QString::number(phoneNumber) + ", ";
+    temp += phoneNumber + ", ";
     temp += email + ",";
     temp += QString::number(cId);
 
@@ -144,7 +144,7 @@ bool Contact::hasLName()
 
 bool Contact::hasPhoneNumber()
 {
-    return phoneNumber!=NULL;
+    return !phoneNumber.isEmpty();
 }
 
 bool Contact::hasEmail()

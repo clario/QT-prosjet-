@@ -17,21 +17,21 @@ class Contact
 public:
     Contact();
     Contact(int contactId);
-    Contact(QString firmName,int contactId, int phoneNum,QString eml);
-    Contact(QString firstName, QString lastName, int contactId, int phoneNum, QString eml);
+    Contact(QString firmName,int contactId, QString phoneNum,QString eml);
+    Contact(QString firstName, QString lastName, int contactId, QString phoneNum, QString eml);
     ~Contact();
 
     //getters
     QString getFName();
     QString getLName();
-    int getPhoneNumber();
+    QString getPhoneNumber();
     QString getEmail();
     int getCId();
 
     //Setters
     void setFName(QString firstName);
     void setLName(QString lastName);
-    void setPhoneNumber(int phone);
+    void setPhoneNumber(QString phone);
     void setEmail(QString eMail);
     //Fjernes når ferdig
     void setCId(int contactId);
@@ -63,7 +63,7 @@ public:
 private:
     QString fName;
     QString lName;
-    int phoneNumber;
+    QString phoneNumber;
     QString email;
     int cId;
 };
