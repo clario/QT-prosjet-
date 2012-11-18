@@ -53,8 +53,24 @@ public:
 
 
 
-
+    /*
+     * Overloaded operator lets user list
+     */
     Contact* operator[](int index);
+
+    /*
+     * @retrun a QString representation of all the Contacts in container
+     */
+    QString toString();
+
+    /*
+     * Contact save function.
+     * Creates a FilWriter object that takes QString savePath as parameter.
+     * The FileWriter obj then invoke the save() function and takes the QVector container as param.
+     */
+    bool save();
+
+    QVector<Contact*> sort();
 
 private:
     QVector<Contact*> container;

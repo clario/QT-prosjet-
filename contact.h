@@ -36,7 +36,12 @@ public:
     void setCId(int contactId);
 
     //Methods to be continued...
-    bool operator==(const Contact &contact);
+    bool operator ==(const Contact &cont);
+    bool operator !=(const Contact & cont){return !(*this==cont);}
+    bool operator <=(const Contact &cont);
+    bool operator >(const Contact &cont){return !(*this<=cont);}
+
+
 
     QString toString();
 

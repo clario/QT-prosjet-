@@ -4,8 +4,10 @@
   */
 
 #include <QDebug>
+#include <QDir>
 
 #include "eventhandler.h"
+#include "filehandler.h"
 
 EventHandler::EventHandler()
 {
@@ -139,4 +141,24 @@ EventHandler::const_iterator EventHandler::begin() const {
 
 EventHandler::const_iterator EventHandler::end() const {
 	return eventContainer.end();
+}
+
+void EventHandler::save() {
+	QString filePath = QDir::currentPath();
+	filePath += QString("/events.xml");
+
+	qDebug() << filePath;
+
+	FileHandler fh(filePath);
+	fh.save(eventContainer);
+}
+
+void EventHandler::load() {
+	QString filePath = QDir::currentPath();
+	filePath += QString("/events.xml");
+
+	qDebug() << filePath;
+
+	FileHandler fh(filePath);
+	fh.load(eventContainer);
 }

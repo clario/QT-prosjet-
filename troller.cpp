@@ -2,15 +2,8 @@
 
 Troller::Troller()
 {
-
-    mainwindow = new MainWindow();
-    mainwindow->setContactHandler(&chandler);
-    mainwindow->setEventHandler(&ehandler);
+    qDebug() << "Troller opprettet";
 
 }
 
-void Troller::run() {
 
-    mainwindow->show();
-
-}

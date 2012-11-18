@@ -4,6 +4,11 @@
   */
 
 #include "contacthandler.h"
+#include "filehandler.h"
+#include <QFile>
+#include <QDir>
+#include <QStack>
+#include <QDebug>
 
 ContactHandler::ContactHandler(){
     idCounter = 1;
@@ -28,7 +33,7 @@ bool ContactHandler::remove(QString fName, QString lName, int phoneNumber, QStri
 
 bool ContactHandler::remove(int cID) {
     for (int i = 0; i < container.size(); i++) {
-        if (*(container[i]) == cID) {
+        if (container[i]!=NULL && container[i]->getCId() == cID) {
             container.remove(i);
             return true;
         }
@@ -61,3 +66,41 @@ int ContactHandler::getSize(void) {
 Contact *ContactHandler::operator[](int index) {
     return container[index];
 }
+
+
+
+QString ContactHandler::toString()
+{
+    QString temp = "";
+    for(int i = 0; i < container.size(); i++){
+        if(i == container.size()-1){
+            temp += container.at(i)->toString();
+        }else{
+            temp += container.at(i)->toString() + '\n';
+        }
+    }
+    return temp;
+}
+
+
+
+//SAVE
+bool ContactHandler::save()
+{
+    QString savePath = QDir::currentPath();
+    savePath += QString("/contacts.xml");
+    FileHandler fh(savePath);
+    bool result = fh.save(container);
+    return result;
+}
+
+//IKKE FERDIG
+QVector<Contact *> ContactHandler::sort()
+{
+
+
+
+
+    return container;
+}
+

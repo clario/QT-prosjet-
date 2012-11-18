@@ -28,9 +28,7 @@ SOURCES +=\
     extendedqcalendar.cpp \
     calendarview.cpp \
     filehandler.cpp \
-    mainwindow.cpp \
-    eventfeed.cpp \
-    eventwidget.cpp
+    mainwindow.cpp
 
 HEADERS  += \
     contact.h \
@@ -43,8 +41,6 @@ HEADERS  += \
     extendedqcalendar.h \
     calendarview.h \
     filehandler.h \
-    mainwindow.h \
-    eventfeed.h \
-    eventwidget.h
+    mainwindow.h
 
 FORMS    += mainwindow.ui
