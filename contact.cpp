@@ -83,10 +83,22 @@ void Contact::setCId(int contactId)
 }
 
 //overloaded operators
-bool Contact::operator ==(const Contact &contact)
+bool Contact::operator ==(const Contact &cont)
 {
-    return cId==contact.cId;
+    return (lName==cont.lName && fName==cont.fName && cId==cont.cId);
 }
+
+bool Contact::operator <=(const Contact &cont)
+{
+    if(lName != cont.lName){
+        return (lName <= cont.lName);
+    }else if(lName == cont.lName && fName != cont.fName){
+        return (fName <= cont.fName);
+    }else{
+        return (lName <= cont.lName && fName <= cont.fName);
+    }
+}
+
 
 //QString representation of contact
 QString Contact::toString()
@@ -101,6 +113,7 @@ QString Contact::toString()
 
     return temp;
 }
+
 
 
 

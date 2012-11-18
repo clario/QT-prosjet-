@@ -7,7 +7,7 @@
 #include <QDir>
 
 #include "eventhandler.h"
-#include "filewriter.h"
+#include "filehandler.h"
 
 EventHandler::EventHandler()
 {
@@ -149,8 +149,8 @@ void EventHandler::save() {
 
 	qDebug() << filePath;
 
-	FileWriter fw(filePath);
-	fw.save(eventContainer);
+	FileHandler fh(filePath);
+	fh.save(eventContainer);
 }
 
 void EventHandler::load() {
@@ -159,6 +159,6 @@ void EventHandler::load() {
 
 	qDebug() << filePath;
 
-	//FileLoader fl(filePath);
-	//fl.save(eventContainer);
+	FileHandler fh(filePath);
+	fh.load(eventContainer);
 }
