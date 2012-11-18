@@ -173,6 +173,11 @@ bool FileHandler::load(std::set<Event> &source) {
         if (current.firstChildElement("location").hasChildNodes()) {
             qDebug() << current.firstChildElement("location").firstChild().nodeValue();
         }
+        QDomElement firstParticipant();
+        while (firstParticipant().nextSiblingElement() != NULL) {
+            //tmp. firstParticipant().firstChild().nodeValue()
+        }
+
     }
     return false;
 }
