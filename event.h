@@ -21,12 +21,15 @@ public:
     Event(const Event& original);
 
     QString getTitle() const;
+    bool hasTitle() const;
     void setTitle(const QString& title);
 
     QString getLocation() const;
+    bool hasLocation() const;
     void setLocation(const QString& location);
 
     QString getEventType() const;
+    bool hasEventType() const;
     void setEventType(const QString& eventType);
 
     /**
