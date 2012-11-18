@@ -7,11 +7,11 @@
 #include "filewriter.h"
 #include <QFile>
 #include <QDir>
+#include <QStack>
 #include <QDebug>
 
 ContactHandler::ContactHandler(){
     idCounter = 1;
-    savePath = QDir::currentPath() + "/contacts.xml";
 }
 ContactHandler::~ContactHandler(){}
 
@@ -72,8 +72,12 @@ Contact *ContactHandler::operator[](int index) {
 QString ContactHandler::toString()
 {
     QString temp = "";
-    foreach(Contact *c,container ){
-        temp += c->toString() + "\n";
+    for(int i = 0; i < container.size(); i++){
+        if(i == container.size()-1){
+            temp += container.at(i)->toString();
+        }else{
+            temp += container.at(i)->toString() + '\n';
+        }
     }
     return temp;
 }
@@ -83,8 +87,20 @@ QString ContactHandler::toString()
 //SAVE
 bool ContactHandler::save()
 {
+    QString savePath = QDir::currentPath();
+    savePath += QString("/contacts.xml");
     FileWriter fw(savePath);
     bool result = fw.save(container);
     return result;
+}
+
+//IKKE FERDIG
+QVector<Contact *> ContactHandler::sort()
+{
+
+
+
+
+    return container;
 }
 
