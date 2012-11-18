@@ -8,12 +8,13 @@
 //std Constructor
 Contact::Contact(int contactId):
     //parameter list
-    fName("not set"),
-    lName("not set"),
-    phoneNumber(000),
-    email("prefix@placeholder.ru"),
+    fName(""),
+    lName(""),
+    phoneNumber(NULL),
+    email(""),
     cId(contactId)
 {}
+
 //If Contact is a firm
 Contact::Contact(QString firmName,int contactId, int phoneNum,QString eml) :
     fName(firmName),
@@ -77,6 +78,11 @@ void Contact::setPhoneNumber(int phone)
     phoneNumber=phone;
 }
 
+void Contact::setEmail(QString eMail)
+{
+    email=eMail;
+}
+
 void Contact::setCId(int contactId)
 {
     cId=contactId;
@@ -89,10 +95,10 @@ bool Contact::operator ==(const Contact &cont)
     return (lName.toLower()==cont.lName.toLower() && fName.toLower()==cont.fName.toLower());
 }
 
-bool Contact::operator <=(const Contact &cont)
+bool Contact::operator <(const Contact &cont)
 {
     if(lName.toLower() == cont.lName.toLower()){
-        return (fName.toLower() <= cont.fName.toLower());
+        return (fName.toLower() < cont.fName.toLower());
     }else{
         return (lName.toLower() < cont.lName.toLower());
     }
@@ -112,6 +118,47 @@ QString Contact::toString()
 
     return temp;
 }
+
+
+int Contact::compare(Contact &cont)
+{
+    if(operator <(cont)){
+        return -1;
+    }else if (operator ==(cont)) {
+        return 0;
+    }else{
+        return 1;
+    }
+}
+
+// has functions
+bool Contact::hasFName()
+{
+    return !fName.isEmpty();
+}
+
+bool Contact::hasLName()
+{
+    return !lName.isEmpty();
+}
+
+bool Contact::hasPhoneNumber()
+{
+    return phoneNumber!=NULL;
+}
+
+bool Contact::hasEmail()
+{
+    return !email.isEmpty();
+}
+
+
+
+
+
+
+
+
 
 
 

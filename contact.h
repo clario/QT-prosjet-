@@ -15,6 +15,7 @@
 class Contact
 {
 public:
+    Contact();
     Contact(int contactId);
     Contact(QString firmName,int contactId, int phoneNum,QString eml);
     Contact(QString firstName, QString lastName, int contactId, int phoneNum, QString eml);
@@ -31,20 +32,32 @@ public:
     void setFName(QString firstName);
     void setLName(QString lastName);
     void setPhoneNumber(int phone);
-    void setEmail(QString);
+    void setEmail(QString eMail);
     //Fjernes når ferdig
     void setCId(int contactId);
+
+
+    //Has functions
+    bool hasFName();
+    bool hasLName();
+    bool hasPhoneNumber();
+    bool hasEmail();
+
+
 
     //Methods to be continued...
     bool operator ==(const Contact &cont);
     bool operator !=(const Contact & cont){return !(*this==cont);}
-    bool operator <=(const Contact &cont);
-    bool operator >(const Contact &cont){return !(*this<=cont);}
+    bool operator <(const Contact &cont);
+    bool operator >=(const Contact &cont){return !(*this<cont);}
 
 
 
     QString toString();
 
+    int compare(Contact &cont);
+
+    void qsort();
 
 
 private:

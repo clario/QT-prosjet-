@@ -7,7 +7,7 @@
 #include "filehandler.h"
 #include <QFile>
 #include <QDir>
-#include <algorithm>
+#include <QtAlgorithms>
 #include <QDebug>
 
 ContactHandler::ContactHandler(){
@@ -16,8 +16,20 @@ ContactHandler::ContactHandler(){
 ContactHandler::~ContactHandler(){}
 
 bool ContactHandler::add(QString fName, QString lName, int phoneNumber, QString email) {
-    Contact *tmp = new Contact(fName, lName, idCounter, phoneNumber, email);
+    Contact *tmp = new Contact(idCounter);
     idCounter++;
+    if(fName!=""){
+        tmp->setFName(fName);
+    }
+    if(lName!=""){
+        tmp->setLName(lName);
+    }
+    if(phoneNumber!=NULL){
+        tmp->setPhoneNumber(phoneNumber);
+    }
+    if(email!=""){
+        tmp->setEmail(email);
+    }
     container.push_back(tmp);
     if (tmp==container.last()) {
         return true;
@@ -92,6 +104,11 @@ bool ContactHandler::save()
     FileHandler fh(savePath);
     bool result = fh.save(container);
     return result;
+}
+
+void ContactHandler::sort()
+{
+    qSort(container.begin(),container.end());
 }
 
 

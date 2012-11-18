@@ -8,6 +8,7 @@
 #include <contact.h>
 #include <QString>
 #include <QVector>
+#include <QtAlgorithms>
 
 namespace cal {
     class ContactHandler;
@@ -69,6 +70,8 @@ public:
      * The FileWriter obj then invoke the save() function and takes the QVector container as param.
      */
     bool save();
+
+    void sort();
 
 
 
