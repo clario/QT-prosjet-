@@ -9,6 +9,7 @@ EventView::EventView(QWidget *parent) :
 
     inViewMode = true;
     changed = false;
+    buttonVisible = false;
 
     setWindowTitle("Avtaler");
     eventTitle = QString("Yogatime");
@@ -76,6 +77,7 @@ EventView::EventView(QWidget *parent) :
     repeatLayout = new QHBoxLayout();
     repeatLayout->addWidget(repeatCheckBox);
     repeatSpinBox = new QSpinBox();
+    repeatSpinBox->setMaximum(20);
     repeatLabel = new QLabel("Uker");
     repeatLayout->addWidget(repeatSpinBox);
     repeatLayout->addWidget(repeatLabel);
@@ -161,6 +163,18 @@ EventView::EventView(QWidget *parent) :
 
     connect(absenceRadioButton,SIGNAL(toggled(bool)),this,SLOT(setAbsenceMode(bool)));
     connect(eventRadioButton,SIGNAL(toggled(bool)),this,SLOT(eventMode(bool)));
+
+    buttonLayout = new QHBoxLayout();
+    okButton = new QPushButton("Save");
+    cancelButton = new QPushButton("Cancel");
+    buttonLayout->addWidget(okButton);
+    buttonLayout->addWidget(cancelButton);
+    mainLayout->addLayout(buttonLayout);
+
+    okButton->hide();
+    connect(cancelButton,SIGNAL(clicked()),this,SLOT(closedCancelClick()));
+    connect(okButton,SIGNAL(clicked()),this,SLOT(closedSaveClick()));
+
     setViewMode();
 }
 
@@ -240,6 +254,7 @@ void EventView::setEditMode(){
     eventRadioButton->setEnabled(true);
     absenceRadioButton->setEnabled(true);
     typeComboBox->setEnabled(true);
+    showButtons(true);
     if(!absence){
         absence = true;
         repeatCheckBox->show();
@@ -255,6 +270,27 @@ void EventView::setEditMode(){
         typeComboBox->show();
 
     }
+
+
+
+}
+
+bool EventView::showButtons(bool flag){
+    if(!(buttonVisible) && flag){
+    okButton->show();
+    buttonVisible = true;
+
+    }
+    else if(!flag && buttonVisible){
+
+        okPushButton->hide();
+        cancelPushButton->hide();
+        buttonVisible = false;
+
+
+    }
+
+
 }
 
 
@@ -281,6 +317,10 @@ Event EventView::getEvent() const {
 
     QStringList myParticipants(participantModel->stringList());
     e.setParticipants(myParticipants.toVector().toStdVector());
+
+    e.setAbsence(absenceRadioButton->isChecked());
+
+    e.setRepeats(repeatSpinBox->value());
 
     return e;
 }
@@ -311,6 +351,9 @@ void EventView::populateFields() {
     participants = QStringList::fromVector(QVector<QString>::fromStdVector(event.getParticipants()));
     participantModel->setStringList(participants);
 
+    if(event.getAbsence()){
+       absenceRadioButton->setChecked(true);
+    }
 
 
 
@@ -368,3 +411,15 @@ void EventView::eventMode(bool bol){
 
 
 }
+
+void EventView::closedCancelClick(){
+    changed = false;
+    close();
+}
+
+void EventView::closedSaveClick(){
+    changed = true;
+    close();
+}
+
+
