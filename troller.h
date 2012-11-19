@@ -1,14 +1,18 @@
 #ifndef TROLLER_H
 #define TROLLER_H
 #include <QDebug>
+#include <QObject>
+#include <QApplication>
 #include "eventhandler.h"
 #include "contacthandler.h"
 #include "mainwindow.h"
 
-class Troller
+class Troller : public QObject
 {
 public:
-    Troller();
+    Troller(QObject *parent = 0);
+
+    void run();
 
 private:
 
@@ -16,6 +20,9 @@ private:
     EventHandler eventHandler;
     ContactHandler contactHandler;
 
+public slots:
+
+    void hasClosed();
 
 };
 

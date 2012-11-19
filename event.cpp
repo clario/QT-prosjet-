@@ -258,5 +258,5 @@ unsigned int Event::getRepeats() const {
 }
 
 void Event::setRepeats(unsigned int _repeats) {
-    repeats = repeats;
+    repeats = _repeats;
 }
