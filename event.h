@@ -28,6 +28,10 @@ public:
     bool hasLocation() const;
     void setLocation(const QString& location);
 
+    QString getDescription() const;
+    bool hasDescription() const;
+    void setDescription(const QString& description);
+
     QString getEventType() const;
     bool hasEventType() const;
     void setEventType(const QString& eventType);
@@ -100,6 +104,7 @@ public:
 
 private:
     QString title;
+    QString description;
     QString eventType;
     QString location;
 

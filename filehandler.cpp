@@ -94,6 +94,12 @@ bool FileHandler::save(std::set<Event> &source)
                 event.appendChild(title);
             }
 
+            if (e.hasDescription()) {
+                QDomElement description = doc.createElement("description");
+                description.appendChild(doc.createTextNode(e.getDescription()));
+                event.appendChild(description);
+            }
+
             if (e.hasLocation()) {
                 QDomElement location = doc.createElement("location");
                 location.appendChild(doc.createTextNode(e.getLocation()));
@@ -167,6 +173,9 @@ bool FileHandler::load(std::set<Event> &source) {
         }
         if (current.firstChildElement("title").hasChildNodes()) {
             tmp.setTitle(current.firstChildElement("title").firstChild().nodeValue());
+        }
+        if (current.firstChildElement("description").hasChildNodes()) {
+            tmp.setDescription(current.firstChildElement("description").firstChild().nodeValue());
         }
         if (current.firstChildElement("location").hasChildNodes()) {
             tmp.setLocation(current.firstChildElement("location").firstChild().nodeValue());

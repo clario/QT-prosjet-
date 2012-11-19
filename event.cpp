@@ -10,6 +10,7 @@ const QString Event::dateTimeFormat = "yyyy-MM-ddThh:mm:ss";
 Event::Event()
 {
     title = "";
+    description = "";
     location = "";
     eventType = "";
     repeats = 0;
@@ -18,6 +19,7 @@ Event::Event()
 
 Event::Event(const Event& original) {
     title = original.getTitle();
+    description = original.getDescription();
     location = original.getLocation();
     eventType = original.getEventType();
     repeats = original.getRepeats();
@@ -35,6 +37,18 @@ bool Event::hasTitle() const {
 
 void Event::setTitle(const QString& _title) {
     title = _title;
+}
+
+QString Event::getDescription() const {
+    return description;
+}
+
+bool Event::hasDescription() const {
+    return !description.isEmpty();
+}
+
+void Event::setDescription(const QString& _description) {
+    description = _description;
 }
 
 QString Event::getEventType() const {
@@ -174,6 +188,10 @@ void Event::addParticipant(const QString& participant) {
 
 bool Event::operator==(const Event& other) const {
     bool equal = (title == other.getTitle());
+
+    if (equal) {
+        equal = (description == other.getDescription());
+    }
 
     if (equal) {
         equal = (start == other.getStartDateTime());

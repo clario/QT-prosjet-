@@ -24,6 +24,7 @@ public:
         QDateTime from;
         QDateTime to;
         QString title;
+        QString description;
         QString participant;
         QString eventType;
         QString location;

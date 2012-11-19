@@ -46,6 +46,7 @@ std::vector<Event> EventHandler::findEvents(const EventHandler::QueryArgs& q) co
 
 	bool datesDefined = (q.from.isValid() && q.to.isValid());
 	bool titleDefined = !q.title.isEmpty();
+	bool descriptionDefined = !q.description.isEmpty();
 	bool participantDefined = !q.participant.isEmpty();
 	bool eventTypeDefined = !q.eventType.isEmpty();
 	bool locationDefined = !q.location.isEmpty();
@@ -73,6 +74,10 @@ std::vector<Event> EventHandler::findEvents(const EventHandler::QueryArgs& q) co
 
 		if (lastQuerySuccess && titleDefined) {
 			lastQuerySuccess = e.getTitle().contains(q.title, Qt::CaseInsensitive);
+		}
+
+		if (lastQuerySuccess && descriptionDefined) {
+			lastQuerySuccess = e.getDescription().contains(q.description, Qt::CaseInsensitive);
 		}
 
 		if (lastQuerySuccess && participantDefined) {
