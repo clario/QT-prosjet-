@@ -85,7 +85,12 @@ bool FileHandler::save(std::set<Event> &source)
             if (e.hasEventType()) {
                 QDomElement type = doc.createElement("type");
                 type.appendChild(doc.createTextNode(e.getEventType()));
-                type.appendChild(type);
+                event.appendChild(type);
+            }
+
+            if (e.hasAbsence()) {
+                QDomElement absence = doc.createElement("absence");
+                event.appendChild(absence);
             }
 
             if (e.hasTitle()) {
@@ -171,6 +176,9 @@ bool FileHandler::load(std::set<Event> &source) {
         }
         if (current.firstChildElement("type").hasChildNodes()) {
             tmp.setEventType(current.firstChildElement("type").firstChild().nodeValue());
+        }
+        if (!current.firstChildElement("absence").isNull()) {
+            tmp.setAbsence(true); // Sett at man er absent hvis absence elementet eksisterer
         }
         if (current.firstChildElement("title").hasChildNodes()) {
             tmp.setTitle(current.firstChildElement("title").firstChild().nodeValue());
