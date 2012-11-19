@@ -14,6 +14,7 @@ Event::Event()
     location = "";
     eventType = "";
     repeats = 0;
+    absence = false;
     setStartDateTime(QDateTime::currentDateTime());
 }
 
@@ -27,6 +28,7 @@ Event::Event(const Event& original) {
     end = original.getEndDateTime();
 }
 
+/** Title getters og setters **/
 QString Event::getTitle() const {
     return title;
 }
@@ -39,6 +41,7 @@ void Event::setTitle(const QString& _title) {
     title = _title;
 }
 
+/** Description getters og setters **/
 QString Event::getDescription() const {
     return description;
 }
@@ -51,6 +54,7 @@ void Event::setDescription(const QString& _description) {
     description = _description;
 }
 
+/** EventType getters og setters **/
 QString Event::getEventType() const {
     return eventType;
 }
@@ -63,6 +67,20 @@ void Event::setEventType(const QString& _eventType) {
     eventType = _eventType;
 }
 
+/** Absence getters og setters **/
+bool Event::getAbsence() const {
+    return absence;
+}
+
+bool Event::hasAbsence() const {
+    return absence;
+}
+
+void Event::setAbsence(bool _absence) {
+    absence = _absence;
+}
+
+/** Location getters og setters **/
 QString Event::getLocation() const {
     return location;
 }
@@ -75,6 +93,9 @@ void Event::setLocation(const QString& _location) {
     location = _location;
 }
 
+/**
+  * Metoder for startdato
+  **/
 QDateTime Event::getStartDateTime() const {
     return start;
 }
@@ -174,6 +195,7 @@ bool Event::setEndTime(const QTime& endTime) {
     return true;
 }
 
+/** Participant getters og setters **/
 std::vector<QString> Event::getParticipants() const {
     return std::vector<QString>();
 }
@@ -186,6 +208,7 @@ void Event::addParticipant(const QString& participant) {
     participants.push_back(participant);
 }
 
+/** Sammenligningsoperatorer **/
 bool Event::operator==(const Event& other) const {
     bool equal = (title == other.getTitle());
 
@@ -222,6 +245,7 @@ bool Event::operator<(const Event& other) const {
     return lessThan;
 }
 
+/** Repeat getters og setters **/
 unsigned int Event::getRepeats() const {
     return repeats;
 }

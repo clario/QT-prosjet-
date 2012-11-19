@@ -36,6 +36,10 @@ public:
     bool hasEventType() const;
     void setEventType(const QString& eventType);
 
+    bool getAbsence() const;
+    bool hasAbsence() const;
+    void setAbsence(bool absence);
+
     /**
      * Metoder for startdato
      */
@@ -92,6 +96,7 @@ public:
 
     void addParticipant(const QString& participant);
 
+    /** Repeats skal _ikke_ tas med i serialiseringen av et event */
     unsigned int getRepeats() const;
     void setRepeats(unsigned int repeats);
 
@@ -106,6 +111,7 @@ private:
     QString title;
     QString description;
     QString eventType;
+    bool absence;
     QString location;
 
     QDateTime start;
