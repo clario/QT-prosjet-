@@ -22,6 +22,7 @@ int ContactListModel::columnCount(const QModelIndex &parent) const
 {
     return 4;
 }
+
 QVariant ContactListModel::data(const QModelIndex &index, int role) const
 {
     if(role == Qt::DisplayRole) {
@@ -29,16 +30,12 @@ QVariant ContactListModel::data(const QModelIndex &index, int role) const
         switch(col) {
         case 0:
             return (*input)[index.row()].getLName();
-            break;
         case 1:
             return (*input)[index.row()].getFName();
-            break;
         case 2:
             return (*input)[index.row()].getPhoneNumber();
-            break;
         case 3:
             return (*input)[index.row()].getEmail();
-            break;
         }
 
         //        if(index.column() == 0)
@@ -48,6 +45,31 @@ QVariant ContactListModel::data(const QModelIndex &index, int role) const
     } else {
         return QVariant();
     }
+    return QVariant();
+}
+
+
+
+
+QVariant ContactListModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole)
+    {
+        if (orientation == Qt::Horizontal) {
+            switch (section)
+            {
+            case 0:
+                return QString("Last name");
+            case 1:
+                return QString("First name");
+            case 2:
+                return QString("Phone Number");
+            case 3:
+                return QString("Email adress");
+            }
+        }
+    }
+    return QVariant();
 }
 
 //Qt::ItemFlags ContactModel::flags(const QModelIndex &index) const

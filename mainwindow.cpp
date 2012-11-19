@@ -17,16 +17,15 @@ MainWindow::MainWindow(QWidget *parent) :
     createDock();
     createActions();
     createMenus();
+    createConnections();
 
 }
 
 void MainWindow::createActions() {
 
     aboutAct = new QAction("About", this);
-    connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
-
     quitAct = new QAction("Quit", this);
-    connect(aboutAct, SIGNAL(triggered()), this, SLOT(close()));
+
 
 }
 
@@ -48,7 +47,6 @@ void MainWindow::createCalendar() {
     calendar = new ExtendedQCalendar();
     calendar->setCurrentWindow(this);
 
-    connect(calendar, SIGNAL(clicked(QDate)), this, SLOT(dateClicked(QDate)));
 }
 
 void MainWindow::setEventHandler(EventHandler *ehandler) {
@@ -78,7 +76,16 @@ void MainWindow::createDock() {
 
 }
 
-void MainWindow::rowClicked(QModelIndex clickedRow) {
+void MainWindow::createConnections() {
+
+    connect(calendar, SIGNAL(clicked(QDate)), this, SLOT(dateClicked(QDate)));
+
+    connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
+    connect(quitAct, SIGNAL(triggered()), this, SLOT(close()));
+
+}
+
+void MainWindow::rowDoubleClicked(const QModelIndex &clickedRow) {
 
     //std::cout << feed->currentRow() << std::endl;
 
@@ -105,6 +112,8 @@ void MainWindow::rowClicked(QModelIndex clickedRow) {
 
 void MainWindow::dateClicked(QDate date) {
 
+    feed->deactivate();
+
     if(eventHandler->eventsExists(date)) {
 
         QDateTime from(date);
@@ -114,12 +123,49 @@ void MainWindow::dateClicked(QDate date) {
 
         feed->loadEvents(events);
 
+    } else {
+
+        feed->clearEventFeed();
+
     }
+
+}
+
+void MainWindow::searchEvent(const EventHandler::QueryArgs& args) {
+
+    events = eventHandler->findEvents(args);
+
+    feed->loadEvents(events);
 
 }
 
 void MainWindow::about() {
 
     QMessageBox::about(this, "About", "TurboCalendar 3000");
+
+}
+
+void MainWindow::deleteEvent() {
+
+    int index = feed->getActiveEvent();
+
+    eventHandler->removeEvent(events.at(index));
+    events.erase(events.begin()+index);
+    feed->loadEvents(events);
+    calendar->update();
+}
+
+void MainWindow::deleteAllEventsToday() {
+
+    for(int eventToDelete=0 ; eventToDelete < (unsigned)events.size() ; eventToDelete ++) {
+
+        eventHandler->removeEvent(events.at(eventToDelete));
+
+    }
+
+    events.clear();
+    feed->deactivate();
+    feed->clearEventFeed();
+    calendar->update();
 
 }

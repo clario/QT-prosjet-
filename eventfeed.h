@@ -1,13 +1,12 @@
-// VOID!!
-
 #ifndef EVENTFEED_H
 #define EVENTFEED_H
 
 #include <QWidget>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include "eventwidget.h"
+#include "eventsearch.h"
 #include <QPushButton>
-//#include <QStringList>
 #include <QListWidget>
 #include "mainwindow.h"
 #include <vector>
@@ -23,19 +22,27 @@ public:
     explicit EventFeed(QWidget *parent = 0);
 
     void setCurrentWindow(MainWindow*);
-    void loadEvents(std::vector<Event> events);
+    void loadEvents(const std::vector<Event>&);
+    void deactivate();
+    void clearEventFeed();
+    int getActiveEvent();
 
 private:
 
     // Å heii
+    QPushButton *deleteEvent;
+    QPushButton *deleteAll;
+    QHBoxLayout *buttons;
     QVBoxLayout *wrapper;
     QListWidget *feed;
-    //QStringList *eventList;
-    QPushButton *search;
+    EventSearch *search;
     MainWindow *currentWindow;
+
+    void buildConnections();
 
 private slots:
 
+    void toggleButtons();
     //void rowClicked();
 
 };

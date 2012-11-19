@@ -61,11 +61,17 @@ public slots:
     void setAbsenceMode(bool);
     void setEditMode(bool);
     void eventMode(bool);
+    void closedCancelClick();
+    void closedSaveClick();
+
+
+
 
 private:
     bool inViewMode;
     bool changed;
     bool absence;
+    bool buttonVisible;
 
     Event event;
 
@@ -140,11 +146,21 @@ private:
     QGridLayout * participantLayout;
 
 
+    //BUTTONS
 
+    QPushButton *okButton;
+    QPushButton *cancelButton;
+    QHBoxLayout * buttonLayout;
 
     QVBoxLayout * mainLayout;
 
     void populateFields();
+    bool showButtons(bool);
+    void showRepeatButtons();
+
+
+
+
 };
 
 

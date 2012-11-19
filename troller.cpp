@@ -3,23 +3,33 @@
 #include "contacthandler.h"
 #include "mainwindow.h"
 #include "event.h"
+#include <QDebug>
 
-Troller::Troller()
+Troller::Troller(QObject *parent) :
+    QObject(parent)
 {
 
     mainWindow.setEventHandler(&eventHandler);
     mainWindow.setContactHandler(&contactHandler);
 
-    Event test;
-    test.setStartDate(QDate::currentDate());
-    test.setEndDate(QDate(2012,11,21));
+   eventHandler.load();
+   contactHandler.load();
 
-    test.setTitle("Brazilian Waxing");
+}
 
-    eventHandler.addEvent(test);
+void Troller::run() {
 
-    mainWindow.show();
+     mainWindow.show();
+
+}
+
+void Troller::hasClosed() {
+
+    eventHandler.save();
+    contactHandler.save();
+    qDebug("Lagra!");
 
 }
 
 
+// La troller arve qobject og lag en slot som invoker save i event og contacthandler ved mainwindow.closed().
