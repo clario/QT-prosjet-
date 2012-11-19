@@ -69,7 +69,7 @@ Contact ContactHandler::operator[](int index) {
 }
 
 
-
+//TOSTRING
 QString ContactHandler::toString()
 {
     QString temp = "";
@@ -95,6 +95,7 @@ bool ContactHandler::save()
     return result;
 }
 
+//LOAD
 bool ContactHandler::load()
 {
     container.clear();
@@ -106,12 +107,26 @@ bool ContactHandler::load()
     return result;
 }
 
+//SORT THE CONTAINER
+void ContactHandler::sort()
+{
+    qSort(container);
+}
 
-///VIRKER IKKE
-//void ContactHandler::sort()
-//{
-//    qSort(container.begin(),container.end());
-//}
+
+//NOT FINISHED
+QString ContactHandler::findContact(const QString &sf) const
+{
+    QString result = "";
+    foreach(Contact c, container){
+        if(c.getLName().contains(sf) || c.getFName().contains(sf)){
+            result = c.toString();
+        }else{
+            result = "not found";
+        }
+    }
+    return result;
+}
 
 
 
