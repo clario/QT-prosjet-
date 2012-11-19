@@ -407,12 +407,12 @@ void EventView::eventMode(bool bol){
 
 void EventView::closedCancelClick(){
     changed = false;
-    close();
+    reject();
 }
 
 void EventView::closedSaveClick(){
     changed = true;
-    close();
+    accepted();
 }
 
 
