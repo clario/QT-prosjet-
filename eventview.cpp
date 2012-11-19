@@ -224,6 +224,10 @@ void EventView::setViewMode(){
     eventRadioButton->setEnabled(false);
     absenceRadioButton->setEnabled(false);
     typeComboBox->setEnabled(false);
+    repeatCheckBox->hide();
+    repeatSpinBox->hide();
+    repeatLabel->hide();
+
 
 
 
@@ -231,6 +235,7 @@ void EventView::setViewMode(){
 
 
 void EventView::setEditMode(){
+
     inViewMode = false;
     editModeToggle->setText("Vis");
 
@@ -256,7 +261,6 @@ void EventView::setEditMode(){
     typeComboBox->setEnabled(true);
     showButtons(true);
     if(!absence){
-        absence = true;
         repeatCheckBox->show();
         repeatLabel->show();
         repeatSpinBox->show();
@@ -270,8 +274,6 @@ void EventView::setEditMode(){
         typeComboBox->show();
 
     }
-
-
 
 }
 
@@ -290,9 +292,7 @@ bool EventView::showButtons(bool flag){
 
     }
 
-
 }
-
 
 void EventView::setNewMode(){
     setEditMode();
@@ -306,18 +306,13 @@ bool EventView::isChanged() const {
 Event EventView::getEvent() const {
     Event e = event;
     e.setTitle(eventTitleEdit->text());
-
     e.setStartDate(fromDateEdit->date());
     e.setStartTime(fromTimeEdit->time());
-
     e.setEndDate(toDateEdit->date());
     e.setEndTime(toTimeEdit->time());
-
     e.setDescription(descriptionTextEdit->toPlainText());
-
     QStringList myParticipants(participantModel->stringList());
     e.setParticipants(myParticipants.toVector().toStdVector());
-
     e.setAbsence(absenceRadioButton->isChecked());
 
     e.setRepeats(repeatSpinBox->value());
@@ -354,8 +349,6 @@ void EventView::populateFields() {
     if(event.getAbsence()){
        absenceRadioButton->setChecked(true);
     }
-
-
 
     blockSignals(false);
 }
