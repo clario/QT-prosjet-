@@ -12,6 +12,7 @@
 #include <QListView>
 #include <QAbstractItemModel>
 #include <QStringList>
+#include <QStringListModel>
 #include <QButtonGroup>
 #include <QPushButton>
 #include <QDialog>
@@ -48,6 +49,7 @@ signals:
 public slots:
     void modeToggler();
     void fieldsAreChanged();
+    void updateDescription();
 
 private:
     bool inViewMode;
@@ -80,6 +82,10 @@ private:
     QLabel * eventTitleLabel;
     QLineEdit * eventTitleEdit;
 
+    QLabel * descriptionLabel;
+    QLabel * descriptionText;
+    QTextEdit * descriptionTextEdit;
+
     QLabel * eventTypeLabel;
     QGroupBox * eventTypeRadioBoxContainer;
 
@@ -89,15 +95,10 @@ private:
     QLabel * typeLabel;
     QComboBox *typeComboBox;
 
-    QLabel * eventDescriptionLabel;
-    QTextEdit * eventDescriptionTextBox;
-
     QLabel * participantsLabel;
-    QTextEdit * textEditAttending;
-
     QStringList participants;
     QLabel * participantLabel;
-    QAbstractItemModel * participantModel;
+    QStringListModel * participantModel;
     QListView * participantView;
     QPushButton * participantAdd;
     QPushButton * participantRemove;
@@ -113,8 +114,8 @@ private:
     QHBoxLayout * headerLayout;
     QHBoxLayout * repeatLayout;
     QHBoxLayout * titleLayout;
-    QGridLayout * participantLayout;
     QHBoxLayout * descriptionLayout;
+    QGridLayout * participantLayout;
 
     QVBoxLayout * mainLayout;
 

@@ -80,12 +80,25 @@ EventView::EventView(QWidget *parent) :
     eventTitleLabel = new QLabel("Tittel:");
     eventTitleEdit = new QLineEdit("Brazilian Waxing");
     connect(eventTitleEdit, SIGNAL(textEdited(const QString&)), this, SLOT(fieldsAreChanged()) );
-    connect(eventTitleEdit, SIGNAL(textEdited(const QString&)), headerLabel, SLOT(setText(const QString&)) );
+    connect(eventTitleEdit, SIGNAL(textChanged(const QString&)), headerLabel, SLOT(setText(const QString&)) );
 
     titleLayout = new QHBoxLayout();
     titleLayout->addWidget(eventTitleLabel);
     titleLayout->addWidget(eventTitleEdit);
     mainLayout->addLayout(titleLayout);
+
+    //Description
+    descriptionLabel = new QLabel("Beskrivelse");
+    descriptionText = new QLabel();
+    descriptionTextEdit = new QTextEdit();
+    connect(descriptionTextEdit, SIGNAL(textChanged()), this, SLOT(fieldsAreChanged()));
+    connect(descriptionTextEdit, SIGNAL(textChanged()), this, SLOT(updateDescription()));
+
+    descriptionLayout = new QHBoxLayout();
+    descriptionLayout->addWidget(descriptionLabel, Qt::AlignTop);
+    descriptionLayout->addWidget(descriptionText, Qt::AlignLeft);
+    descriptionLayout->addWidget(descriptionTextEdit);
+    mainLayout->addLayout(descriptionLayout);
 
     //Participants
     participantLabel = new QLabel("Deltakere:");
@@ -121,6 +134,10 @@ void EventView::fieldsAreChanged() {
     changed = true;
 }
 
+void EventView::updateDescription() {
+    descriptionText->setText(descriptionTextEdit->toPlainText());
+}
+
 void EventView::setViewMode(){
     inViewMode = true;
     editModeToggle->setText("Rediger");
@@ -135,6 +152,9 @@ void EventView::setViewMode(){
 
     eventTitleLabel->hide();
     eventTitleEdit->hide();
+
+    descriptionText->show();
+    descriptionTextEdit->hide();
 }
 
 
@@ -152,6 +172,9 @@ void EventView::setEditMode(){
 
     eventTitleLabel->show();
     eventTitleEdit->show();
+
+    descriptionText->hide();
+    descriptionTextEdit->show();
 }
 
 void EventView::setNewMode(){
@@ -173,6 +196,11 @@ Event EventView::getEvent() const {
     e.setEndDate(toDateEdit->date());
     e.setEndTime(toTimeEdit->time());
 
+    e.setDescription(descriptionTextEdit->toPlainText());
+
+    QStringList myParticipants(participantModel->stringList());
+    e.setParticipants(myParticipants.toVector().toStdVector());
+
     return e;
 }
 
@@ -186,15 +214,21 @@ void EventView::populateFields() {
     eventTitleEdit->setText(event.getTitle());
 
     // Denne er til for å sørge for at labelen blir oppdatert, signal avfyres ikke hvis vinduet ikke vises
-    headerLabel->setText(event.getTitle());
+    // headerLabel->setText(event.getTitle());
 
     blockSignals(true);
+
+    descriptionTextEdit->setPlainText(event.getDescription());
+    descriptionText->setText(event.getDescription());
 
     fromDateEdit->setDate(event.getStartDate());
     fromTimeEdit->setTime(event.getStartTime());
 
     toDateEdit->setDate(event.getEndDate());
     toTimeEdit->setTime(event.getEndTime());
+
+    participants = QStringList::fromVector(QVector<QString>::fromStdVector(event.getParticipants()));
+    participantModel->setStringList(participants);
 
     blockSignals(false);
 }
