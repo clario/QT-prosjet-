@@ -14,7 +14,7 @@
 #include <QStringList>
 #include <QButtonGroup>
 #include <QPushButton>
-#include <QWidget>
+#include <QDialog>
 #include <QGroupBox>
 #include <QGridLayout>
 #include <QHBoxLayout>
@@ -23,7 +23,7 @@
 
 #include "event.h"
 
-class EventView : public QWidget
+class EventView : public QDialog
 {
     Q_OBJECT
 public:
@@ -59,7 +59,7 @@ private:
 
     QPushButton *editModeToggle;
 
-    QLabel *eventTitleLabel;
+    QLabel *headerLabel;
     QCheckBox *allDayEvent;
     QLabel *allDayEventLabel;
     QLabel *fromLabel;
@@ -77,7 +77,7 @@ private:
     QComboBox * repeatComboBox;
     QLabel * repeatLabel;
 
-    QLabel * miniEventTitleLabel;
+    QLabel * eventTitleLabel;
     QLineEdit * eventTitleEdit;
 
     QLabel * eventTypeLabel;
@@ -110,6 +110,7 @@ private:
     QPushButton * savePushButton;
 
     QGridLayout * firstGridLayout;
+    QHBoxLayout * headerLayout;
     QHBoxLayout * repeatLayout;
     QHBoxLayout * titleLayout;
     QGridLayout * participantLayout;

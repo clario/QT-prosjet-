@@ -1,9 +1,12 @@
 #include "eventview.h"
 #include <QStringListModel>
+#include <QSizePolicy>
 
 EventView::EventView(QWidget *parent) :
-    QWidget(parent)
+    QDialog(parent)
 {
+    setModal(true);
+
     inViewMode = true;
     changed = false;
 
@@ -13,8 +16,9 @@ EventView::EventView(QWidget *parent) :
 
     mainLayout = new QVBoxLayout(this);
 
-    eventTitleLabel = new QLabel(eventTitle);
-    eventTitleLabel->setFont(QFont("",25));
+    headerLabel = new QLabel(eventTitle);
+    headerLabel->setFont(QFont("",25));
+    headerLabel->setWordWrap(true); // Brekker linjene
 
     editModeToggle = new QPushButton(this);
     connect(editModeToggle, SIGNAL(clicked()), this, SLOT(modeToggler()));
@@ -26,12 +30,10 @@ EventView::EventView(QWidget *parent) :
     fromDateLabel = new QLabel("Dato:");
     fromDateEdit = new QDateEdit();
     fromDateEdit->setDate(QDate(QDate::currentDate()));
-    //fromDateEdit->setReadOnly(true);
 
     fromTimeLabel = new QLabel("Tid:");
     fromTimeEdit = new QTimeEdit();
     fromTimeEdit->setTime(QTime(QTime::currentTime()));
-    //fromTimeEdit->setReadOnly(true);
 
     //To-stuff
     toLabel = new QLabel("Til:");
@@ -40,17 +42,18 @@ EventView::EventView(QWidget *parent) :
     toDateLabel = new QLabel("Dato:");
     toDateEdit = new QDateEdit();
     toDateEdit->setDate(QDate(QDate::currentDate()));
-    //toDateEdit->setReadOnly(true);
 
     toTimeLabel = new QLabel("Tid:");
     toTimeEdit = new QTimeEdit(QTime(QTime::currentTime()));
-    //toTimeEdit->setReadOnly(true);
+
+    headerLayout = new QHBoxLayout();
+    headerLayout->addWidget(headerLabel);
+    headerLayout->addStretch(1000);
+    //headerLayout->addItem(new QSpacerItem(1,1,QSizePolicy::Expanding));
+    headerLayout->addWidget(editModeToggle, Qt::AlignRight);
+    mainLayout->addLayout(headerLayout);
 
     firstGridLayout = new QGridLayout();
-
-    firstGridLayout->addWidget(eventTitleLabel, 0, 0, 3, 1, Qt::AlignLeft);
-    firstGridLayout->addWidget(editModeToggle, 0, 4, 1, 1, Qt::AlignRight);
-
     firstGridLayout->addWidget(fromLabel,4,0);
     firstGridLayout->addWidget(fromDateLabel,5,0);
     firstGridLayout->addWidget(fromDateEdit,5,1);
@@ -74,13 +77,13 @@ EventView::EventView(QWidget *parent) :
     mainLayout->addLayout(repeatLayout);
 
     //Title
-    miniEventTitleLabel = new QLabel("Tittel:");
+    eventTitleLabel = new QLabel("Tittel:");
     eventTitleEdit = new QLineEdit("Brazilian Waxing");
     connect(eventTitleEdit, SIGNAL(textEdited(const QString&)), this, SLOT(fieldsAreChanged()) );
-    connect(eventTitleEdit, SIGNAL(textEdited(const QString&)), eventTitleLabel, SLOT(setText(const QString&)) );
+    connect(eventTitleEdit, SIGNAL(textEdited(const QString&)), headerLabel, SLOT(setText(const QString&)) );
 
     titleLayout = new QHBoxLayout();
-    titleLayout->addWidget(miniEventTitleLabel);
+    titleLayout->addWidget(eventTitleLabel);
     titleLayout->addWidget(eventTitleEdit);
     mainLayout->addLayout(titleLayout);
 
@@ -130,7 +133,7 @@ void EventView::setViewMode(){
     participantAdd->setEnabled(false);
     participantRemove->setEnabled(false);
 
-    miniEventTitleLabel->hide();
+    eventTitleLabel->hide();
     eventTitleEdit->hide();
 }
 
@@ -147,7 +150,7 @@ void EventView::setEditMode(){
     participantAdd->setEnabled(true);
     participantRemove->setEnabled(true);
 
-    miniEventTitleLabel->show();
+    eventTitleLabel->show();
     eventTitleEdit->show();
 }
 
@@ -183,7 +186,7 @@ void EventView::populateFields() {
     eventTitleEdit->setText(event.getTitle());
 
     // Denne er til for å sørge for at labelen blir oppdatert, signal avfyres ikke hvis vinduet ikke vises
-    eventTitleLabel->setText(event.getTitle());
+    headerLabel->setText(event.getTitle());
 
     blockSignals(true);
 
