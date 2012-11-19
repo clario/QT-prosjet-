@@ -19,6 +19,11 @@ public:
 
     typedef std::set<Event>::const_iterator const_iterator;
 
+    /**
+     * En klasse for å enkelt spesifisere hvilke krav events skal tilfredsstille under et søk.
+     * Siden vi bruker Qt typer kan vi enkelt bruke metoder for å sjekke
+     * verdiene er satt (eks. om en streng er tom eller en dato er satt)
+     */
     class QueryArgs {
         public:
         QDateTime from;
@@ -44,6 +49,9 @@ public:
      */
     std::vector<Event> findEvents(const EventHandler::QueryArgs& queryArgs) const;
 
+    /**
+     * Hjelpemetoder for å finne ut om der finnes events mellom datoer eller på en dato
+     */
     bool eventsExists(const QDateTime& from, const QDateTime& to) const;
     bool eventsExists(const QDate& from) const;
 
@@ -58,10 +66,12 @@ public:
      */
     std::vector<Event> getAll() const;
 
+    /**
+     * Iteratorer som kan brukes ved serialisering eller ren iterering
+     */
     const_iterator begin() const;
     const_iterator end() const;
 
-    //Mulige implementeringer
     void addEvent(const Event& event);
     bool removeEvent(const Event& event);
 
@@ -73,9 +83,6 @@ public:
 private:
     //Container type kan diskuteres
     std::set<Event> eventContainer; // Denne er ferdigsortert for datoer
-    std::vector<std::string> eventTypes; //<- Vist vi går for det her er eventType i praksis distinkt og case sensitive/insensitive (kan sjekkast i logikk laget)
-
-
 };
 
 Q_DECLARE_METATYPE(EventHandler::QueryArgs);

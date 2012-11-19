@@ -40,6 +40,9 @@ std::vector<Event> EventHandler::findEvents(const QDateTime& from, const QDateTi
 	return results;
 }
 
+/**
+ * Søker etter event spesifisert av eventer i q-variabelen
+ */
 std::vector<Event> EventHandler::findEvents(const EventHandler::QueryArgs& q) const {
 	std::vector<Event> results;
 	EventHandler::const_iterator it, it_end;
@@ -54,6 +57,8 @@ std::vector<Event> EventHandler::findEvents(const EventHandler::QueryArgs& q) co
 	if (datesDefined) {
 		Event toEvent;
 		toEvent.setStartDateTime(q.to);
+
+                // Sett en øvre grense på datoene
 		it_end = eventContainer.upper_bound(toEvent);
 	} else {
 		it_end = eventContainer.end();
@@ -62,6 +67,7 @@ std::vector<Event> EventHandler::findEvents(const EventHandler::QueryArgs& q) co
 	for (it = eventContainer.begin(); it != it_end; it++) {
 		bool lastQuerySuccess = true;
 		Event e = *it;
+
 
 		if (lastQuerySuccess && datesDefined) {
 			lastQuerySuccess = false;
