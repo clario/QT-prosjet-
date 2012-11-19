@@ -19,9 +19,15 @@ private:
     QLineEdit *phoneNumber;
     QLineEdit *eMail;
 
+    QPushButton *edit;
+    QPushButton *remove;
+    QPushButton *add;
+    QPushButton *close;
+
     QHBoxLayout *main;
     QVBoxLayout *ll;
     QVBoxLayout *rl;
+    QHBoxLayout *rbl;
 
     QTableView *tv;
     ContactListModel *mdl;
