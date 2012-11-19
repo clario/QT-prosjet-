@@ -10,6 +10,7 @@ EventView::EventView(QWidget *parent) :
     inViewMode = true;
     changed = false;
     buttonVisible = false;
+    absence = false;
 
     setWindowTitle("Avtaler");
     eventTitle = QString("Yogatime");
@@ -233,6 +234,13 @@ void EventView::setViewMode(){
 
 }
 
+void EventView::showRepeatButtons(){
+    repeatLabel->show();
+    repeatCheckBox->show();
+    repeatSpinBox->show();
+
+}
+
 
 void EventView::setEditMode(){
 
@@ -260,10 +268,9 @@ void EventView::setEditMode(){
     absenceRadioButton->setEnabled(true);
     typeComboBox->setEnabled(true);
     showButtons(true);
+
     if(!absence){
-        repeatCheckBox->show();
-        repeatLabel->show();
-        repeatSpinBox->show();
+      showRepeatButtons();
         participantView->show();
         repeatSpinBox->setEnabled(false);
         participantAdd->show();
@@ -407,12 +414,12 @@ void EventView::eventMode(bool bol){
 
 void EventView::closedCancelClick(){
     changed = false;
-    rejected();
+    close();
 }
 
 void EventView::closedSaveClick(){
     changed = true;
-    accepted();
+    close();
 }
 
 

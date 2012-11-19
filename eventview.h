@@ -156,6 +156,7 @@ private:
 
     void populateFields();
     bool showButtons(bool);
+    void showRepeatButtons();
 
 
 
