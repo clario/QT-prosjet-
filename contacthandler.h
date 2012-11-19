@@ -5,7 +5,7 @@
 
 #ifndef CONTACTHANDLER_H
 #define CONTACTHANDLER_H
-#include <contact.h>
+#include "contact.h"
 #include <QString>
 #include <QVector>
 #include <QtAlgorithms>
@@ -51,13 +51,10 @@ public:
     int getSize(void);
 
 
-
-
-
     /*
      * Overloaded operator lets user list
      */
-    Contact* operator[](int index);
+    Contact operator[](int index);
 
     /*
      * @retrun a QString representation of all the Contacts in container
@@ -71,14 +68,23 @@ public:
      */
     bool save();
 
+    /*
+     * Loads a xml file containing Contact data from QDir::CurrentPath() + /contacts.xml
+     */
     bool load();
 
+    /*
+     *  Uses QSort to sort the Contacts lexicaly based on lName,fName in Contact
+     */
     void sort();
+
+    //findContact Methods
+    QString findContact(const QString &sf)const;
 
 
 
 private:
-    QVector<Contact*> container;
+    QVector<Contact> container;
     int idCounter;
 };
 #endif // CONTACTHANDLER_H

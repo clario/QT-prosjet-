@@ -16,16 +16,13 @@ ContactHandler::ContactHandler(){
 ContactHandler::~ContactHandler(){}
 
 bool ContactHandler::add(QString fName, QString lName, QString phoneNumber, QString email) {
-    Contact *tmp = new Contact(fName, lName, idCounter, phoneNumber, email);
-    idCounter++;
-    tmp->setFName(fName);
-    tmp->setLName(lName);
-    tmp->setPhoneNumber(phoneNumber);
-    tmp->setEmail(email);
-    container.push_back(tmp);
-    if (tmp==container.last()) {
+    int test = container.size();
+    container.push_back(Contact(fName,lName,idCounter,phoneNumber,email));
+
+    if(test!=container.size()){
+        idCounter++;
         return true;
-    } else {
+    }else{
         return false;
     }
 }
@@ -37,7 +34,7 @@ bool ContactHandler::remove(QString fName, QString lName, QString phoneNumber, Q
 
 bool ContactHandler::remove(int cID) {
     for (int i = 0; i < container.size(); i++) {
-        if (container[i]!=NULL && container[i]->getCId() == cID) {
+        if (container[i]!=NULL && container[i].getCId() == cID) {
             container.remove(i);
             return true;
         }
@@ -51,10 +48,10 @@ void ContactHandler::setCounter(int &nextID) {
 
 void ContactHandler::setCounter(void) {
     if (container.size()>0) {
-        int max = container[0]->getCId();
+        int max = container[0].getCId();
         int now = 0;
         for (int i = 1; i < container.size(); i++) {
-            now = container[i]->getCId();
+            now = container[i].getCId();
             if (now>max) {
                 max = now;
             }
@@ -67,20 +64,20 @@ int ContactHandler::getSize(void) {
     return container.size();
 }
 
-Contact *ContactHandler::operator[](int index) {
+Contact ContactHandler::operator[](int index) {
     return container[index];
 }
 
 
-
+//TOSTRING
 QString ContactHandler::toString()
 {
     QString temp = "";
     for(int i = 0; i < container.size(); i++){
         if(i == container.size()-1){
-            temp += container.at(i)->toString();
+            temp += container[i].toString();
         }else{
-            temp += container.at(i)->toString() + '\n';
+            temp += container[i].toString() + '\n';
         }
     }
     return temp;
@@ -98,6 +95,7 @@ bool ContactHandler::save()
     return result;
 }
 
+//LOAD
 bool ContactHandler::load()
 {
     container.clear();
@@ -109,11 +107,25 @@ bool ContactHandler::load()
     return result;
 }
 
-
-///VIRKER IKKE
+//SORT THE CONTAINER
 void ContactHandler::sort()
 {
-    qSort(container.begin(),container.end());
+    qSort(container);
+}
+
+
+//NOT FINISHED
+QString ContactHandler::findContact(const QString &sf) const
+{
+    QString result = "";
+    foreach(Contact c, container){
+        if(c.getLName().contains(sf) || c.getFName().contains(sf)){
+            result = c.toString();
+        }else{
+            result = "not found";
+        }
+    }
+    return result;
 }
 
 

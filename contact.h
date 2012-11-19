@@ -45,10 +45,10 @@ public:
 
 
     //Methods to be continued...
-    bool operator ==(const Contact &cont);
-    bool operator !=(const Contact & cont){return !(*this==cont);}
-    bool operator <(const Contact &cont);
-    bool operator >=(const Contact &cont){return !(*this<cont);}
+    bool operator ==(const Contact &cont)const;
+    bool operator !=(const Contact & cont)const{return !(*this==cont);}
+    bool operator <(const Contact &cont)const;
+    bool operator >=(const Contact &cont)const{return !(*this<cont);}
 
 
 
