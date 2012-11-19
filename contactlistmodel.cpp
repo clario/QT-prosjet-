@@ -50,6 +50,30 @@ QVariant ContactListModel::data(const QModelIndex &index, int role) const
     }
 }
 
+
+
+
+QVariant ContactListModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole)
+    {
+        if (orientation == Qt::Horizontal) {
+            switch (section)
+            {
+            case 0:
+                return QString("Last name");
+            case 1:
+                return QString("First name");
+            case 2:
+                return QString("Phone Number");
+            case 3:
+                return QString("Email adress");
+            }
+        }
+    }
+    return QVariant();
+}
+
 //Qt::ItemFlags ContactModel::flags(const QModelIndex &index) const
 //{
 //    return QAbstractTableModel::flags(index) | Qt::ItemIsSelectable;
