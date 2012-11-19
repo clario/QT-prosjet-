@@ -18,7 +18,9 @@ ContactHandler::~ContactHandler(){}
 bool ContactHandler::add(QString fName, QString lName, QString phoneNumber, QString email) {
     int test = container.size();
     container.push_back(Contact(fName,lName,idCounter,phoneNumber,email));
+
     if(test!=container.size()){
+        idCounter++;
         return true;
     }else{
         return false;
