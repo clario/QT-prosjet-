@@ -57,6 +57,7 @@ private:
     void createDock();
     void createActions();
     void createMenus();
+    void createConnections();
 
 
 signals:
@@ -64,8 +65,11 @@ signals:
 public slots:
     
     void dateClicked(QDate);
-    void rowClicked(QModelIndex);
+    void rowDoubleClicked(const QModelIndex&);
     void about();
+    void searchEvent(const EventHandler::QueryArgs&);
+    void deleteEvent();
+    void deleteAllEventsToday();
 
 };
 
