@@ -7,6 +7,12 @@
 #include <QVBoxLayout>
 #include "eventwidget.h"
 #include <QPushButton>
+//#include <QStringList>
+#include <QListWidget>
+#include "mainwindow.h"
+#include <vector>
+
+class MainWindow;
 
 class EventFeed : public QWidget
 {
@@ -16,12 +22,21 @@ class EventFeed : public QWidget
 public:
     explicit EventFeed(QWidget *parent = 0);
 
+    void setCurrentWindow(MainWindow*);
+    void loadEvents(std::vector<Event> events);
+
 private:
 
     // Å heii
-    QVBoxLayout *feed;
-    //EventWidget *demo;
-    QPushButton *knapp;
+    QVBoxLayout *wrapper;
+    QListWidget *feed;
+    //QStringList *eventList;
+    QPushButton *search;
+    MainWindow *currentWindow;
+
+private slots:
+
+    //void rowClicked();
 
 };
 

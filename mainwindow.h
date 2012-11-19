@@ -1,14 +1,22 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QtGui>
 #include <QMainWindow>
+#include <QDockWidget>
+#include <QMenuBar>
+#include <QMenu>
+#include <QAction>
+#include <vector>
 #include "contactview.h"
 #include "eventview.h"
 #include "contacthandler.h"
 #include "eventhandler.h"
-#include "extendedqcalendar.h"
+//#include "extendedqcalendar.h"
+//#include "eventfeed.h"
 
 class ExtendedQCalendar;
+class EventFeed;
 
 class MainWindow : public QMainWindow
 {
@@ -29,15 +37,35 @@ private:
     //ContactView *contactEdit;
     //Troller *troller;
 
-    //QDockWidget *dock;
+
+    QDockWidget *dock;
+    EventFeed *feed;
+
+    QMenuBar *menu;
+    QMenu *fileMenu;
+    QMenu *contactsMenu;
+
+    QAction *aboutAct;
+    QAction *saveAct;
+    QAction *quitAct;
+    QAction *viewContacts;
+    QAction *addContact;
+
+    std::vector<Event> events;
 
     void createCalendar();
+    void createDock();
+    void createActions();
+    void createMenus();
+
 
 signals:
     
 public slots:
     
     void dateClicked(QDate);
+    void rowClicked(QModelIndex);
+    void about();
 
 };
 
