@@ -34,25 +34,6 @@ void MainWindow::setContactHandler(ContactHandler *chandler) {
 }
 
 void MainWindow::dateClicked(QDate date) {
-
-    if(eventHandler->eventsExists(date)) {
-
-        QDateTime from(date);
-        QDateTime to = from.addDays(1);
-
-        std::vector<Event> events = eventHandler->findEvents(from,to);
-
-        EventView *ev = new EventView;
-
-        ev->setEvent(events.at(0));
-        ev->setViewMode();
-        ev->show();
-
-    }
-
-}
-
-void MainWindow::dateClicked(QDate date) {
     if(eventHandler->eventsExists(date)) {
 
         QDateTime from(date);
