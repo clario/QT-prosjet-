@@ -31,10 +31,6 @@ void ExtendedQCalendar::paintCell(QPainter *painter, const QRect &rect, const QD
 {
      QCalendarWidget::paintCell(painter, rect, date);
 
-     //QDateTime eventDate(date);
-
-     qDebug("Jeppsi");
-
      if(currentWindow->eventHandler->eventsExists(date)) {
 
          painter->setPen(m_outlinePen);
@@ -42,27 +38,6 @@ void ExtendedQCalendar::paintCell(QPainter *painter, const QRect &rect, const QD
          painter->drawRect(rect.adjusted(0, 0, -1, -1));
 
      }
-
-
-    /*
-    if (date == m_currentDate)
-
-   {
-       painter->setPen(m_outlinePen);
-       painter->setBrush(m_transparentBrush);
-       painter->drawRect(rect.adjusted(0, 0, -1, -1));
-
-   }
-
-    if (date == anotherDate)
-
-   {
-       painter->setPen(m_outlinePen);
-       painter->setBrush(m_transparentBrush);
-       painter->drawRect(rect.adjusted(0, 0, -1, -1));
-
-   }
-   */
 
 }
 
