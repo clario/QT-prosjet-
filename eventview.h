@@ -113,6 +113,7 @@ private:
     QComboBox *typeComboBox;
     QGridLayout * eventTypeGridLayout;
     QStringList typeEvent;
+    QStringList absenceType;
 
 
 

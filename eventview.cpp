@@ -107,7 +107,7 @@ EventView::EventView(QWidget *parent) :
     connect(descriptionTextEdit, SIGNAL(textChanged()), this, SLOT(updateDescription()));
 
     descriptionLayout = new QHBoxLayout();
-    descriptionLayout->addWidget(descriptionLabel, Qt::AlignTop);
+    descriptionLayout->addWidget(descriptionLabel, Qt::AlignTrailing);
     descriptionLayout->addWidget(descriptionText, Qt::AlignLeft);
     descriptionLayout->addWidget(descriptionTextEdit);
     mainLayout->addLayout(descriptionLayout);
@@ -140,7 +140,7 @@ EventView::EventView(QWidget *parent) :
     typeLabel = new QLabel("Type:");
     typeLabel->setFont(QFont("",18));
     typeComboBox = new QComboBox();
-
+     absenceType << "Ferie" << "Avspasering" << "Kurs";
     typeEvent << "Shopping" << "Utflukt" << "Arrangement" <<
                  "Underholding" << "Foredrag" << "Diverse"
               << "Kurs";
@@ -253,6 +253,7 @@ void EventView::setEditMode(){
 
         typeLabel->show();
         typeComboBox->show();
+
     }
 }
 
@@ -310,11 +311,15 @@ void EventView::populateFields() {
     participants = QStringList::fromVector(QVector<QString>::fromStdVector(event.getParticipants()));
     participantModel->setStringList(participants);
 
+
+
+
     blockSignals(false);
 }
 
 void EventView::setAbsenceMode(bool bo){
     if(bo){
+
     absence = true;
     repeatCheckBox->hide();
     repeatLabel->hide();
@@ -324,9 +329,10 @@ void EventView::setAbsenceMode(bool bo){
     participantAdd->hide();
     participantRemove->hide();
     participantLabel->hide();
+    typeComboBox->clear();
+    typeComboBox->addItems(absenceType);
 
-    typeLabel->hide();
-    typeComboBox->hide();
+
 
     }
 }
@@ -354,6 +360,10 @@ void EventView::eventMode(bool bol){
         participantLabel->show();
         typeLabel->show();
         typeComboBox->show();
+        typeComboBox->clear();
+        typeComboBox->addItems(typeEvent);
+
+
     }
 
 
