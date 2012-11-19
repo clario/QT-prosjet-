@@ -40,8 +40,6 @@ void MainWindow::createMenus() {
 
     setMenuBar(menu);
 
-    qDebug("Dafuq");
-
 }
 
 
