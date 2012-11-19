@@ -11,7 +11,7 @@ EventView::EventView(QWidget *parent) :
     changed = false;
 
     setWindowTitle("Avtaler");
-    eventTitle = QString("Brazillian Wax");
+    eventTitle = QString("Kalender avtale");
 
 
     mainLayout = new QVBoxLayout(this);
@@ -70,15 +70,22 @@ EventView::EventView(QWidget *parent) :
 
     repeatCheckBox = new QCheckBox("Repeter");
 
+
     mainLayout->addLayout(firstGridLayout);
 
     repeatLayout = new QHBoxLayout();
+    repeatLayout->addWidget(repeatCheckBox);
+    repeatSpinBox = new QSpinBox();
+    repeatLabel = new QLabel("Uker");
+
+
+
 
     mainLayout->addLayout(repeatLayout);
 
     //Title
     eventTitleLabel = new QLabel("Tittel:");
-    eventTitleEdit = new QLineEdit("Brazilian Waxing");
+    eventTitleEdit = new QLineEdit(eventTitle);
     connect(eventTitleEdit, SIGNAL(textEdited(const QString&)), this, SLOT(fieldsAreChanged()) );
     connect(eventTitleEdit, SIGNAL(textChanged(const QString&)), headerLabel, SLOT(setText(const QString&)) );
 

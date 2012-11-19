@@ -21,6 +21,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QString>
+#include <QSpinBox>
 
 #include "event.h"
 
@@ -76,8 +77,11 @@ private:
     QTimeEdit *toTimeEdit;
 
     QCheckBox *repeatCheckBox;
-    QComboBox * repeatComboBox;
+    QSpinBox * repeatSpinBox;
+    QSpinBox * uker;
     QLabel * repeatLabel;
+
+
 
     QLabel * eventTitleLabel;
     QLineEdit * eventTitleEdit;
