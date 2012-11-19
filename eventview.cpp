@@ -84,9 +84,6 @@ EventView::EventView(QWidget *parent) :
     repeatLayout->addWidget(repeatLabel);
     connect(repeatCheckBox,SIGNAL(clicked(bool)),repeatSpinBox,SLOT(setEnabled(bool)));
 
-
-
-
     mainLayout->addLayout(repeatLayout);
 
     //Title
@@ -165,6 +162,7 @@ EventView::EventView(QWidget *parent) :
     connect(absenceRadioButton,SIGNAL(toggled(bool)),this,SLOT(setAbsenceMode(bool)));
     connect(eventRadioButton,SIGNAL(toggled(bool)),this,SLOT(eventMode(bool)));
 
+    //OK and Cancel Button
     buttonLayout = new QHBoxLayout();
     okButton = new QPushButton("Save");
     cancelButton = new QPushButton("Cancel");
@@ -241,6 +239,15 @@ void EventView::showRepeatButtons(){
 
 }
 
+void EventView::showParticipant()
+{
+    participantAdd->show();
+    participantRemove->show();
+    participantLabel->show();
+    participantView->show();
+
+}
+
 
 void EventView::setEditMode(){
 
@@ -271,11 +278,8 @@ void EventView::setEditMode(){
 
     if(!absence){
       showRepeatButtons();
-        participantView->show();
         repeatSpinBox->setEnabled(false);
-        participantAdd->show();
-        participantRemove->show();
-        participantLabel->show();
+        showParticipant();
 
         typeLabel->show();
         typeComboBox->show();
@@ -390,17 +394,8 @@ void EventView::setEditMode(bool bo){
 void EventView::eventMode(bool bol){
     if(!inViewMode){
         absence = false;
-        repeatCheckBox->show();
-        repeatLabel->show();
-        repeatSpinBox->show();
-
-
-
-        participantView->show();
-        repeatSpinBox->show();
-        participantAdd->show();
-        participantRemove->show();
-        participantLabel->show();
+        showRepeatButtons();
+       showParticipant();
         typeLabel->show();
         typeComboBox->show();
         typeComboBox->clear();
@@ -408,7 +403,6 @@ void EventView::eventMode(bool bol){
 
 
     }
-
 
 }
 
