@@ -7,6 +7,9 @@
 
 const QString Event::dateTimeFormat = "yyyy-MM-ddThh:mm:ss";
 
+/**
+ * Oppretter et tomt objekt med defaultverdier
+ */
 Event::Event()
 {
     title = "";
@@ -18,6 +21,9 @@ Event::Event()
     setStartDateTime(QDateTime::currentDateTime());
 }
 
+/**
+ * Kopikonstruktør
+ */
 Event::Event(const Event& original) {
     title = original.getTitle();
     description = original.getDescription();
@@ -103,14 +109,14 @@ QDateTime Event::getStartDateTime() const {
 
 bool Event::setStartDateTime(const QDateTime& startDateTime) {
     start = startDateTime;
-    if (!end.isValid() || end < start) { // Sett sluttdato hvis sluttdato er før startdato
+    if (!end.isValid() || end < start) { // Sett sluttdato hvis sluttdato ikke er satt eller kommer før startdato
         end = startDateTime.addSecs(60*60);
     }
     return true;
 }
 
 /**
-  * Returnerer en tidsstreng på formatet 2012-02-01T22:33:00
+  * Returnerer en tidsstreng på formatet 2012-02-01T22:33:00, dateTimeFormat er en statisk klassekonstant
   */
 QString Event::getStartAsString() const {
     return start.toString(dateTimeFormat);
@@ -118,7 +124,7 @@ QString Event::getStartAsString() const {
 
 /**
   * Denne er grei å bruke for å laste
-  * nn dato fra et serialisert objkt
+  * en dato fra et serialisert objekt
   * Krever formatet 2012-02-01T22:33:00
   */
 bool Event::setStartAsString(const QString& startDateTime) {
