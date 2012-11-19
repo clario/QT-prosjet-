@@ -76,7 +76,7 @@ EventView::EventView(QWidget *parent) :
     repeatLayout = new QHBoxLayout();
     repeatLayout->addWidget(repeatCheckBox);
     repeatSpinBox = new QSpinBox();
-    repeatLabel = new QLabe("Uker")
+    repeatLabel = new QLabel("Uker");
 
 
 
