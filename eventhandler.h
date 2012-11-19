@@ -78,4 +78,6 @@ private:
 
 };
 
+Q_DECLARE_METATYPE(EventHandler::QueryArgs);
+
 #endif // EVENTHANDLER_H
