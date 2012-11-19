@@ -86,25 +86,25 @@ QString ContactHandler::toString()
 
 
 //SAVE
-//bool ContactHandler::save()
-//{
-//    QString savePath = QDir::currentPath();
-//    savePath += QString("/contacts.xml");
-//    FileHandler fh(savePath);
-//    bool result = fh.save(container);
-//    return result;
-//}
+bool ContactHandler::save()
+{
+    QString savePath = QDir::currentPath();
+    savePath += QString("/contacts.xml");
+    FileHandler fh(savePath);
+    bool result = fh.save(container);
+    return result;
+}
 
-//bool ContactHandler::load()
-//{
-//    container.clear();
-//    QString source = QDir::currentPath();
-//    source += "/contacts.xml";
-//    FileHandler fr(source);                  //Opretta filewriter med stien til current path + navnet på kildefila
-//    bool result = fr.load(container);      //Kaller FileWriter::save(xxx)
-//    setCounter();
-//    return result;
-//}
+bool ContactHandler::load()
+{
+    container.clear();
+    QString source = QDir::currentPath();
+    source += "/contacts.xml";
+    FileHandler fr(source);                  //Opretta filewriter med stien til current path + navnet på kildefila
+    bool result = fr.load(container);      //Kaller FileWriter::save(xxx)
+    setCounter();
+    return result;
+}
 
 
 ///VIRKER IKKE

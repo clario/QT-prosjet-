@@ -21,10 +21,10 @@ public:
     const static char typeIsContact='c';
     const static char typeIsEvent='e';
 
-    bool save(QVector<Contact*> &source);
+    bool save(QVector<Contact> &source);
     bool save(std::set<Event> &source);
 
-    bool load(QVector<Contact*> &source);
+    bool load(QVector<Contact> &source);
     bool load(std::set<Event> &source);
 
 private:
