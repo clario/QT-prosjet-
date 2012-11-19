@@ -51,9 +51,6 @@ public:
     int getSize(void);
 
 
-
-
-
     /*
      * Overloaded operator lets user list
      */
@@ -71,9 +68,18 @@ public:
      */
     bool save();
 
+    /*
+     * Loads a xml file containing Contact data from QDir::CurrentPath() + /contacts.xml
+     */
     bool load();
 
+    /*
+     *  Uses QSort to sort the Contacts lexicaly based on lName,fName in Contact
+     */
     void sort();
+
+    //findContact Methods
+    QString findContact(const QString &sf)const;
 
 
 
