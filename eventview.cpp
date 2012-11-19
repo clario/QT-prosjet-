@@ -11,7 +11,7 @@ EventView::EventView(QWidget *parent) :
     changed = false;
 
     setWindowTitle("Avtaler");
-    eventTitle = QString("Brazillian Wax");
+    eventTitle = QString("Yogatime");
 
 
     mainLayout = new QVBoxLayout(this);
@@ -49,36 +49,47 @@ EventView::EventView(QWidget *parent) :
     headerLayout = new QHBoxLayout();
     headerLayout->addWidget(headerLabel);
     headerLayout->addStretch(1000);
-    //headerLayout->addItem(new QSpacerItem(1,1,QSizePolicy::Expanding));
     headerLayout->addWidget(editModeToggle, Qt::AlignRight);
     mainLayout->addLayout(headerLayout);
 
     firstGridLayout = new QGridLayout();
-    firstGridLayout->addWidget(fromLabel,4,0);
-    firstGridLayout->addWidget(fromDateLabel,5,0);
-    firstGridLayout->addWidget(fromDateEdit,5,1);
-    firstGridLayout->addWidget(fromTimeLabel,5,2);
-    firstGridLayout->addWidget(fromTimeEdit,5,3);
+    firstGridLayout->addWidget(fromLabel,0,0);
 
-    firstGridLayout->addWidget(toLabel,6,0);
-    firstGridLayout->addWidget(toDateLabel,7,0);
-    firstGridLayout->addWidget(toDateEdit,7,1);
-    firstGridLayout->addWidget(toTimeLabel,7,2);
-    firstGridLayout->addWidget(toTimeEdit,7,3);
+    firstGridLayout->addWidget(fromDateLabel,1,0);
+    firstGridLayout->addWidget(fromDateEdit,1,1);
+    firstGridLayout->addWidget(fromTimeLabel,1,2);
+    firstGridLayout->addWidget(fromTimeEdit,1,3);
+
+    firstGridLayout->addWidget(toLabel,2,0);
+    firstGridLayout->addWidget(toDateLabel,3,0);
+    firstGridLayout->addWidget(toDateEdit,3,1);
+    firstGridLayout->addWidget(toTimeLabel,3,2);
+    firstGridLayout->addWidget(toTimeEdit,3,3);
 
     //Repeat
 
     repeatCheckBox = new QCheckBox("Repeter");
 
+
     mainLayout->addLayout(firstGridLayout);
 
     repeatLayout = new QHBoxLayout();
+    repeatLayout->addWidget(repeatCheckBox);
+    repeatSpinBox = new QSpinBox();
+    repeatLabel = new QLabel("Uker");
+    repeatLayout->addWidget(repeatSpinBox);
+    repeatLayout->addWidget(repeatLabel);
+    connect(repeatCheckBox,SIGNAL(clicked(bool)),repeatSpinBox,SLOT(setEnabled(bool)));
+
+
+
 
     mainLayout->addLayout(repeatLayout);
 
     //Title
     eventTitleLabel = new QLabel("Tittel:");
-    eventTitleEdit = new QLineEdit("Brazilian Waxing");
+    eventTitleLabel->setFont(QFont("",18));
+    eventTitleEdit = new QLineEdit(eventTitle);
     connect(eventTitleEdit, SIGNAL(textEdited(const QString&)), this, SLOT(fieldsAreChanged()) );
     connect(eventTitleEdit, SIGNAL(textChanged(const QString&)), headerLabel, SLOT(setText(const QString&)) );
 
@@ -88,20 +99,22 @@ EventView::EventView(QWidget *parent) :
     mainLayout->addLayout(titleLayout);
 
     //Description
-    descriptionLabel = new QLabel("Beskrivelse");
+    descriptionLabel = new QLabel("Beskrivelse:");
+    descriptionLabel->setFont(QFont("",18));
     descriptionText = new QLabel();
     descriptionTextEdit = new QTextEdit();
     connect(descriptionTextEdit, SIGNAL(textChanged()), this, SLOT(fieldsAreChanged()));
     connect(descriptionTextEdit, SIGNAL(textChanged()), this, SLOT(updateDescription()));
 
     descriptionLayout = new QHBoxLayout();
-    descriptionLayout->addWidget(descriptionLabel, Qt::AlignTop);
+    descriptionLayout->addWidget(descriptionLabel, Qt::AlignTrailing);
     descriptionLayout->addWidget(descriptionText, Qt::AlignLeft);
     descriptionLayout->addWidget(descriptionTextEdit);
     mainLayout->addLayout(descriptionLayout);
 
     //Participants
     participantLabel = new QLabel("Deltakere:");
+    participantLabel->setFont(QFont("",18));
     participantModel = new QStringListModel();
     participantView = new QListView();
     participantView->setModel(participantModel);
@@ -115,6 +128,39 @@ EventView::EventView(QWidget *parent) :
     participantLayout->addWidget(participantRemove, 4,3,2,2);
     mainLayout->addLayout(participantLayout);
 
+    //Event-type
+    eventTypeGridLayout = new QGridLayout();
+    eventTypeLabel = new QLabel("Type");
+    eventTypeLabel->setFont(QFont("",18));
+    typeRadioLayout = new QHBoxLayout();
+    eventRadioButton = new QRadioButton("Avtale");
+    absenceRadioButton = new QRadioButton("Fravear");
+    typeRadioLayout->addWidget(eventRadioButton);
+    typeRadioLayout->addWidget(absenceRadioButton);
+    typeLabel = new QLabel("Type:");
+    typeLabel->setFont(QFont("",18));
+    typeComboBox = new QComboBox();
+     absenceType << "Ferie" << "Avspasering" << "Kurs";
+    typeEvent << "Shopping" << "Utflukt" << "Arrangement" <<
+                 "Underholding" << "Foredrag" << "Diverse"
+              << "Kurs";
+
+
+    typeComboBox->addItems(typeEvent);
+
+
+
+    eventTypeGridLayout->addWidget(eventTypeLabel,0,0,1,1);
+    eventTypeGridLayout->addLayout(typeRadioLayout,0,1,1,1);
+    eventTypeGridLayout->addWidget(typeLabel,1,0,1,1);
+    eventTypeGridLayout->addWidget(typeComboBox,1,1,1,1);
+    eventRadioButton->setChecked(true);
+
+
+    mainLayout->addLayout(eventTypeGridLayout);
+
+    connect(absenceRadioButton,SIGNAL(toggled(bool)),this,SLOT(setAbsenceMode(bool)));
+    connect(eventRadioButton,SIGNAL(toggled(bool)),this,SLOT(eventMode(bool)));
     setViewMode();
 }
 
@@ -123,11 +169,14 @@ EventView::~EventView() {
 }
 
 void EventView::modeToggler() {
+
+
     if (!inViewMode) {
         setViewMode();
     } else {
         setEditMode();
     }
+
 }
 
 void EventView::fieldsAreChanged() {
@@ -155,6 +204,15 @@ void EventView::setViewMode(){
 
     descriptionText->show();
     descriptionTextEdit->hide();
+    descriptionTextEdit->setEnabled(false);
+    repeatCheckBox->setEnabled(false);
+
+    eventRadioButton->setEnabled(false);
+    absenceRadioButton->setEnabled(false);
+    typeComboBox->setEnabled(false);
+
+
+
 }
 
 
@@ -164,6 +222,7 @@ void EventView::setEditMode(){
 
     fromDateEdit->setReadOnly(false);
     fromTimeEdit->setReadOnly(false);
+
     toDateEdit->setReadOnly(false);
     toTimeEdit->setReadOnly(false);
 
@@ -175,7 +234,29 @@ void EventView::setEditMode(){
 
     descriptionText->hide();
     descriptionTextEdit->show();
+    descriptionTextEdit->setEnabled(true);
+    repeatCheckBox->setEnabled(true);
+
+    eventRadioButton->setEnabled(true);
+    absenceRadioButton->setEnabled(true);
+    typeComboBox->setEnabled(true);
+    if(!absence){
+        absence = true;
+        repeatCheckBox->show();
+        repeatLabel->show();
+        repeatSpinBox->show();
+        participantView->show();
+        repeatSpinBox->setEnabled(false);
+        participantAdd->show();
+        participantRemove->show();
+        participantLabel->show();
+
+        typeLabel->show();
+        typeComboBox->show();
+
+    }
 }
+
 
 void EventView::setNewMode(){
     setEditMode();
@@ -230,5 +311,60 @@ void EventView::populateFields() {
     participants = QStringList::fromVector(QVector<QString>::fromStdVector(event.getParticipants()));
     participantModel->setStringList(participants);
 
+
+
+
     blockSignals(false);
+}
+
+void EventView::setAbsenceMode(bool bo){
+    if(bo){
+
+    absence = true;
+    repeatCheckBox->hide();
+    repeatLabel->hide();
+    repeatSpinBox->hide();
+    participantView->hide();
+    repeatSpinBox->hide();
+    participantAdd->hide();
+    participantRemove->hide();
+    participantLabel->hide();
+    typeComboBox->clear();
+    typeComboBox->addItems(absenceType);
+
+
+
+    }
+}
+
+
+void EventView::setEditMode(bool bo){
+    if(bo){
+        setEditMode();
+    }
+}
+
+void EventView::eventMode(bool bol){
+    if(!inViewMode){
+        absence = false;
+        repeatCheckBox->show();
+        repeatLabel->show();
+        repeatSpinBox->show();
+
+
+
+        participantView->show();
+        repeatSpinBox->show();
+        participantAdd->show();
+        participantRemove->show();
+        participantLabel->show();
+        typeLabel->show();
+        typeComboBox->show();
+        typeComboBox->clear();
+        typeComboBox->addItems(typeEvent);
+
+
+    }
+
+
 }

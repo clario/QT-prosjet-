@@ -11,7 +11,7 @@ FileHandler::~FileHandler()
 {
 }
 
-bool FileHandler::save(QVector<Contact*> &source)
+bool FileHandler::save(QVector<Contact> &source)
 {
     bool isWritable = target.open(QFile::WriteOnly);
     if (isWritable) {
@@ -20,31 +20,31 @@ bool FileHandler::save(QVector<Contact*> &source)
         QDomDocument doc;
         QDomElement root = doc.createElement("contacts");
         doc.appendChild(root);
-        foreach (Contact* e, source) {
+        foreach (Contact e, source) {
             QDomElement contact = doc.createElement("contact");
-            contact.setAttribute("cid", QString::number(e->getCId()));
+            contact.setAttribute("cid", QString::number(e.getCId()));
 
-            if (e->hasFName()) {
+            if (e.hasFName()) {
                 QDomElement fName = doc.createElement("fName");
-                fName.appendChild(doc.createTextNode(e->getFName()));
+                fName.appendChild(doc.createTextNode(e.getFName()));
                 contact.appendChild(fName);
             }
 
-            if (e->hasLName()) {
+            if (e.hasLName()) {
                 QDomElement lName = doc.createElement("lName");
-                lName.appendChild(doc.createTextNode(e->getLName()));
+                lName.appendChild(doc.createTextNode(e.getLName()));
                 contact.appendChild(lName);
             }
 
-            if (e->hasPhoneNumber()) {
+            if (e.hasPhoneNumber()) {
                 QDomElement phoneNumber = doc.createElement("phoneNumber");
-                phoneNumber.appendChild(doc.createTextNode(e->getPhoneNumber()));
+                phoneNumber.appendChild(doc.createTextNode(e.getPhoneNumber()));
                 contact.appendChild(phoneNumber);
             }
 
-            if (e->hasEmail()) {
+            if (e.hasEmail()) {
                 QDomElement email = doc.createElement("email");
-                email.appendChild(doc.createTextNode(e->getEmail()));
+                email.appendChild(doc.createTextNode(e.getEmail()));
                 contact.appendChild(email);
             }
 
@@ -85,7 +85,12 @@ bool FileHandler::save(std::set<Event> &source)
             if (e.hasEventType()) {
                 QDomElement type = doc.createElement("type");
                 type.appendChild(doc.createTextNode(e.getEventType()));
-                type.appendChild(type);
+                event.appendChild(type);
+            }
+
+            if (e.hasAbsence()) {
+                QDomElement absence = doc.createElement("absence");
+                event.appendChild(absence);
             }
 
             if (e.hasTitle()) {
@@ -128,25 +133,26 @@ bool FileHandler::save(std::set<Event> &source)
     }
 }
 
-bool FileHandler::load(QVector<Contact *> &source) {
+bool FileHandler::load(QVector<Contact> &source) {
     QDomDocument doc;
     doc.setContent(&target);
     QDomElement root = doc.firstChildElement();
     QDomNodeList nodes = root.childNodes();
     for (int i = 0; i < nodes.size(); i++) {
         QDomElement current = nodes.at(i).toElement();
-        Contact *tmp = new Contact(current.attribute("cid").toInt());
+        //Contact tmp = new Contact(current.attribute("cid").toInt());
+        Contact tmp(current.attribute("cid").toInt());//Ny
         if (current.firstChildElement("phoneNumber").hasChildNodes()) {
-            tmp->setPhoneNumber(current.firstChildElement("phoneNumber").firstChild().nodeValue());
+            tmp.setPhoneNumber(current.firstChildElement("phoneNumber").firstChild().nodeValue());
         }
         if (current.firstChildElement("fName").hasChildNodes()) {
-            tmp->setFName(current.firstChildElement("fName").firstChild().nodeValue());
+            tmp.setFName(current.firstChildElement("fName").firstChild().nodeValue());
         }
         if (current.firstChildElement("lName").hasChildNodes()) {
-            tmp->setLName(current.firstChildElement("lName").firstChild().nodeValue());
+            tmp.setLName(current.firstChildElement("lName").firstChild().nodeValue());
         }
         if (current.firstChildElement("email").hasChildNodes()) {
-            tmp->setEmail(current.firstChildElement("email").firstChild().nodeValue());
+            tmp.setEmail(current.firstChildElement("email").firstChild().nodeValue());
         }
         source.push_back(tmp);
     }
@@ -170,6 +176,9 @@ bool FileHandler::load(std::set<Event> &source) {
         }
         if (current.firstChildElement("type").hasChildNodes()) {
             tmp.setEventType(current.firstChildElement("type").firstChild().nodeValue());
+        }
+        if (!current.firstChildElement("absence").isNull()) {
+            tmp.setAbsence(true); // Sett at man er absent hvis absence elementet eksisterer
         }
         if (current.firstChildElement("title").hasChildNodes()) {
             tmp.setTitle(current.firstChildElement("title").firstChild().nodeValue());
