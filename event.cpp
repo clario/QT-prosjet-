@@ -26,6 +26,7 @@ Event::Event(const Event& original) {
     repeats = original.getRepeats();
     start = original.getStartDateTime();
     end = original.getEndDateTime();
+    absence = original.getAbsence();
 }
 
 /** Title getters og setters **/
