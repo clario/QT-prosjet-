@@ -3,27 +3,36 @@
 ContactView::ContactView(QWidget *parent) :
     QWidget(parent)
 {
-    QLabel *nameLabel = new QLabel(tr("Name"));
-    nameLine = new QLineEdit;
-
-    QGridLayout *mainLayout = new QGridLayout;
-    mainLayout->addWidget(nameLabel,0,0);
-    line = new QLineEdit();
-    test= "Hei";
-    line->setText(test);
-    mainLayout->addWidget(line,0,1);
-    setLayout(mainLayout);
-    setWindowTitle(tr("Contacts"));
-    connect(line,SIGNAL(returnPressed()),this,SLOT(updateString()));
 }
 
-QString ContactView::getString()
+ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
+    QWidget(parent)
 {
-    return test;
-}
+    //Buttons
+    fName = new QLineEdit("First Name");
+    lName = new QLineEdit("Last Name");
+    phoneNumber = new QLineEdit("Phone Number");
+    eMail = new QLineEdit("e-Post");
 
-void ContactView::updateString()
-{
-    test = line->text();
-    qDebug() << test;
+    //Layouts
+    main = new QHBoxLayout(this);
+    ll = new QVBoxLayout();
+    rl = new QVBoxLayout();
+    main->addLayout(ll);
+    main->addLayout(rl);
+
+    //Lager kontaklista
+    tv = new QTableView();
+    ll->addWidget(tv);
+    mdl = new ContactListModel(ch);
+    tv->setModel(mdl);
+    tv->setSelectionBehavior(QTableView::SelectRows);
+    tv->setSelectionMode(QTableView::SingleSelection);
+
+    //Adder knapper
+    rl->addWidget(fName);
+    rl->addWidget(lName);
+    rl->addWidget(phoneNumber);
+    rl->addWidget(eMail);
+
 }
