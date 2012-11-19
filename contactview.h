@@ -2,8 +2,9 @@
 #define CONTACTVIEW_H
 
 #include <QtGui>
+#include <QModelIndex>
 #include "contactlistmodel.h"
-
+#include "contact.h"
 
 
 class ContactView : public QWidget
@@ -23,6 +24,7 @@ private:
     QPushButton *remove;
     QPushButton *add;
     QPushButton *close;
+    QPushButton *save;
 
     QHBoxLayout *main;
     QVBoxLayout *ll;
@@ -32,12 +34,18 @@ private:
     QTableView *tv;
     ContactListModel *mdl;
 
+    //Ekle feltvariablar som vi må bruke fordi vi ikkje har peiling
+    int selectedRow;
+    ContactHandler *cHandler;
+
 signals:
     
 public slots:
+    void editRow();
+    void saveRow();
+
 
 /*
-//Main metode for main.cpp:
 #include <QtGui>
 #include "contacthandler.h"
 #include "contactview.h"
