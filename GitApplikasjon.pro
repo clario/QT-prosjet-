@@ -31,6 +31,7 @@ SOURCES +=\
     mainwindow.cpp \
     eventfeed.cpp \
     eventwidget.cpp \
+    eventsearch.cpp \
     contactlistmodel.cpp
 
 HEADERS  += \
@@ -47,6 +48,7 @@ HEADERS  += \
     mainwindow.h \
     eventfeed.h \
     eventwidget.h \
+    eventsearch.h \
     contactlistmodel.h
 
 FORMS    += mainwindow.ui
