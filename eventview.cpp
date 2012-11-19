@@ -236,19 +236,24 @@ void EventView::setEditMode(){
     descriptionTextEdit->show();
     descriptionTextEdit->setEnabled(true);
     repeatCheckBox->setEnabled(true);
-    repeatSpinBox->setEnabled(false);
+
     eventRadioButton->setEnabled(true);
     absenceRadioButton->setEnabled(true);
     typeComboBox->setEnabled(true);
+    if(!absence){
+        absence = true;
+        repeatCheckBox->show();
+        repeatLabel->show();
+        repeatSpinBox->show();
+        participantView->show();
+        repeatSpinBox->setEnabled(false);
+        participantAdd->show();
+        participantRemove->show();
+        participantLabel->show();
 
-    repeatCheckBox->show();
-    repeatLabel->show();
-    participantView->show();
-    repeatSpinBox->show();
-    participantAdd->show();
-    participantRemove->show();
-    participantLabel->show();
-
+        typeLabel->show();
+        typeComboBox->show();
+    }
 }
 
 
@@ -314,9 +319,6 @@ void EventView::setAbsenceMode(bool bo){
     repeatCheckBox->hide();
     repeatLabel->hide();
     repeatSpinBox->hide();
-
-
-
     participantView->hide();
     repeatSpinBox->hide();
     participantAdd->hide();
