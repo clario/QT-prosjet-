@@ -22,6 +22,7 @@
 #include <QVBoxLayout>
 #include <QString>
 #include <QSpinBox>
+#include <QStringList>
 
 #include "event.h"
 
@@ -33,12 +34,16 @@ public:
 
     ~EventView();
 
-    void setViewMode();
-    void setEditMode();
+
+
+   // void setViewMode();
+ //   void setEditMode();
     void setNewMode();
 
     // Returnerer om noe er endret
     bool isChanged() const;
+
+
 
     // Returnerer en kopi av det nye objektet;
     Event getEvent() const;
@@ -51,10 +56,16 @@ public slots:
     void modeToggler();
     void fieldsAreChanged();
     void updateDescription();
+    void setEditMode();
+    void setViewMode();
+    void setAbsenceMode(bool);
+    void setEditMode(bool);
+    void eventMode(bool);
 
 private:
     bool inViewMode;
     bool changed;
+    bool absence;
 
     Event event;
 
@@ -75,6 +86,7 @@ private:
     QDateEdit *toDateEdit;
     QLabel * toTimeLabel;
     QTimeEdit *toTimeEdit;
+    QSpacerItem * spacer;
 
     QCheckBox *repeatCheckBox;
     QSpinBox * repeatSpinBox;
@@ -91,13 +103,18 @@ private:
     QTextEdit * descriptionTextEdit;
 
     QLabel * eventTypeLabel;
-    QGroupBox * eventTypeRadioBoxContainer;
+
 
     QRadioButton * eventRadioButton;
     QRadioButton * absenceRadioButton;
+    QHBoxLayout * typeRadioLayout;
 
     QLabel * typeLabel;
     QComboBox *typeComboBox;
+    QGridLayout * eventTypeGridLayout;
+    QStringList typeEvent;
+
+
 
     QLabel * participantsLabel;
     QStringList participants;
@@ -120,6 +137,9 @@ private:
     QHBoxLayout * titleLayout;
     QHBoxLayout * descriptionLayout;
     QGridLayout * participantLayout;
+
+
+
 
     QVBoxLayout * mainLayout;
 
