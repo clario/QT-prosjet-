@@ -4,6 +4,13 @@
   */
 
 #include "contact.h"
+Contact::Contact():
+    cId(NULL),
+    fName(""),
+    lName(""),
+    phoneNumber(""),
+    email("")
+{}
 
 Contact::Contact(int contactId):
     cId(contactId),

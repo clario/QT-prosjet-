@@ -5,7 +5,7 @@
 
 #ifndef CONTACTHANDLER_H
 #define CONTACTHANDLER_H
-#include <contact.h>
+#include "contact.h"
 #include <QString>
 #include <QVector>
 #include <QtAlgorithms>
@@ -57,7 +57,7 @@ public:
     /*
      * Overloaded operator lets user list
      */
-    Contact* operator[](int index);
+    Contact operator[](int index);
 
     /*
      * @retrun a QString representation of all the Contacts in container
@@ -78,7 +78,7 @@ public:
 
 
 private:
-    QVector<Contact*> container;
+    QVector<Contact> container;
     int idCounter;
 };
 #endif // CONTACTHANDLER_H

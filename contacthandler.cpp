@@ -16,16 +16,11 @@ ContactHandler::ContactHandler(){
 ContactHandler::~ContactHandler(){}
 
 bool ContactHandler::add(QString fName, QString lName, QString phoneNumber, QString email) {
-    Contact *tmp = new Contact(fName, lName, idCounter, phoneNumber, email);
-    idCounter++;
-    tmp->setFName(fName);
-    tmp->setLName(lName);
-    tmp->setPhoneNumber(phoneNumber);
-    tmp->setEmail(email);
-    container.push_back(tmp);
-    if (tmp==container.last()) {
+    int test = container.size();
+    container.push_back(Contact(fName,lName,idCounter,phoneNumber,email));
+    if(test!=container.size()){
         return true;
-    } else {
+    }else{
         return false;
     }
 }
@@ -37,7 +32,7 @@ bool ContactHandler::remove(QString fName, QString lName, QString phoneNumber, Q
 
 bool ContactHandler::remove(int cID) {
     for (int i = 0; i < container.size(); i++) {
-        if (container[i]!=NULL && container[i]->getCId() == cID) {
+        if (container[i]!=NULL && container[i].getCId() == cID) {
             container.remove(i);
             return true;
         }
@@ -51,10 +46,10 @@ void ContactHandler::setCounter(int &nextID) {
 
 void ContactHandler::setCounter(void) {
     if (container.size()>0) {
-        int max = container[0]->getCId();
+        int max = container[0].getCId();
         int now = 0;
         for (int i = 1; i < container.size(); i++) {
-            now = container[i]->getCId();
+            now = container[i].getCId();
             if (now>max) {
                 max = now;
             }
@@ -67,7 +62,7 @@ int ContactHandler::getSize(void) {
     return container.size();
 }
 
-Contact *ContactHandler::operator[](int index) {
+Contact ContactHandler::operator[](int index) {
     return container[index];
 }
 
@@ -78,9 +73,9 @@ QString ContactHandler::toString()
     QString temp = "";
     for(int i = 0; i < container.size(); i++){
         if(i == container.size()-1){
-            temp += container.at(i)->toString();
+            temp += container[i].toString();
         }else{
-            temp += container.at(i)->toString() + '\n';
+            temp += container[i].toString() + '\n';
         }
     }
     return temp;
@@ -89,32 +84,32 @@ QString ContactHandler::toString()
 
 
 //SAVE
-bool ContactHandler::save()
-{
-    QString savePath = QDir::currentPath();
-    savePath += QString("/contacts.xml");
-    FileHandler fh(savePath);
-    bool result = fh.save(container);
-    return result;
-}
+//bool ContactHandler::save()
+//{
+//    QString savePath = QDir::currentPath();
+//    savePath += QString("/contacts.xml");
+//    FileHandler fh(savePath);
+//    bool result = fh.save(container);
+//    return result;
+//}
 
-bool ContactHandler::load()
-{
-    container.clear();
-    QString source = QDir::currentPath();
-    source += "/contacts.xml";
-    FileHandler fr(source);                  //Opretta filewriter med stien til current path + navnet på kildefila
-    bool result = fr.load(container);      //Kaller FileWriter::save(xxx)
-    setCounter();
-    return result;
-}
+//bool ContactHandler::load()
+//{
+//    container.clear();
+//    QString source = QDir::currentPath();
+//    source += "/contacts.xml";
+//    FileHandler fr(source);                  //Opretta filewriter med stien til current path + navnet på kildefila
+//    bool result = fr.load(container);      //Kaller FileWriter::save(xxx)
+//    setCounter();
+//    return result;
+//}
 
 
 ///VIRKER IKKE
-void ContactHandler::sort()
-{
-    qSort(container.begin(),container.end());
-}
+//void ContactHandler::sort()
+//{
+//    qSort(container.begin(),container.end());
+//}
 
 
 
