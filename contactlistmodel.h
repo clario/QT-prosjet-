@@ -26,9 +26,12 @@ private:
     ContactHandler *input;
 };
 
+
+//////TEST MAIN////
+
 //#include <QtGui>
 //#include "contacthandler.h"
-//#include "contactmodel.h"
+//#include "contactlistmodel.h"
 
 //int main(int argc, char *argv[])
 //{
@@ -43,7 +46,7 @@ private:
 //    qDebug() << ch.toString();
 //    qDebug() << ch.getSize();
 //    QTableView tableView;
-//    ContactModel cm(&ch);
+//    ContactListModel cm(&ch);
 //    tableView.setModel(&cm);
 //    tableView.show();
 //    return app.exec();

@@ -1,4 +1,4 @@
-#include "contactmodel.h"
+#include "contactlistmodel.h"
 #include <QDebug>
 
 ContactListModel::ContactListModel(QObject *parent) :
