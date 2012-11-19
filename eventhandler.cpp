@@ -137,7 +137,27 @@ std::vector<Event> EventHandler::getAll() const {
 }
 
 void EventHandler::addEvent(const Event& event) {
-	eventContainer.insert(event);
+	if (event.getRepeats() > 0) {
+		int repeats = event.getRepeats();
+		Event e = event;
+		e.setRepeats(0); // Sett eventet slik at repeats ikke blir husket på
+
+		eventContainer.insert(e);
+
+		QDateTime start = event.getStartDateTime();
+		QDateTime end = event.getEndDateTime();
+
+		for (int rep = 0; rep < repeats; rep++) {
+			start = start.addDays(7);
+			end = end.addDays(7);
+
+			e.setEndDateTime(end);
+			e.setStartDateTime(start);
+			eventContainer.insert(e);
+		}
+	} else {
+		eventContainer.insert(event);
+	}
 }
 
 bool EventHandler::removeEvent(const Event& event) {
