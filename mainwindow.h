@@ -70,6 +70,7 @@ public slots:
     void searchEvent(const EventHandler::QueryArgs&);
     void deleteEvent();
     void deleteAllEventsToday();
+    void createNewEvent();
 
 };
 

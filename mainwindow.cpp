@@ -107,6 +107,7 @@ void MainWindow::rowDoubleClicked(const QModelIndex &clickedRow) {
         calendar->update();
     }
 
+    delete ev;
 
 }
 
@@ -166,6 +167,28 @@ void MainWindow::deleteAllEventsToday() {
     events.clear();
     feed->deactivate();
     feed->clearEventFeed();
+    calendar->update();
+
+}
+
+void MainWindow::createNewEvent() {
+
+    Event newEvent;
+
+    newEvent.setStartDate(calendar->selectedDate());
+
+    EventView *eventEdit = new EventView();
+
+    eventEdit->setEvent(newEvent);
+    eventEdit->setNewMode();
+    eventEdit->exec();
+
+    newEvent = eventEdit->getEvent();
+
+    eventHandler->addEvent(newEvent);
+
+    delete eventEdit;
+
     calendar->update();
 
 }
