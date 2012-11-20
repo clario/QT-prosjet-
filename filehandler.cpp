@@ -75,7 +75,7 @@ bool FileHandler::save(std::set<Event> &source)
             std::vector<QString> participants = e.getParticipants();
 
             QDomElement startDate = doc.createElement("startDate");
-            startDate.appendChild(doc.createTextNode(e.getEndAsString()));
+            startDate.appendChild(doc.createTextNode(e.getStartAsString()));
             event.appendChild(startDate);
 
             QDomElement endDate = doc.createElement("endDate");
