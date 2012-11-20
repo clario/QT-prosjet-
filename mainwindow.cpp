@@ -25,7 +25,7 @@ void MainWindow::createActions() {
 
     aboutAct = new QAction("About", this);
     quitAct = new QAction("Quit", this);
-    viewContacts = new QAction("Sjå kontakter", this);
+    viewContacts = new QAction("Syna kontaktar", this);
 
 
 }
