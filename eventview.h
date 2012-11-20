@@ -23,6 +23,7 @@
 #include <QString>
 #include <QSpinBox>
 #include <QStringList>
+#include <QTableView>
 #include "event.h"
 #include "mainwindow.h"
 
@@ -66,6 +67,7 @@ public slots:
 
     void fromDateChanged();
     void toDateChanged();
+    void addThisContact();
 
 private:
     bool inViewMode;
@@ -115,6 +117,7 @@ private:
     QStringList participants;
     QLabel * participantLabel;
     QStringListModel * participantModel;
+    QStringList participantList;
     QListView * participantView;
     QPushButton * participantAdd;
     QPushButton * participantRemove;
@@ -130,6 +133,7 @@ private:
     QHBoxLayout * descriptionLayout;
     QGridLayout * participantLayout;
     MainWindow *currentWindow;
+    QTableView *contactTable;
 
     //BUTTONS
 
