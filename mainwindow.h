@@ -64,6 +64,8 @@ signals:
     
 public slots:
     
+    void show();
+    void dateClicked();
     void dateClicked(QDate);
     void rowDoubleClicked(const QModelIndex&);
     void about();
