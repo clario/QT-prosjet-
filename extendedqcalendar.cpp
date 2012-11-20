@@ -7,10 +7,8 @@ ExtendedQCalendar::ExtendedQCalendar(QWidget *parent) :
     QCalendarWidget(parent)
 {
 
-    m_currentDate = QDate(2012,11,21);
-    anotherDate = QDate(2012,11,10);
     m_outlinePen.setColor(Qt::red);
-    m_transparentBrush.setColor(Qt::black);
+    m_transparentBrush.setColor(Qt::transparent);
 
 }
 
@@ -46,3 +44,5 @@ void ExtendedQCalendar::setCurrentWindow(MainWindow *window) {
     currentWindow=window;
 
 }
+
+

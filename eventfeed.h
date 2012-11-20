@@ -30,6 +30,7 @@ public:
 private:
 
     // Å heii
+    QPushButton *newEvent;
     QPushButton *deleteEvent;
     QPushButton *deleteAll;
     QHBoxLayout *buttons;

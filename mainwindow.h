@@ -64,12 +64,15 @@ signals:
     
 public slots:
     
+    void show();
+    void dateClicked();
     void dateClicked(QDate);
     void rowDoubleClicked(const QModelIndex&);
     void about();
     void searchEvent(const EventHandler::QueryArgs&);
     void deleteEvent();
     void deleteAllEventsToday();
+    void createNewEvent();
 
 };
 

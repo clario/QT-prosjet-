@@ -19,8 +19,8 @@ class ExtendedQCalendar : public QCalendarWidget
 public:
     ExtendedQCalendar(QWidget *parent = 0);
 
-    void setColor(QColor &color);
     QColor getColor();
+    void setColor(QColor &color);
     void setCurrentWindow(MainWindow*);
 
 protected:
@@ -28,8 +28,7 @@ protected:
    virtual void paintCell(QPainter *painter, const QRect &rect, const QDate &date) const;
 
 private:
-   QDate m_currentDate;
-   QDate anotherDate;
+
    QPen m_outlinePen;
    QBrush m_transparentBrush;
 

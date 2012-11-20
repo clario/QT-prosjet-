@@ -78,6 +78,7 @@ void MainWindow::createDock() {
 
 void MainWindow::createConnections() {
 
+    connect(calendar, SIGNAL(selectionChanged()), this, SLOT(dateClicked()));
     connect(calendar, SIGNAL(clicked(QDate)), this, SLOT(dateClicked(QDate)));
 
     connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
@@ -107,12 +108,36 @@ void MainWindow::rowDoubleClicked(const QModelIndex &clickedRow) {
         calendar->update();
     }
 
+    delete ev;
 
 }
 
 void MainWindow::dateClicked(QDate date) {
 
     feed->deactivate();
+
+    if(eventHandler->eventsExists(date)) {
+
+        QDateTime from(date);
+        QDateTime to = from.addDays(1);
+
+        events = eventHandler->findEvents(from,to);
+
+        feed->loadEvents(events);
+
+    } else {
+
+        feed->clearEventFeed();
+
+    }
+
+}
+
+void MainWindow::dateClicked() {
+
+    feed->deactivate();
+
+    QDate date(calendar->selectedDate());
 
     if(eventHandler->eventsExists(date)) {
 
@@ -167,5 +192,40 @@ void MainWindow::deleteAllEventsToday() {
     feed->deactivate();
     feed->clearEventFeed();
     calendar->update();
+
+}
+
+void MainWindow::createNewEvent() {
+
+    Event newEvent;
+
+    newEvent.setStartDate(calendar->selectedDate());
+
+    EventView *eventEdit = new EventView();
+
+    eventEdit->setEvent(newEvent);
+    eventEdit->setNewMode();
+    eventEdit->exec();
+
+    if(eventEdit->isChanged()){
+
+        newEvent = eventEdit->getEvent();
+        eventHandler->addEvent(newEvent);
+
+    }
+
+    delete eventEdit;
+
+    calendar->update();
+
+}
+
+void MainWindow::show() {
+
+    QWidget::show();
+
+    // Overlasting av base-klassens show for å kunne invoke'e dateClicked-slot'en uten at alt kræsjer(dvs. før konstruktøren er ferdig).
+
+    dateClicked();
 
 }

@@ -72,7 +72,6 @@ EventView::EventView(QWidget *parent) :
 
     repeatCheckBox = new QCheckBox("Repeter");
 
-
     mainLayout->addLayout(firstGridLayout);
 
     repeatLayout = new QHBoxLayout();
@@ -83,9 +82,6 @@ EventView::EventView(QWidget *parent) :
     repeatLayout->addWidget(repeatSpinBox);
     repeatLayout->addWidget(repeatLabel);
     connect(repeatCheckBox,SIGNAL(clicked(bool)),repeatSpinBox,SLOT(setEnabled(bool)));
-
-
-
 
     mainLayout->addLayout(repeatLayout);
 
@@ -151,8 +147,6 @@ EventView::EventView(QWidget *parent) :
 
     typeComboBox->addItems(typeEvent);
 
-
-
     eventTypeGridLayout->addWidget(eventTypeLabel,0,0,1,1);
     eventTypeGridLayout->addLayout(typeRadioLayout,0,1,1,1);
     eventTypeGridLayout->addWidget(typeLabel,1,0,1,1);
@@ -165,6 +159,7 @@ EventView::EventView(QWidget *parent) :
     connect(absenceRadioButton,SIGNAL(toggled(bool)),this,SLOT(setAbsenceMode(bool)));
     connect(eventRadioButton,SIGNAL(toggled(bool)),this,SLOT(eventMode(bool)));
 
+    //OK and Cancel Button
     buttonLayout = new QHBoxLayout();
     okButton = new QPushButton("Save");
     cancelButton = new QPushButton("Cancel");
@@ -229,15 +224,21 @@ void EventView::setViewMode(){
     repeatSpinBox->hide();
     repeatLabel->hide();
 
-
-
-
 }
 
 void EventView::showRepeatButtons(){
     repeatLabel->show();
     repeatCheckBox->show();
     repeatSpinBox->show();
+
+}
+
+void EventView::showParticipant()
+{
+    participantAdd->show();
+    participantRemove->show();
+    participantLabel->show();
+    participantView->show();
 
 }
 
@@ -271,11 +272,8 @@ void EventView::setEditMode(){
 
     if(!absence){
       showRepeatButtons();
-        participantView->show();
         repeatSpinBox->setEnabled(false);
-        participantAdd->show();
-        participantRemove->show();
-        participantLabel->show();
+        showParticipant();
 
         typeLabel->show();
         typeComboBox->show();
@@ -295,8 +293,6 @@ bool EventView::showButtons(bool flag){
         okPushButton->hide();
         cancelPushButton->hide();
         buttonVisible = false;
-
-
     }
 
 }
@@ -362,7 +358,6 @@ void EventView::populateFields() {
 
 void EventView::setAbsenceMode(bool bo){
     if(bo){
-
     absence = true;
     repeatCheckBox->hide();
     repeatLabel->hide();
@@ -374,9 +369,6 @@ void EventView::setAbsenceMode(bool bo){
     participantLabel->hide();
     typeComboBox->clear();
     typeComboBox->addItems(absenceType);
-
-
-
     }
 }
 
@@ -390,25 +382,14 @@ void EventView::setEditMode(bool bo){
 void EventView::eventMode(bool bol){
     if(!inViewMode){
         absence = false;
-        repeatCheckBox->show();
-        repeatLabel->show();
-        repeatSpinBox->show();
-
-
-
-        participantView->show();
-        repeatSpinBox->show();
-        participantAdd->show();
-        participantRemove->show();
-        participantLabel->show();
+        showRepeatButtons();
+       showParticipant();
         typeLabel->show();
         typeComboBox->show();
         typeComboBox->clear();
         typeComboBox->addItems(typeEvent);
 
-
     }
-
 
 }
 
@@ -421,5 +402,3 @@ void EventView::closedSaveClick(){
     changed = true;
     close();
 }
-
-

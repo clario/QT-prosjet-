@@ -9,6 +9,9 @@ EventFeed::EventFeed(QWidget *parent) :
 
     // Heisann
     wrapper = new QVBoxLayout(this);
+
+    newEvent = new QPushButton("Ny Avtale");
+
     feed = new QListWidget();
 
     buttons = new QHBoxLayout();
@@ -22,6 +25,7 @@ EventFeed::EventFeed(QWidget *parent) :
 
     search = new EventSearch();
 
+    wrapper->addWidget(newEvent);
     wrapper->addWidget(feed);
     wrapper->addLayout(buttons);
     wrapper->addWidget(search);
@@ -53,6 +57,7 @@ void EventFeed::loadEvents(const std::vector<Event> &events) {
 
 void EventFeed::buildConnections() {
 
+    connect(newEvent, SIGNAL(clicked()), currentWindow, SLOT(createNewEvent()));
     connect(feed, SIGNAL(clicked(QModelIndex)), this, SLOT(toggleButtons()));
     connect(feed, SIGNAL(doubleClicked(QModelIndex)), currentWindow, SLOT(rowDoubleClicked(QModelIndex)));
     connect(search, SIGNAL(queryArgs(const EventHandler::QueryArgs&)), currentWindow, SLOT(searchEvent(const EventHandler::QueryArgs&)));

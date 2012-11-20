@@ -74,13 +74,13 @@ bool FileHandler::save(std::set<Event> &source)
             //Begynder og legge inn tekstnoder for event
             std::vector<QString> participants = e.getParticipants();
 
-            QDomElement endDate = doc.createElement("endDate");
-            endDate.appendChild(doc.createTextNode(e.getStartAsString()));
-            event.appendChild(endDate);
+            QDomElement startDate = doc.createElement("startDate");
+            startDate.appendChild(doc.createTextNode(e.getStartAsString()));
+            event.appendChild(startDate);
 
-            QDomElement toDate = doc.createElement("toDate");
-            toDate.appendChild(doc.createTextNode(e.getStartAsString()));
-            event.appendChild(toDate);
+            QDomElement endDate = doc.createElement("endDate");
+            endDate.appendChild(doc.createTextNode(e.getEndAsString()));
+            event.appendChild(endDate);
 
             if (e.hasEventType()) {
                 QDomElement type = doc.createElement("type");
