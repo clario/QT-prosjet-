@@ -54,7 +54,7 @@ public:
     /*
      * Overloaded operator lets user list
      */
-    Contact operator[](int index);
+    Contact& operator[](int index);
 
     /*
      * @retrun a QString representation of all the Contacts in container
