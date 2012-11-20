@@ -10,10 +10,10 @@ ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
     QDialog(parent)
 {
     //Labels
-    fName_lbl   = new QLabel("First Name:");
-    lName_lbl   = new QLabel("Last name:");
-    phoneN_lbl  = new QLabel("Phone num:");
-    eMail_lbl   = new QLabel("email:");
+    fName_lbl   = new QLabel("Fornavn:");
+    lName_lbl   = new QLabel("Etternavn:");
+    phoneN_lbl  = new QLabel("Tlf:");
+    eMail_lbl   = new QLabel("e-post:");
 
     //LineEdit
     fName = new QLineEdit();
@@ -22,11 +22,11 @@ ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
     eMail = new QLineEdit();
 
     //PushButtons
-    edit = new QPushButton("edit");
-    save = new QPushButton("save");
-    remove = new QPushButton("delete");
-    add = new QPushButton("add");
-    close = new QPushButton("close");
+    edit = new QPushButton("Rediger");
+    save = new QPushButton("Lagre");
+    remove = new QPushButton("Slett");
+    add = new QPushButton("Legg til");
+    close = new QPushButton("Lukk");
 
     //Layouts
     main = new QHBoxLayout(this);
@@ -95,7 +95,7 @@ ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
     connect(this,SIGNAL(end()),this,SLOT(close()));
 
     //Widget settings
-    setWindowTitle("Contacts");
+    setWindowTitle("Kontakter");
 
 }
 

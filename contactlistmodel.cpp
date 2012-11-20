@@ -59,13 +59,13 @@ QVariant ContactListModel::headerData(int section, Qt::Orientation orientation, 
             switch (section)
             {
             case 0:
-                return QString("Last name");
+                return QString("Fornavn");
             case 1:
-                return QString("First name");
+                return QString("Etternavn");
             case 2:
-                return QString("Phone Number");
+                return QString("Tlf");
             case 3:
-                return QString("Email adress");
+                return QString("E-post");
             }
         }
     }
