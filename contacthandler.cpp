@@ -21,25 +21,15 @@ bool ContactHandler::add(QString fName, QString lName, QString phoneNumber, QStr
 
     if(test!=container.size()){
         idCounter++;
+        qSort(container);
         return true;
     }else{
         return false;
     }
 }
 
-bool ContactHandler::remove(QString fName, QString lName, QString phoneNumber, QString email) {
-    //Venter med denne til equals(eventuelt == operatorene) i contact er avklart
-    return false;
-}
+bool remove(int i) {
 
-bool ContactHandler::remove(int cID) {
-    for (int i = 0; i < container.size(); i++) {
-        if (container[i]!=NULL && container[i].getCId() == cID) {
-            container.remove(i);
-            return true;
-        }
-    }
-    return false;
 }
 
 void ContactHandler::setCounter(int &nextID) {
@@ -104,6 +94,7 @@ bool ContactHandler::load()
     FileHandler fr(source);                  //Opretta filewriter med stien til current path + navnet på kildefila
     bool result = fr.load(container);      //Kaller FileWriter::save(xxx)
     setCounter();
+    qSort(container);
     return result;
 }
 

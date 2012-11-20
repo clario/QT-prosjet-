@@ -26,15 +26,18 @@ public:
     */
     bool add(QString fName = "", QString lName = "", QString phoneNumber = "", QString email = "");
     /*
-     *@param QString fName, QString lName, int phoneNumber, QString email
-     *@return Henhaldsvis true/false avhengig av om køyring var vellykka
+     *@param int i
+     *@return Henhaldsvis true/false avhengig av om elementet eksisterte
     */
-    bool remove(QString fName, QString lName, QString phoneNumber, QString email);
-    /*
-     *@param int cID
-     *@return Henhaldsvis true/false achenig av om køyringa var velykka
-    */
-    bool remove(int cID);
+    bool remove(int i) {
+        if (!(i > 0 && i < container.size())) {
+            container.remove(i);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /*
      *@param int nextID
      *@desc Setter ID telleren
@@ -62,26 +65,20 @@ public:
     QString toString();
 
     /*
-     * Contact save function.
-     * Creates a FilWriter object that takes QString savePath as parameter.
-     * The FileWriter obj then invoke the save() function and takes the QVector container as param.
+     * @desc Stores the content of the vector in XML form in QDir::CurrentPath() + /contacts.xml
      */
     bool save();
 
     /*
-     * Loads a xml file containing Contact data from QDir::CurrentPath() + /contacts.xml
+     * @desc Loads a xml file containing Contact data from QDir::CurrentPath() + /contacts.xml
+     *       Contacts are sorted after they have been loaded
      */
     bool load();
 
     /*
-     *  Uses QSort to sort the Contacts lexicaly based on lName,fName in Contact
+     * @desc Uses QSort to sort the Contacts lexicaly based on lName,fName in Contact
      */
     void sort();
-
-    //findContact Methods
-    QString findContact(const QString &sf)const;
-
-
 
 private:
     QVector<Contact> container;
