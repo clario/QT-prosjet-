@@ -515,10 +515,11 @@ void EventView::addThisContact() {
 
     //participantList.clear();
 
-    participantList << ((ContactListModel*)(contactTable->model()))->getDataInRow(contactTable->currentIndex().row());
+    if (currentWindow->contactHandler->getSize() > 0) {
+        participantList << ((ContactListModel*)(contactTable->model()))->getDataInRow(contactTable->currentIndex().row());
 
-    participantModel->setStringList(participantList);
-
+        participantModel->setStringList(participantList);
+    }
 }
 
 void EventView::removeThisContact() {
