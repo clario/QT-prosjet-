@@ -72,7 +72,6 @@ EventView::EventView(QWidget *parent) :
 
     repeatCheckBox = new QCheckBox("Repeter");
 
-
     mainLayout->addLayout(firstGridLayout);
 
     repeatLayout = new QHBoxLayout();
@@ -147,8 +146,6 @@ EventView::EventView(QWidget *parent) :
 
 
     typeComboBox->addItems(typeEvent);
-
-
 
     eventTypeGridLayout->addWidget(eventTypeLabel,0,0,1,1);
     eventTypeGridLayout->addLayout(typeRadioLayout,0,1,1,1);
@@ -227,9 +224,6 @@ void EventView::setViewMode(){
     repeatSpinBox->hide();
     repeatLabel->hide();
 
-
-
-
 }
 
 void EventView::showRepeatButtons(){
@@ -299,8 +293,6 @@ bool EventView::showButtons(bool flag){
         okPushButton->hide();
         cancelPushButton->hide();
         buttonVisible = false;
-
-
     }
 
 }
@@ -366,7 +358,6 @@ void EventView::populateFields() {
 
 void EventView::setAbsenceMode(bool bo){
     if(bo){
-
     absence = true;
     repeatCheckBox->hide();
     repeatLabel->hide();
@@ -378,9 +369,6 @@ void EventView::setAbsenceMode(bool bo){
     participantLabel->hide();
     typeComboBox->clear();
     typeComboBox->addItems(absenceType);
-
-
-
     }
 }
 
@@ -401,7 +389,6 @@ void EventView::eventMode(bool bol){
         typeComboBox->clear();
         typeComboBox->addItems(typeEvent);
 
-
     }
 
 }
@@ -415,5 +402,3 @@ void EventView::closedSaveClick(){
     changed = true;
     close();
 }
-
-
