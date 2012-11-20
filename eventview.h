@@ -23,7 +23,6 @@
 #include <QString>
 #include <QSpinBox>
 #include <QStringList>
-
 #include "event.h"
 
 class EventView : public QDialog
@@ -35,9 +34,6 @@ public:
     ~EventView();
 
 
-
-   // void setViewMode();
- //   void setEditMode();
     void setNewMode();
 
     // Returnerer om noe er endret
@@ -63,8 +59,6 @@ public slots:
     void eventMode(bool);
     void closedCancelClick();
     void closedSaveClick();
-
-
 
 
 private:
@@ -93,36 +87,24 @@ private:
     QLabel * toTimeLabel;
     QTimeEdit *toTimeEdit;
     QSpacerItem * spacer;
-
     QCheckBox *repeatCheckBox;
     QSpinBox * repeatSpinBox;
     QSpinBox * uker;
     QLabel * repeatLabel;
-
-
-
     QLabel * eventTitleLabel;
     QLineEdit * eventTitleEdit;
-
     QLabel * descriptionLabel;
     QLabel * descriptionText;
     QTextEdit * descriptionTextEdit;
-
     QLabel * eventTypeLabel;
-
-
     QRadioButton * eventRadioButton;
     QRadioButton * absenceRadioButton;
     QHBoxLayout * typeRadioLayout;
-
     QLabel * typeLabel;
     QComboBox *typeComboBox;
     QGridLayout * eventTypeGridLayout;
     QStringList typeEvent;
     QStringList absenceType;
-
-
-
     QLabel * participantsLabel;
     QStringList participants;
     QLabel * participantLabel;
@@ -130,21 +112,17 @@ private:
     QListView * participantView;
     QPushButton * participantAdd;
     QPushButton * participantRemove;
-
     QPushButton * addContact;
     QGridLayout * gridLayout;
     QPushButton * okPushButton;
-
     QPushButton * cancelPushButton;
     QPushButton * savePushButton;
-
     QGridLayout * firstGridLayout;
     QHBoxLayout * headerLayout;
     QHBoxLayout * repeatLayout;
     QHBoxLayout * titleLayout;
     QHBoxLayout * descriptionLayout;
     QGridLayout * participantLayout;
-
 
     //BUTTONS
 
@@ -159,12 +137,6 @@ private:
     void showRepeatButtons();
     void showParticipant();
 
-
-
-
 };
-
-
-
 
 #endif // EVENTVIEW_H
