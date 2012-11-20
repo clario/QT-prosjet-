@@ -2,6 +2,9 @@
 #include <QStringListModel>
 #include <QSizePolicy>
 #include <QMessageBox>
+#include "contactlistmodel.h"
+#include <QDebug>
+#include <QPoint>
 
 EventView::EventView(QWidget *parent) :
     QDialog(parent)
@@ -126,8 +129,15 @@ EventView::EventView(QWidget *parent) :
     participantLayout = new QGridLayout();
     participantLayout->addWidget(participantLabel, 0, 0, Qt::AlignTop);
     participantLayout->addWidget(participantView, 0, 1, 3, 4);
-    participantLayout->addWidget(participantAdd, 4,1,2,2);
-    participantLayout->addWidget(participantRemove, 4,3,2,2);
+
+    contactTable = new QTableView();
+
+    participantLayout->addWidget(contactTable, 4, 1, 1, 1);
+
+    participantLayout->addWidget(participantAdd, 5,1,2,2);
+    connect(participantAdd, SIGNAL(clicked()), this, SLOT(addThisContact()));
+
+    participantLayout->addWidget(participantRemove, 5,3,2,2);
     mainLayout->addLayout(participantLayout);
 
     //Event-type
@@ -190,6 +200,12 @@ EventView::~EventView() {
 void EventView::setCurrentWindow(MainWindow *window) {
 
     currentWindow=window;
+    ContactListModel *contactModel = new ContactListModel(currentWindow->contactHandler);
+    contactTable->setModel(contactModel);
+    contactTable->hideColumn(2);
+    contactTable->hideColumn(3);
+    contactTable->setSelectionBehavior(QTableView::SelectRows);
+    contactTable->setSelectionMode(QTableView::SingleSelection);
 
 }
 
@@ -491,4 +507,18 @@ void EventView::toDateChanged() {
 
         blockSignals(false);
     }
+}
+
+void EventView::addThisContact() {
+
+    participantList << "Fist, Erling" << "Motbakken, Ola" << "Durdei, Bottolf";
+    /*
+    //contactToAdd = contactTable->currentIndex().data(Qt::DisplayRole).toString();
+    contactToAdd = contactTable->indexAt(QPoint(0, contactTable->currentIndex().row())).data(Qt::Horizontal).toString() +
+            contactTable->indexAt(QPoint(1, contactTable->currentIndex().row())).data(Qt::Horizontal).toString();
+    qDebug() << contactToAdd;
+    */
+
+    participantModel->setStringList(participantList);
+
 }
