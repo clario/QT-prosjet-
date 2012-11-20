@@ -22,7 +22,8 @@ ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
     close = new QPushButton("close");
 
     //Layouts
-    main = new QHBoxLayout(this);
+    main = new QHBoxLayout();
+    setLayout(main);
     ll = new QVBoxLayout();
     rl = new QVBoxLayout();
     rbl = new QHBoxLayout();
@@ -82,12 +83,10 @@ void ContactView::editRow()
 
 void ContactView::saveRow()
 {
-    qDebug() << (*cHandler)[selectedRow].toString();
     (*cHandler)[selectedRow].setFName(fName->text());
     (*cHandler)[selectedRow].setLName(lName->text());
     (*cHandler)[selectedRow].setPhoneNumber(phoneNumber->text());
     (*cHandler)[selectedRow].setEmail(eMail->text());
-    qDebug() << (*cHandler)[selectedRow].toString();
     save->hide();
     edit->show();
 }
