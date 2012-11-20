@@ -325,7 +325,12 @@ Event EventView::getEvent() const {
     e.setDescription(descriptionTextEdit->toPlainText());
     QStringList myParticipants(participantModel->stringList());
     e.setParticipants(myParticipants.toVector().toStdVector());
+
     e.setAbsence(absenceRadioButton->isChecked());
+
+    //qDebug() << "combo" << typeComboBox->currentText() << typeComboBox->currentIndex();
+
+    e.setEventType(typeComboBox->currentText());
 
     e.setRepeats(repeatSpinBox->value());
 
@@ -358,11 +363,15 @@ void EventView::populateFields() {
     participants = QStringList::fromVector(QVector<QString>::fromStdVector(event.getParticipants()));
     participantModel->setStringList(participants);
 
+    blockSignals(false);
+
     if(event.getAbsence()){
        absenceRadioButton->setChecked(true);
+       typeComboBox->setCurrentIndex(absenceType.indexOf(event.getEventType()));
+    } else {
+       absenceRadioButton->setChecked(false);
+       typeComboBox->setCurrentIndex(typeEvent.indexOf(event.getEventType()));
     }
-
-    blockSignals(false);
 }
 
 void EventView::setAbsenceMode(bool bo){
