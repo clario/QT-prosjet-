@@ -7,13 +7,15 @@
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QTableView>
+#include <QDialog>
 #include "contactlistmodel.h"
 #include "contact.h"
 
 
-class ContactView : public QWidget
+class ContactView : public QDialog
 {
     Q_OBJECT
+
 public:
     explicit ContactView(QWidget *parent = 0);
     ContactView(ContactHandler* ch, QWidget *parent = 0);

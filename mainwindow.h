@@ -64,6 +64,7 @@ signals:
     
 public slots:
     
+    void showContacts();
     void show();
     void dateClicked();
     void dateClicked(QDate);

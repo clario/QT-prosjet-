@@ -25,17 +25,21 @@ void MainWindow::createActions() {
 
     aboutAct = new QAction("About", this);
     quitAct = new QAction("Quit", this);
+    viewContacts = new QAction("Sjå kontakter", this);
 
 
 }
 
 void MainWindow::createMenus() {
 
-    menu = new QMenuBar();
-    fileMenu = new QMenu("File");
+    menu = new QMenuBar(this);
+    fileMenu = new QMenu("File", this);
     menu->addMenu(fileMenu);
     fileMenu->addAction(aboutAct);
     fileMenu->addAction(quitAct);
+    contactsMenu = new QMenu("Kontakter", this);
+    menu->addMenu(contactsMenu);
+    contactsMenu->addAction(viewContacts);
 
     setMenuBar(menu);
 
@@ -78,6 +82,7 @@ void MainWindow::createDock() {
 
 void MainWindow::createConnections() {
 
+    connect(viewContacts,SIGNAL(triggered()),this,SLOT(showContacts()));
     connect(calendar, SIGNAL(selectionChanged()), this, SLOT(dateClicked()));
     connect(calendar, SIGNAL(clicked(QDate)), this, SLOT(dateClicked(QDate)));
 
@@ -176,6 +181,7 @@ void MainWindow::deleteEvent() {
 
     eventHandler->removeEvent(events.at(index));
     events.erase(events.begin()+index);
+    feed->deactivate();
     feed->loadEvents(events);
     calendar->update();
 }
@@ -219,6 +225,12 @@ void MainWindow::createNewEvent() {
 
     calendar->update();
 
+}
+
+void MainWindow::showContacts() {
+    ContactView *contacts = new ContactView(contactHandler);
+    contacts->exec();
+    delete contacts;
 }
 
 void MainWindow::show() {
