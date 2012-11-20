@@ -72,6 +72,11 @@ QVariant ContactListModel::headerData(int section, Qt::Orientation orientation, 
     return QVariant();
 }
 
+QString ContactListModel::getDataInRow(int r)
+{
+    return ((*input)[r].getLName() + ", " + (*input)[r].getFName());
+}
+
 //Qt::ItemFlags ContactModel::flags(const QModelIndex &index) const
 //{
 //    return QAbstractTableModel::flags(index) | Qt::ItemIsSelectable;

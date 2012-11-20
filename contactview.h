@@ -1,8 +1,12 @@
 #ifndef CONTACTVIEW_H
 #define CONTACTVIEW_H
 
-#include <QtGui>
-#include <QModelIndex>
+#include <QtGui/QLabel>
+#include <QtGui/QLineEdit>
+#include <QtGui/QPushButton>
+#include <QtGui/QVBoxLayout>
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QTableView>
 #include "contactlistmodel.h"
 #include "contact.h"
 
@@ -47,36 +51,14 @@ private:
     ContactHandler *cHandler;
 
 signals:
+    void end();
     
 public slots:
     void editRow();
     void saveRow();
     void deleteRow();
     void addCont();
-
-
-/*
-#include <QtGui>
-#include "contacthandler.h"
-#include "contactview.h"
-
-int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
-    ContactHandler ch;
-    qDebug() << ch.getSize();
-    ch.add("Lars","Lie","96044050","lars@fuckyou.com");
-    ch.add("Lars2","Lie","96044050","lars@fuckyou.com");
-    ch.add("Lars3","Lie","96044050","lars@fuckyou.com");
-    ch.add("Lars4","Lie","96044050","lars@fuckyou.com");
-    ch.add("Lars5","Lie","96044050","lars@fuckyou.com");
-    qDebug() << ch.toString();
-    qDebug() << ch.getSize();
-    ContactView test(&ch);
-    test.show();
-    return app.exec();
-}
-*/
+    void saveToFile();
 };
 
 #endif // CONTACTVIEW_H

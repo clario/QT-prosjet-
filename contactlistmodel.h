@@ -18,6 +18,8 @@ public:
 //    Qt::ItemFlags ContactModel::flags ( const QModelIndex & index ) const; //  << Kun nødvendig for editing
     int columnCount ( const QModelIndex & parent = QModelIndex() ) const; // << Default er 1 når metoden ikkje er definert
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    QString getDataInRow(int r);
+
 signals:
     
 public slots:
