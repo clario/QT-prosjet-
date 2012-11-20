@@ -68,6 +68,7 @@ public slots:
     void fromDateChanged();
     void toDateChanged();
     void addThisContact();
+    void removeThisContact();
 
 private:
     bool inViewMode;

@@ -4,6 +4,7 @@
   */
 
 #include "event.h"
+#include <QDebug>
 
 const QString Event::dateTimeFormat = "yyyy-MM-ddThh:mm:ss";
 
@@ -33,6 +34,7 @@ Event::Event(const Event& original) {
     start = original.getStartDateTime();
     end = original.getEndDateTime();
     absence = original.getAbsence();
+    participants = original.getParticipants();
 }
 
 /** Title getters og setters **/
@@ -204,7 +206,8 @@ bool Event::setEndTime(const QTime& endTime) {
 
 /** Participant getters og setters **/
 std::vector<QString> Event::getParticipants() const {
-    return std::vector<QString>();
+    qDebug() << participants.size();
+    return participants;
 }
 
 void Event::setParticipants(const std::vector<QString>& _participants) {

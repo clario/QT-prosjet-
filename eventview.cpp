@@ -138,6 +138,8 @@ EventView::EventView(QWidget *parent) :
     connect(participantAdd, SIGNAL(clicked()), this, SLOT(addThisContact()));
 
     participantLayout->addWidget(participantRemove, 5,3,2,2);
+    connect(participantRemove, SIGNAL(clicked()), this, SLOT(removeThisContact()));
+
     mainLayout->addLayout(participantLayout);
 
     //Event-type
@@ -511,14 +513,16 @@ void EventView::toDateChanged() {
 
 void EventView::addThisContact() {
 
-    participantList << "Fist, Erling" << "Motbakken, Ola" << "Durdei, Bottolf";
-    /*
-    //contactToAdd = contactTable->currentIndex().data(Qt::DisplayRole).toString();
-    contactToAdd = contactTable->indexAt(QPoint(0, contactTable->currentIndex().row())).data(Qt::Horizontal).toString() +
-            contactTable->indexAt(QPoint(1, contactTable->currentIndex().row())).data(Qt::Horizontal).toString();
-    qDebug() << contactToAdd;
-    */
+    //participantList.clear();
+
+    participantList << ((ContactListModel*)(contactTable->model()))->getDataInRow(contactTable->currentIndex().row());
 
     participantModel->setStringList(participantList);
+
+}
+
+void EventView::removeThisContact() {
+
+    participantModel->removeRow(participantView->currentIndex().row());
 
 }

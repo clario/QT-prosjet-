@@ -112,9 +112,11 @@ bool FileHandler::save(std::set<Event> &source)
             }
 
             if (participants.size() > 0) {
+                qDebug() << "part";
                 for (std::vector<QString>::const_iterator it = participants.begin(); it != participants.end(); it++) {
                     QDomElement participant = doc.createElement("participant");
-                    participant.appendChild(doc.createTextNode(*it));
+                    QString s = *it;
+                    participant.appendChild(doc.createTextNode(s));
                     event.appendChild(participant);
                 }
             }
