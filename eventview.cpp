@@ -13,6 +13,8 @@ EventView::EventView(QWidget *parent) :
     buttonVisible = false;
     absence = false;
 
+    currentWindow = NULL;
+
     setWindowTitle("Avtaler");
     eventTitle = QString("Yogatime");
 
@@ -176,7 +178,7 @@ EventView::EventView(QWidget *parent) :
 }
 
 EventView::~EventView() {
-
+    currentWindow = NULL;
 }
 
 void EventView::setCurrentWindow(MainWindow *window) {
@@ -410,7 +412,7 @@ void EventView::closedSaveClick(){
     QDateTime from(fromDateEdit->date(), fromTimeEdit->time());
     QDateTime to(toDateEdit->date(), toTimeEdit->time());
 
-    if(currentWindow->eventHandler->eventsExists(from, to)) {
+    if(currentWindow != NULL && currentWindow->eventHandler->eventsExists(from, to)) {
 
         QMessageBox msgBox;
         msgBox.setText("ADVARSEL! En avtale er allerede registrert i dette tidsrommet");
