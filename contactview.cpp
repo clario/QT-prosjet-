@@ -2,12 +2,12 @@
 #include <QDebug>
 
 ContactView::ContactView(QWidget *parent) :
-    QDialog(parent)
+    QWidget(parent)
 {
 }
 
 ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
-    QDialog(parent)
+    QWidget(parent)
 {
     //Labels
     fName_lbl   = new QLabel("Fornavn:");

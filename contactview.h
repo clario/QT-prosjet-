@@ -12,7 +12,7 @@
 #include "contact.h"
 
 
-class ContactView : public QDialog
+class ContactView : public QWidget
 {
     Q_OBJECT
 
