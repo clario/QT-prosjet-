@@ -10,11 +10,19 @@ ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
     QWidget(parent)
 {
 
-    //Buttons
-    fName = new QLineEdit("First Name");
-    lName = new QLineEdit("Last Name");
-    phoneNumber = new QLineEdit("Phone Number");
-    eMail = new QLineEdit("e-Post");
+    //Labels
+    fName_lbl   = new QLabel("First Name:");
+    lName_lbl   = new QLabel("Last name:");
+    phoneN_lbl  = new QLabel("Phone num:");
+    eMail_lbl   = new QLabel("email:");
+
+    //LineEdit
+    fName = new QLineEdit();
+    lName = new QLineEdit();
+    phoneNumber = new QLineEdit();
+    eMail = new QLineEdit();
+
+    //PushButtons
     edit = new QPushButton("edit");
     save = new QPushButton("save");
     remove = new QPushButton("delete");
@@ -24,37 +32,53 @@ ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
     //Layouts
     main = new QHBoxLayout();
     setLayout(main);
-    ll = new QVBoxLayout();
-    rl = new QVBoxLayout();
-    rbl = new QHBoxLayout();
-    main->addLayout(ll);
-    main->addLayout(rl);
+    leftmain = new QVBoxLayout();
+    rightmain = new QVBoxLayout();
+    rightlabel = new QVBoxLayout();
+    rightedit = new QVBoxLayout();
+    bottomright = new QHBoxLayout();
+    firstright = new QHBoxLayout();
+    main->addLayout(leftmain);
+    main->addLayout(rightmain);
+    firstright->addLayout(rightlabel);
+    firstright->addLayout(rightedit);
+    rightmain->addLayout(firstright);
+    rightmain->addLayout(bottomright);
+
 
     //Lager kontaklista
     tv = new QTableView();
-    ll->addWidget(tv);
+    leftmain->addWidget(tv);
     mdl = new ContactListModel(ch);
     tv->setModel(mdl);
     tv->setSelectionBehavior(QTableView::SelectRows);
     tv->setSelectionMode(QTableView::SingleSelection);
 
     //Setter storrelset på vindu, knapper o.l.
-    tv->setMinimumWidth(450);
-    tv->wordWrap();
+    tv->setMinimumWidth(598);
+    tv->setColumnWidth(0,150);
+    tv->setColumnWidth(1,150);
+    tv->setColumnWidth(2,120);
+    tv->setColumnWidth(3,150);
 
     //Adder knapper og layouts til rl og ll
-    rl->addWidget(fName);
-    rl->addWidget(lName);
-    rl->addWidget(phoneNumber);
-    rl->addWidget(eMail);
-    rl->insertSpacing(4,5);
-    rl->addLayout(rbl);
-    rbl->addWidget(edit);
-    rbl->addWidget(save);
-    rbl->addWidget(remove);
-    rbl->addWidget(add);
-    rbl->insertSpacing(3,5);
-    rbl->addWidget(close);
+    rightlabel->addWidget(fName_lbl);
+    rightlabel->addWidget(lName_lbl);
+    rightlabel->addWidget(phoneN_lbl);
+    rightlabel->addWidget(eMail_lbl);
+
+    rightedit->addWidget(fName);
+    rightedit->addWidget(lName);
+    rightedit->addWidget(phoneNumber);
+    rightedit->addWidget(eMail);
+    rightedit->insertSpacing(4,5);
+
+    bottomright->addWidget(edit);
+    bottomright->addWidget(save);
+    bottomright->addWidget(remove);
+    bottomright->addWidget(add);
+    bottomright->insertSpacing(3,5);
+    bottomright->addWidget(close);
 
     //gjømmer knapper
     save->hide();
@@ -67,6 +91,11 @@ ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
     connect(edit,SIGNAL(clicked()),this,SLOT(editRow()));
     connect(save,SIGNAL(clicked()),this,SLOT(saveRow()));
     connect(close,SIGNAL(clicked()),this,SLOT(close()));
+    connect(add,SIGNAL(clicked()),this,SLOT(addCont()));
+    connect(remove,SIGNAL(clicked()),this,SLOT(deleteRow()));
+
+    //Widget settings
+    setWindowTitle("Contacts");
 
 }
 
@@ -87,6 +116,16 @@ void ContactView::saveRow()
     (*cHandler)[selectedRow].setLName(lName->text());
     (*cHandler)[selectedRow].setPhoneNumber(phoneNumber->text());
     (*cHandler)[selectedRow].setEmail(eMail->text());
+    (*cHandler).sort();
     save->hide();
     edit->show();
+}
+
+void ContactView::addCont()
+{
+    (*cHandler).add(fName->text(),lName->text(),phoneNumber->text(),eMail->text());
+}
+
+void ContactView::deleteRow(){
+    cHandler->remove(tv->currentIndex().row());
 }

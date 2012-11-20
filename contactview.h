@@ -15,6 +15,11 @@ public:
     ContactView(ContactHandler* ch, QWidget *parent = 0);
 
 private:
+    QLabel *fName_lbl;
+    QLabel *lName_lbl;
+    QLabel *phoneN_lbl;
+    QLabel *eMail_lbl;
+
     QLineEdit *fName;
     QLineEdit *lName;
     QLineEdit *phoneNumber;
@@ -27,9 +32,12 @@ private:
     QPushButton *save;
 
     QHBoxLayout *main;
-    QVBoxLayout *ll;
-    QVBoxLayout *rl;
-    QHBoxLayout *rbl;
+    QVBoxLayout *leftmain;
+    QVBoxLayout *rightlabel;
+    QVBoxLayout *rightedit;
+    QVBoxLayout *rightmain;
+    QHBoxLayout *bottomright;
+    QHBoxLayout *firstright;
 
     QTableView *tv;
     ContactListModel *mdl;
@@ -43,6 +51,8 @@ signals:
 public slots:
     void editRow();
     void saveRow();
+    void deleteRow();
+    void addCont();
 
 
 /*
