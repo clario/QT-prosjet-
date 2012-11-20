@@ -64,7 +64,7 @@ int ContactHandler::getSize(void) {
     return container.size();
 }
 
-Contact ContactHandler::operator[](int index) {
+Contact& ContactHandler::operator[](int index) {
     return container[index];
 }
 
