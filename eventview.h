@@ -24,6 +24,9 @@
 #include <QSpinBox>
 #include <QStringList>
 #include "event.h"
+#include "mainwindow.h"
+
+class MainWindow;
 
 class EventView : public QDialog
 {
@@ -45,6 +48,7 @@ public:
     Event getEvent() const;
 
     void setEvent(const Event& event);
+    void setCurrentWindow(MainWindow*);
 
 signals:
 
@@ -123,6 +127,7 @@ private:
     QHBoxLayout * titleLayout;
     QHBoxLayout * descriptionLayout;
     QGridLayout * participantLayout;
+    MainWindow *currentWindow;
 
     //BUTTONS
 

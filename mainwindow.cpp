@@ -203,6 +203,7 @@ void MainWindow::createNewEvent() {
 
     EventView *eventEdit = new EventView();
 
+    eventEdit->setCurrentWindow(this);
     eventEdit->setEvent(newEvent);
     eventEdit->setNewMode();
     eventEdit->exec();
