@@ -1,5 +1,5 @@
 #include "contactview.h"
-//#include <QDebug>
+#include <QDebug>
 
 ContactView::ContactView(QWidget *parent) :
     QWidget(parent)
@@ -29,7 +29,7 @@ ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
     close = new QPushButton("close");
 
     //Layouts
-    main = new QHBoxLayout();
+    main = new QHBoxLayout(this);
     setLayout(main);
     leftmain = new QVBoxLayout();
     rightmain = new QVBoxLayout();
@@ -48,7 +48,7 @@ ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
     //Lager kontaklista
     tv = new QTableView();
     leftmain->addWidget(tv);
-    mdl = new ContactListModel(ch);
+    mdl = new ContactListModel(ch,this);
     tv->setModel(mdl);
     tv->setSelectionBehavior(QTableView::SelectRows);
     tv->setSelectionMode(QTableView::SingleSelection);
@@ -89,9 +89,10 @@ ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
     //Connects
     connect(edit,SIGNAL(clicked()),this,SLOT(editRow()));
     connect(save,SIGNAL(clicked()),this,SLOT(saveRow()));
-    connect(close,SIGNAL(clicked()),this,SLOT(close()));
     connect(add,SIGNAL(clicked()),this,SLOT(addCont()));
     connect(remove,SIGNAL(clicked()),this,SLOT(deleteRow()));
+    connect(close,SIGNAL(clicked()),this,SLOT(saveToFile()));
+    connect(this,SIGNAL(end()),this,SLOT(close()));
 
     //Widget settings
     setWindowTitle("Contacts");
@@ -127,4 +128,10 @@ void ContactView::addCont()
 
 void ContactView::deleteRow(){
     cHandler->remove(tv->currentIndex().row());
+}
+
+void ContactView::saveToFile()
+{
+    cHandler->save();
+    emit end();
 }

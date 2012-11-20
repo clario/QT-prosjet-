@@ -51,12 +51,14 @@ private:
     ContactHandler *cHandler;
 
 signals:
+    void end();
     
 public slots:
     void editRow();
     void saveRow();
     void deleteRow();
     void addCont();
+    void saveToFile();
 };
 
 #endif // CONTACTVIEW_H
