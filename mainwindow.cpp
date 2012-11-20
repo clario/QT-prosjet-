@@ -183,9 +183,12 @@ void MainWindow::createNewEvent() {
     eventEdit->setNewMode();
     eventEdit->exec();
 
-    newEvent = eventEdit->getEvent();
+    if(eventEdit->isChanged()){
 
-    eventHandler->addEvent(newEvent);
+        newEvent = eventEdit->getEvent();
+        eventHandler->addEvent(newEvent);
+
+    }
 
     delete eventEdit;
 
