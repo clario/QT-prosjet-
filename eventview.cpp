@@ -1,6 +1,7 @@
 #include "eventview.h"
 #include <QStringListModel>
 #include <QSizePolicy>
+#include <QMessageBox>
 
 EventView::EventView(QWidget *parent) :
     QDialog(parent)
@@ -175,6 +176,12 @@ EventView::EventView(QWidget *parent) :
 }
 
 EventView::~EventView() {
+
+}
+
+void EventView::setCurrentWindow(MainWindow *window) {
+
+    currentWindow=window;
 
 }
 
@@ -399,6 +406,42 @@ void EventView::closedCancelClick(){
 }
 
 void EventView::closedSaveClick(){
+
+    QDateTime from(fromDateEdit->date(), fromTimeEdit->time());
+    QDateTime to(toDateEdit->date(), toTimeEdit->time());
+
+    if(currentWindow->eventHandler->eventsExists(from, to)) {
+
+        QMessageBox msgBox;
+        msgBox.setText("ADVARSEL! En avtale er allerede registrert i dette tidsrommet");
+        msgBox.setInformativeText("Er du sikker på at du vil legge til?");
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        msgBox.setDefaultButton(QMessageBox::No);
+        int ret = msgBox.exec();
+
+        switch(ret) {
+
+        case QMessageBox::Yes:
+
+            changed=true;
+            close();
+            break;
+
+        case QMessageBox::No:
+
+            changed=false;
+            break;
+
+        default:
+
+            // Nada
+            break;
+        }
+
+    } else {
+
     changed = true;
     close();
+
+    }
 }
