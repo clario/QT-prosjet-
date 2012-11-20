@@ -6,12 +6,15 @@
 #ifndef CONTACTHANDLER_H
 #define CONTACTHANDLER_H
 #include "contact.h"
+#include "filehandler.h"
 #include <QString>
 #include <QVector>
 #include <QtAlgorithms>
+#include <QFile>
+#include <QDir>
 
 namespace cal {
-    class ContactHandler;
+class ContactHandler;
 }
 
 class ContactHandler
@@ -29,20 +32,8 @@ public:
      *@param int i
      *@return Henhaldsvis true/false avhengig av om elementet eksisterte
     */
-    bool remove(int i) {
-        if (!(i > 0 && i < container.size())) {
-            container.remove(i);
-            return true;
-        } else {
-            return false;
-        }
-    }
+    bool remove(int i);
 
-    /*
-     *@param int nextID
-     *@desc Setter ID telleren
-    */
-    void setCounter(int &nextID);
     /*
      *@desc Setter ID telleren med utganspunkt i høyeste ID + 1
     */
@@ -52,7 +43,6 @@ public:
      *@desc Returnerer størrelsen på QVectoren brukt for å lagre kontakter
     */
     int getSize(void);
-
 
     /*
      * Overloaded operator lets user list
@@ -74,6 +64,7 @@ public:
      *       Contacts are sorted after they have been loaded
      */
     bool load();
+
 
     /*
      * @desc Uses QSort to sort the Contacts lexicaly based on lName,fName in Contact

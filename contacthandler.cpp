@@ -4,11 +4,8 @@
   */
 
 #include "contacthandler.h"
-#include "filehandler.h"
-#include <QFile>
-#include <QDir>
-#include <QtAlgorithms>
-#include <QDebug>
+
+//#include <QDebug>
 
 ContactHandler::ContactHandler(){
     idCounter = 1;
@@ -28,12 +25,13 @@ bool ContactHandler::add(QString fName, QString lName, QString phoneNumber, QStr
     }
 }
 
-bool remove(int i) {
-
-}
-
-void ContactHandler::setCounter(int &nextID) {
-    idCounter=nextID;
+bool ContactHandler::remove(int i) {
+    if (!(i < 0 && i >= container.size())) {
+        container.remove(i);
+        return true;
+    } else {
+        return false;
+    }
 }
 
 void ContactHandler::setCounter(void) {
@@ -91,8 +89,8 @@ bool ContactHandler::load()
     container.clear();
     QString source = QDir::currentPath();
     source += "/contacts.xml";
-    FileHandler fr(source);                  //Opretta filewriter med stien til current path + navnet på kildefila
-    bool result = fr.load(container);      //Kaller FileWriter::save(xxx)
+    FileHandler fr(source);
+    bool result = fr.load(container);
     setCounter();
     qSort(container);
     return result;

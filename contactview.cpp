@@ -1,5 +1,5 @@
 #include "contactview.h"
-#include <QDebug>
+//#include <QDebug>
 
 ContactView::ContactView(QWidget *parent) :
     QWidget(parent)
@@ -9,7 +9,6 @@ ContactView::ContactView(QWidget *parent) :
 ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
     QWidget(parent)
 {
-
     //Labels
     fName_lbl   = new QLabel("First Name:");
     lName_lbl   = new QLabel("Last name:");
