@@ -64,6 +64,8 @@ public slots:
     void closedCancelClick();
     void closedSaveClick();
 
+    void fromDateChanged();
+    void toDateChanged();
 
 private:
     bool inViewMode;

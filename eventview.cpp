@@ -159,6 +159,12 @@ EventView::EventView(QWidget *parent) :
 
     mainLayout->addLayout(eventTypeGridLayout);
 
+    connect(fromDateEdit, SIGNAL(dateChanged(const QDate&)), this, SLOT(fromDateChanged()));
+    connect(fromTimeEdit, SIGNAL(timeChanged(const QTime&)), this, SLOT(fromDateChanged()));
+
+    connect(toDateEdit, SIGNAL(dateChanged(const QDate&)), this, SLOT(toDateChanged()));
+    connect(toTimeEdit, SIGNAL(timeChanged(const QTime&)), this, SLOT(toDateChanged()));
+
     connect(absenceRadioButton,SIGNAL(toggled(bool)),this,SLOT(setAbsenceMode(bool)));
     connect(eventRadioButton,SIGNAL(toggled(bool)),this,SLOT(eventMode(bool)));
 
@@ -454,5 +460,35 @@ void EventView::closedSaveClick(){
     changed = true;
     close();
 
+    }
+}
+
+void EventView::fromDateChanged() {
+    QDateTime from(fromDateEdit->date(), fromTimeEdit->time());
+    QDateTime to(toDateEdit->date(), toTimeEdit->time());
+
+    if (from > to) {
+        // Hvis fradato er større enn tildato, sett tildato 1 time lengre enn fradato
+        blockSignals(true);
+
+        toDateEdit->setDate(from.addSecs(60*60).date());
+        toTimeEdit->setTime(from.addSecs(60*60).time());
+
+        blockSignals(false);
+    }
+}
+
+void EventView::toDateChanged() {
+    QDateTime from(fromDateEdit->date(), fromTimeEdit->time());
+    QDateTime to(toDateEdit->date(), toTimeEdit->time());
+
+    if (to < from) {
+        // Hvis tildato er mindre enn fradato, sett fradato 1 time mindre enn tildato
+        blockSignals(true);
+
+        fromDateEdit->setDate(to.addSecs(-60*60).date());
+        fromTimeEdit->setTime(to.addSecs(-60*60).time());
+
+        blockSignals(false);
     }
 }
