@@ -183,6 +183,7 @@ void MainWindow::deleteEvent() {
     events.erase(events.begin()+index);
     feed->deactivate();
     feed->loadEvents(events);
+    dateClicked();
     calendar->update();
 }
 
@@ -197,6 +198,7 @@ void MainWindow::deleteAllEventsToday() {
     events.clear();
     feed->deactivate();
     feed->clearEventFeed();
+    dateClicked();
     calendar->update();
 
 }
@@ -223,6 +225,7 @@ void MainWindow::createNewEvent() {
 
     delete eventEdit;
 
+    dateClicked();
     calendar->update();
 
 }
