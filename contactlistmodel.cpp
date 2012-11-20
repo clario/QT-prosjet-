@@ -59,9 +59,9 @@ QVariant ContactListModel::headerData(int section, Qt::Orientation orientation, 
             switch (section)
             {
             case 0:
-                return QString("Fornavn");
-            case 1:
                 return QString("Etternavn");
+            case 1:
+                return QString("Fornavn");
             case 2:
                 return QString("Tlf");
             case 3:
