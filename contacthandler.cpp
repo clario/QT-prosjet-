@@ -105,20 +105,4 @@ void ContactHandler::sort()
 }
 
 
-//NOT FINISHED
-QString ContactHandler::findContact(const QString &sf) const
-{
-    QString result = "";
-    foreach(Contact c, container){
-        if(c.getLName().contains(sf) || c.getFName().contains(sf)){
-            result = c.toString();
-        }else{
-            result = "not found";
-        }
-    }
-    return result;
-}
-
-
-
 
