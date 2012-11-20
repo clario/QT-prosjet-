@@ -1,6 +1,7 @@
 #include "eventview.h"
 #include <QStringListModel>
 #include <QSizePolicy>
+#include <QMessageBox>
 
 EventView::EventView(QWidget *parent) :
     QDialog(parent)
@@ -11,6 +12,8 @@ EventView::EventView(QWidget *parent) :
     changed = false;
     buttonVisible = false;
     absence = false;
+
+    currentWindow = NULL;
 
     setWindowTitle("Avtaler");
     eventTitle = QString("Yogatime");
@@ -175,6 +178,12 @@ EventView::EventView(QWidget *parent) :
 }
 
 EventView::~EventView() {
+    currentWindow = NULL;
+}
+
+void EventView::setCurrentWindow(MainWindow *window) {
+
+    currentWindow=window;
 
 }
 
@@ -316,7 +325,12 @@ Event EventView::getEvent() const {
     e.setDescription(descriptionTextEdit->toPlainText());
     QStringList myParticipants(participantModel->stringList());
     e.setParticipants(myParticipants.toVector().toStdVector());
+
     e.setAbsence(absenceRadioButton->isChecked());
+
+    //qDebug() << "combo" << typeComboBox->currentText() << typeComboBox->currentIndex();
+
+    e.setEventType(typeComboBox->currentText());
 
     e.setRepeats(repeatSpinBox->value());
 
@@ -349,11 +363,15 @@ void EventView::populateFields() {
     participants = QStringList::fromVector(QVector<QString>::fromStdVector(event.getParticipants()));
     participantModel->setStringList(participants);
 
+    blockSignals(false);
+
     if(event.getAbsence()){
        absenceRadioButton->setChecked(true);
+       typeComboBox->setCurrentIndex(absenceType.indexOf(event.getEventType()));
+    } else {
+       absenceRadioButton->setChecked(false);
+       typeComboBox->setCurrentIndex(typeEvent.indexOf(event.getEventType()));
     }
-
-    blockSignals(false);
 }
 
 void EventView::setAbsenceMode(bool bo){
@@ -399,6 +417,42 @@ void EventView::closedCancelClick(){
 }
 
 void EventView::closedSaveClick(){
+
+    QDateTime from(fromDateEdit->date(), fromTimeEdit->time());
+    QDateTime to(toDateEdit->date(), toTimeEdit->time());
+
+    if(currentWindow != NULL && currentWindow->eventHandler->eventsExists(from, to)) {
+
+        QMessageBox msgBox;
+        msgBox.setText("ADVARSEL! En avtale er allerede registrert i dette tidsrommet");
+        msgBox.setInformativeText("Er du sikker på at du vil legge til?");
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+        msgBox.setDefaultButton(QMessageBox::No);
+        int ret = msgBox.exec();
+
+        switch(ret) {
+
+        case QMessageBox::Yes:
+
+            changed=true;
+            close();
+            break;
+
+        case QMessageBox::No:
+
+            changed=false;
+            break;
+
+        default:
+
+            // Nada
+            break;
+        }
+
+    } else {
+
     changed = true;
     close();
+
+    }
 }
