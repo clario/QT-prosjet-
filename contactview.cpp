@@ -101,13 +101,15 @@ ContactView::ContactView(ContactHandler *ch, QWidget *parent) :
 
 void ContactView::editRow()
 {
-    selectedRow = tv->currentIndex().row();
-    fName->setText((*cHandler)[selectedRow].getFName());
-    lName->setText((*cHandler)[selectedRow].getLName());
-    phoneNumber->setText((*cHandler)[selectedRow].getPhoneNumber());
-    eMail->setText((*cHandler)[selectedRow].getEmail());
-    edit->hide();
-    save->show();
+    if (cHandler->getSize() > 0) {
+        selectedRow = tv->currentIndex().row();
+        fName->setText((*cHandler)[selectedRow].getFName());
+        lName->setText((*cHandler)[selectedRow].getLName());
+        phoneNumber->setText((*cHandler)[selectedRow].getPhoneNumber());
+        eMail->setText((*cHandler)[selectedRow].getEmail());
+        edit->hide();
+        save->show();
+    }
 }
 
 void ContactView::saveRow()
@@ -123,6 +125,7 @@ void ContactView::saveRow()
 
 void ContactView::addCont()
 {
+    qDebug() << "add";
     (*cHandler).add(fName->text(),lName->text(),phoneNumber->text(),eMail->text());
 }
 
